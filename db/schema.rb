@@ -10,32 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_09_194427) do
+ActiveRecord::Schema.define(version: 2022_07_17_191707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "reviews", force: :cascade do |t|
-    t.string "review"
-    t.integer "user_id"
-    t.integer "rv_id"
+  create_table "desks", force: :cascade do |t|
+    t.integer "desk_number"
+    t.boolean "renting"
+    t.boolean "owned"
+    t.boolean "rental"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "rvs", force: :cascade do |t|
-    t.string "name"
-    t.string "image_url"
-    t.text "description"
-    t.integer "mileage"
-    t.string "region"
+  create_table "jobs", force: :cascade do |t|
+    t.string "title"
+    t.integer "salary"
+    t.integer "student_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password_digest"
+  create_table "student_desks", force: :cascade do |t|
+    t.integer "desk_id"
+    t.integer "student_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "balance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

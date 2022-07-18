@@ -1,4 +1,5 @@
-class Student < ApplicationRecord
+class Student < ApplicationRecord  #switch out with this... Student < User
+
   has_many :student_desks
   has_many :desks, through: :student_desks
 

@@ -17,11 +17,12 @@ sj2 = StudentJob.create(job_id: j2.id, student_id: s2.id)
 sj3 = StudentJob.create(job_id: j2.id, student_id: s3.id)
 
 d1 = Desk.create(desk_number: 1, renting: false, owned: true, rental: false)
-d2 = Desk.create(desk_number: 2, renting: true, owned: false, rental: false)
+d2 = Desk.create(desk_number: 2, renting: true, owned: true, rental: true)
 d3 = Desk.create(desk_number: 3, renting: true, owned: false, rental: false)
 
-sd1 = StudentDesk.create(desk_id: d1.id, student_id: s1.id)
-sd2 = StudentDesk.create(desk_id: d2.id, student_id: s2.id)
-sd3 = StudentDesk.create(desk_id: d3.id, student_id: s3.id)
+sd1 = StudentDesk.create(is_owned_or_rented: "owned", desk_id: d1.id, student_id: s1.id)
+sd2 = StudentDesk.create(is_owned_or_rented: "rented", desk_id: d2.id, student_id: s2.id)
+sd3 = StudentDesk.create(is_owned_or_rented: "rented", desk_id: d3.id, student_id: s3.id)
+sd4 = StudentDesk.create(is_owned_or_rented: "owned", desk_id: d2.id, student_id: s1.id)
 
 puts "database seeded"

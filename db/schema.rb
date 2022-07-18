@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_17_201343) do
+ActiveRecord::Schema.define(version: 2022_07_18_141852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "desks", force: :cascade do |t|
     t.integer "desk_number"
-    t.boolean "renting"
-    t.boolean "owned"
-    t.boolean "rental"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "rental"
+    t.boolean "owned"
+    t.boolean "renting"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2022_07_17_201343) do
     t.integer "student_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "is_owned_or_rented"
   end
 
   create_table "student_jobs", force: :cascade do |t|

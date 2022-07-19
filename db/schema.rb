@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_19_162744) do
+ActiveRecord::Schema.define(version: 2022_07_19_184531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,8 @@ ActiveRecord::Schema.define(version: 2022_07_19_162744) do
     t.integer "desk_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "rental"
-    t.boolean "owned"
-    t.boolean "renting"
+    t.integer "cost"
+    t.integer "value"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -30,6 +29,15 @@ ActiveRecord::Schema.define(version: 2022_07_19_162744) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "student_id"
+  end
+
+  create_table "privileges", force: :cascade do |t|
+    t.string "event"
+    t.integer "amount"
+    t.integer "value"
+    t.integer "student_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "student_desks", force: :cascade do |t|
@@ -44,6 +52,24 @@ ActiveRecord::Schema.define(version: 2022_07_19_162744) do
     t.string "first_name"
     t.string "last_name"
     t.integer "balance"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "work_habit_score"
+    t.string "avatar_url"
+    t.string "goal"
+    t.string "username"
+    t.string "password_digest"
+    t.boolean "admin"
+    t.integer "class_period"
+    t.integer "teacher_id"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "username"
+    t.string "password_digest"
+    t.boolean "admin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

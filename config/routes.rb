@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :students   #full CRUD on students: index, show, create, update, destroy
+  resources :job
 
 
 

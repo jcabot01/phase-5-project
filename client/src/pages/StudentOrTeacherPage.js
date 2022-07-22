@@ -2,24 +2,31 @@ import React from 'react';
 import Image from '../images/board-game-gd3b62ce94_1920.jpg';
 import { Button, Box, Typography, Paper } from '@mui/material';
 import styled from '@emotion/styled';
+import { red } from '@mui/material/colors';
 
 
 
 function StudentOrTeacherPAGE() {
-
   const styles = {
-    paperContainer: { 
-        backgroundImage: `url(${Image})`
-    }
-  };
-
+        paperContainer: { 
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundImage: `url(${Image})`
+        }
+      };
+  
   return (
-    <Box sx={{width: '422px', margin: 'auto' }}>
-      <Paper style={styles.paperContainer} sx={{maxHeight: 920, borderRadius: 5, backgroundRepeat: 'no-repeat'}}>
-      <Typography>Class-o-poly LOGO</Typography>
+    <Box sx={{}}>
+      
+      <Paper style={styles.paperContainer} sx={{backgroundRepeat: 'no-repeat', margin: 5, height: 525 }}>
+      <Box sx={{height: 100}}></Box>
+      <LogoWrapper component={'div'} style={{ border: '4px solid' }}>
+        <Logo>Class-o-poly</Logo>
+      </LogoWrapper>
       <Wrapper>
-        <Typography>Welcome to "Class-o-poly</Typography>
+        <Typography>Click your role to begin!</Typography>
         <Button 
+          sx={{marginTop: 2}}
           variant='contained' 
           color='primary' 
           // onClick={() => navigate("/student-login")}
@@ -31,6 +38,7 @@ function StudentOrTeacherPAGE() {
         <Typography>or</Typography>
 
         <Button 
+          sx={{marginBottom: 2}}
           variant='contained' 
           color='primary' 
           // onClick={() => navigate("/teacher-login")}
@@ -46,15 +54,16 @@ function StudentOrTeacherPAGE() {
 }
 
 const Wrapper = styled.section`
-  width: 350px;
+  width: 250px;
   display: "flex";
   flexDirection: "column";
   margin: auto;
   background-color: #f3f6f4; 
-  margin-top: 100px;
+  margin-top: 50px;
   padding: 5px; 
   border-radius: 7px;
-  opacity: 0.9
+  opacity: 0.9;
+  text-align:center
 `;
 
 const Divider = styled.hr`
@@ -64,8 +73,24 @@ const Divider = styled.hr`
 `;
 
 const Logo = styled.h1`
-  font-family: "Over the Rainbow", cursive;
-  font-size: 6rem;
-  color: white;
+  margin-top: 7px;
+  font-family: 'Alegreya', serif;
+  font-size: 3rem;
+  background: #BF0000;
+  background: radial-gradient(circle farthest-corner at right center, #BF0000 25%, #FFFF4D 54%, #00CF0E 76%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
+
+  const LogoWrapper = styled.section`
+    text-align: center;
+    height: 85px;
+    width: 350px;
+    margin: auto;
+    background-color: #cccccc;
+    padding: 5px; 
+    border: 3px
+  `;
+
+
 export default StudentOrTeacherPAGE

@@ -60,9 +60,9 @@ function StudentSignupForm() {
           <Grid item xs={6} md={6} lg={6}>
             <TextField 
               value={avatar} onChange={(e) => setAvatar(e.target.value)}
-              id="Avatar"  
+              id="Avatar URL"  
               variant="outlined"
-              placeholder="Avatar"
+              placeholder="Avatar URL"
               sx={{width: '28ch', backgroundColor: '#ffffff' }}
             />
           </Grid>
@@ -71,7 +71,7 @@ function StudentSignupForm() {
               value={classPeriod} onChange={(e) => setClassPeriod(e.target.value)}
               id="Class Period"  
               variant="outlined"
-              placeholder="Class Period"
+              placeholder="Class Period ex: 1"
               sx={{width: '28ch', backgroundColor: '#ffffff' }}
             />
           </Grid>
@@ -100,7 +100,7 @@ function StudentSignupForm() {
               id="Password Confirmation"
               type={'password'}  
               variant="outlined"
-              placeholder="re-type password"
+              placeholder="Password confirmation"
               sx={{width: '28ch', backgroundColor: '#ffffff' }}
             />
           </Grid>

@@ -29,7 +29,7 @@ function StudentLoginForm() {
   return (
     <Box component="div">
     <Box textAlign={'center'} >     
-      <Typography variant='h4' fontFamily={'cursive'} sx={{ color: "black", }}>Log In</Typography>
+      <Typography variant='h4' sx={{ color: "black", }}>Log In</Typography>
       <form onSubmit={handleSubmit}>
         <Stack spacing={2} direction={'column'} alignItems="center">
           <TextField 
@@ -37,7 +37,7 @@ function StudentLoginForm() {
             id="Username"  
             variant="outlined"
             placeholder="Username"
-            sx={{width: '28ch', backgroundColor: '#ffffff' }}
+            sx={{width: '28ch', backgroundColor: '#ffffff', marginTop: 2 }}
             
           />
           <TextField 
@@ -51,9 +51,9 @@ function StudentLoginForm() {
           <Link href="/">
             <Button 
               type='submit'
-              color="secondary"
+              color="primary"
               variant="contained" 
-              sx={{ borderRadius: 2, margin: 3}}
+              sx={{ borderRadius: 2, margin: 3, marginTop: 0}}
             >
               Submit
             </Button>

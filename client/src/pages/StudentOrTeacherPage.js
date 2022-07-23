@@ -2,7 +2,7 @@ import React from 'react';
 import Image from '../images/board-game-gd3b62ce94_1920.jpg';
 import { Button, Box, Typography, Paper } from '@mui/material';
 import styled from '@emotion/styled';
-import { red } from '@mui/material/colors';
+
 
 
 
@@ -16,37 +16,35 @@ function StudentOrTeacherPAGE() {
       };
   
   return (
-    <Box sx={{}}>
-      
+    <Box>
       <Paper style={styles.paperContainer} sx={{backgroundRepeat: 'no-repeat', margin: 5, height: 525 }}>
-      <Box sx={{height: 100}}></Box>
-      <LogoWrapper component={'div'} style={{ border: '4px solid' }}>
-        <Logo>Class-o-poly</Logo>
-      </LogoWrapper>
-      <Wrapper>
-        <Typography>Click your role to begin!</Typography>
-        <Button 
-          sx={{marginTop: 2}}
-          variant='contained' 
-          color='primary' 
-          // onClick={() => navigate("/student-login")}
-          href="/student-login"
-        >
-        Student
-        </Button>     
-
-        <Typography>or</Typography>
-
-        <Button 
-          sx={{marginBottom: 2}}
-          variant='contained' 
-          color='primary' 
-          // onClick={() => navigate("/teacher-login")}
-          href="/teacher-login"
-        >
-        Teacher
-        </Button>
-      </Wrapper>
+        <Box sx={{height: 100}}>
+        </Box>
+        <LogoWrapper component={'div'} style={{ border: '4px solid' }}>
+          <Logo>Class-o-poly</Logo>
+        </LogoWrapper>
+        <Wrapper>
+          <Typography>Click your role to begin!</Typography>
+          <Button 
+            sx={{marginTop: 2}}
+            variant='contained' 
+            color='primary' 
+            // onClick={() => navigate("/student-login")}
+            href="/student-login"
+          >
+          Student
+          </Button>     
+          <Typography>or</Typography>
+          <Button 
+            sx={{marginBottom: 2}}
+            variant='contained' 
+            color='primary' 
+            // onClick={() => navigate("/teacher-login")}
+            href="/teacher-login"
+          >
+          Teacher
+          </Button>
+        </Wrapper>
       </Paper>
     </Box>
    
@@ -66,11 +64,11 @@ const Wrapper = styled.section`
   text-align:center
 `;
 
-const Divider = styled.hr`
-  border: none;
-  border-bottom: 1px solid #ccc;
-  margin: 16px 0;
-`;
+// const Divider = styled.hr`
+//   border: none;
+//   border-bottom: 1px solid #ccc;
+//   margin: 16px 0;
+// `;
 
 const Logo = styled.h1`
   margin-top: 7px;

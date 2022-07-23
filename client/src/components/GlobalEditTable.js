@@ -61,10 +61,22 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
     'Student #15',
   ];
 
-
+  // const copyOfStudents = [...students]
+  // function studentData () {
+  //   return copyOfStudents.map((student) => student)
+  // } 
+  // const {student} = studentData();
+  // console.log({student})
+  // console.log(students)
+  
+  // console.log(students[0].job.title)
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 20 },
+    { 
+      field: 'id', 
+      headerName: 'ID', 
+      width: 20 
+    },
     { 
       field: 'avatar_url', 
       headerName: 'Avatar', 
@@ -78,18 +90,96 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
         )
       }
     },
-    { field: "first_name", headerName: 'First Name', editable: true, width: 80 },
-    { field: "balance", headerName: 'Balance $', editable: true, width: 80, type: 'number', valueFormatter: ({ value }) => currencyFormatter.format(value), },
-    { field: "job", headerName: 'Job', editable: true, type: 'singleSelect', valueOptions: jobs, width: 80 },
-    { field: "salary", headerName: 'Salary', editable: true, width: 80, type: 'number', valueFormatter: ({ value }) => currencyFormatter.format(value), },
-    { field: "payday", headerName: 'Payday', editable: true, width: 80, renderCell: () => <PaydayButton /> }, //a button, onClick => student.balance += student.salary
-    { field: "work_habit_score", headerName: 'Work Habit (0/4)', editable: true, type: 'number', width: 80 },
-    { field: "desk_rented", headerName: 'Desk Rented', editable: true, type: 'number', width: 80 }, //onChange => student.desks.desk_number if rented ?
-    { field: "desks_owned", headerName: 'Desk(s) Owned', editable: true, type: 'number', width: 80 }, //onChange => student.desks.desk_number if owned ?
-    { field: "monthly_rent", headerName: 'Monthly Rent', editable: true, width: 90, renderCell: () => <RentButton /> }, //a button, onClick => student.balance - 10 
-    { field: "collect_rent", headerName: 'Collect Rent', editable: true, width: 124, renderCell: () => <CollectRentButton /> }, //a button, onClick => student.balance - 10 
-    { field: "privilege", headerName: 'Purchase a Privilege', editable: true, width: 96, renderCell: () => <PrivilegeButton /> }, //a button, onClick => dialog popup to purchase privilege; snack, music, investment
-    { field: "investment", headerName: 'Investment $', editable: true, width: 80, type: 'number', valueFormatter: ({ value }) => currencyFormatter.format(value), },
+    { 
+      field: "first_name", 
+      headerName: 'First Name', 
+      editable: true, 
+      width: 80 
+    },
+    { 
+      field: "balance", 
+      headerName: 'Balance $', 
+      editable: true, 
+      width: 80, 
+      type: 'number', 
+      valueFormatter: ({ value }) => currencyFormatter.format(value), 
+    },
+    {
+      field: "job",
+      headerName: "Job",
+      editable: true, 
+      type: 'singleSelect', 
+      valueOptions: jobs,
+      width: 100,
+      renderCell: (params) => params.row.job.title
+    },
+    { 
+      field: "salary", 
+      headerName: 'Salary', 
+      editable: true, 
+      width: 80, 
+      type: 'number', 
+      valueFormatter: ({ value }) => currencyFormatter.format(value),
+      renderCell: (params) => params.row.job.salary
+    },
+    {  
+      field: "payday", 
+      headerName: 'Payday', 
+      editable: true, 
+      width: 80, 
+      renderCell: () => <PaydayButton /> 
+    }, //a button, onClick => student.balance += student.salary
+    { 
+      field: "work_habit_score", 
+      headerName: 'Work Habit (0/4)', 
+      editable: true, 
+      type: 'number', 
+      width: 80 
+    },
+    { 
+      field: "desk_rented", 
+      headerName: 'Desk Rented', 
+      editable: true, 
+      type: 'number',
+      width: 80 
+    }, //onChange => student.desks.desk_number if rented ?
+    { 
+      field: "desks_owned", 
+      headerName: 'Desk(s) Owned', 
+      editable: true, 
+      type: 'number', 
+      width: 80 
+    }, //onChange => student.desks.desk_number if owned ?
+    { 
+      field: "monthly_rent", 
+      headerName: 'Monthly Rent', 
+      editable: true, 
+      width: 90, 
+      renderCell: () => <RentButton /> 
+    }, //a button, onClick => student.balance - 10 
+    { 
+      field: "collect_rent", 
+      headerName: 'Collect Rent', 
+      editable: true, 
+      width: 124, 
+      renderCell: () => <CollectRentButton /> 
+    }, //a button, onClick => student.balance - 10 
+    { 
+      field: "privilege", 
+      headerName: 'Purchase a Privilege', 
+      editable: true, 
+      width: 96, 
+      renderCell: () => <PrivilegeButton /> 
+    }, //a button, onClick => dialog popup to purchase privilege; snack, music, investment
+    { 
+      field: "investment", 
+      headerName: 'Investment $', 
+      editable: true, 
+      width: 80, 
+      type: 'number', 
+      valueFormatter: ({ value }) => currencyFormatter.format(value),
+      // renderCell: (params) => params.row.job.salary 
+    },
     {
       field: 'actions',
       type: 'actions',

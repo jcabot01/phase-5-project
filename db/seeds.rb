@@ -22,6 +22,7 @@ p5 = Privilege.create(event: "Snack Card", amount: 20, value: 20, student_id: s3
 j1 = Job.create(title: "Accountant", salary: 35, student_id: s1.id)
 j2 = Job.create(title: "Student #1", salary: 15, student_id: s2.id)
 j3 = Job.create(title: "Class Tutor #1", salary: 32, student_id: s3.id)
+j4 = Job.create(title: "Student #2", salary: 15, student_id: s4.id)
 
 d1 = Desk.create(desk_number: 1, cost: 50, value: 100)
 d2 = Desk.create(desk_number: 2, cost: 50, value: 100)

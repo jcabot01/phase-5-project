@@ -1,6 +1,6 @@
 import React, { useEffect, useState }from 'react';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
-import { Avatar } from '@mui/material';
+import { Avatar, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PaydayButton from './PaydayButton';
 import RentButton from './RentButton';
@@ -75,12 +75,12 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
     { 
       field: 'id', 
       headerName: 'ID', 
-      width: 20 
+      width: 10 
     },
     { 
       field: 'avatar_url', 
       headerName: 'Avatar', 
-      width: 75,
+      width: 55,
       editable: true,
       renderCell: (students) => {
         return (
@@ -93,6 +93,12 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
     { 
       field: "first_name", 
       headerName: 'First Name', 
+      editable: true, 
+      width: 80 
+    },
+    { 
+      field: "last_name", 
+      headerName: 'Last Name', 
       editable: true, 
       width: 80 
     },
@@ -117,7 +123,7 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
       field: "salary", 
       headerName: 'Salary', 
       editable: true, 
-      width: 80, 
+      width: 55, 
       type: 'number', 
       valueFormatter: ({ value }) => currencyFormatter.format(value),
       renderCell: (params) => params.row.job.salary
@@ -126,7 +132,7 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
       field: "payday", 
       headerName: 'Payday', 
       editable: true, 
-      width: 80, 
+      width: 75, 
       renderCell: () => <PaydayButton /> 
     }, //a button, onClick => student.balance += student.salary
     { 
@@ -141,14 +147,39 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
       headerName: 'Desk Rented', 
       editable: true, 
       type: 'number',
-      width: 80 
+      width: 80,
+      renderCell: (params) => {
+        let result = []
+        params.row.student_desks.map((desk) => desk.is_owned_or_rented == "rented" ? result.push(desk.desk_id) : null)        
+        return (
+          <div>
+            {result.map((desk) => (
+              <Typography>Desk #{desk}</Typography>
+            ))}
+           
+          </div>
+        )
+      }  
+      
     }, //onChange => student.desks.desk_number if rented ?
     { 
       field: "desks_owned", 
       headerName: 'Desk(s) Owned', 
       editable: true, 
-      type: 'number', 
-      width: 80 
+      type: 'string', 
+      width: 80, 
+      renderCell: (params) => {
+        let result = []
+        params.row.student_desks.map((desk) => desk.is_owned_or_rented == "owned" ? result.push(desk.desk_id) : null)        
+        return (
+          <div>
+            {result.map((desk) => (
+              <Typography>Desk #{desk}</Typography>
+            ))}
+           
+          </div>
+        )
+      }  
     }, //onChange => student.desks.desk_number if owned ?
     { 
       field: "monthly_rent", 

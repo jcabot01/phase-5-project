@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :students   #full CRUD on students: index, show, create, update, destroy
   resources :job
-
+  # get './desks', to 'desks#index' #get all desks data
+  # get './desks/:id', to 'desks#show' #get all desks data
 
 
 

@@ -5,6 +5,7 @@ import StudentLoginPage from './pages/StudentLoginPage';
 import TeacherLoginPage from './pages/TeacherLoginPage';
 import ErrorPage from './pages/ErrorPage';
 import StudentOrTeacherPage from './pages/StudentOrTeacherPage';
+import RulesOverview from './pages/RulesOverview';
 
 
 
@@ -27,6 +28,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<StudentOrTeacherPage/>} />
+          <Route path="/rules-overview" element={<RulesOverview/>}/>
           <Route path="/student-login" element={<StudentLoginPage/>} />
           <Route path="/teacher-login" element={<TeacherLoginPage/>} />
           <Route path="/students" element={<GlobalEditTable/>} />

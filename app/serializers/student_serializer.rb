@@ -4,4 +4,5 @@ class StudentSerializer < ActiveModel::Serializer
 has_one :job
 has_many :student_desks
 has_many :desks, through: :student_desks
+has_many :privileges
 end

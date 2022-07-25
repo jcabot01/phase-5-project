@@ -67,7 +67,7 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
   // } 
   // const {student} = studentData();
   // console.log({student})
-  // console.log(students)
+  console.log(students)
   
   // console.log(students[0].job.title)
 
@@ -203,7 +203,11 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
       width: 80, 
       type: 'number', 
       valueFormatter: ({ value }) => currencyFormatter.format(value),
-      // renderCell: (params) => params.row.job.salary 
+      renderCell: (params) => params.row.privileges.map((privilege) => {
+        if (privilege.event === "Invest") {
+          return currencyFormatter.format(privilege.amount)
+        }
+      }) 
     },
     {
       field: 'actions',

@@ -6,6 +6,8 @@ import TeacherLoginPage from './pages/TeacherLoginPage';
 import ErrorPage from './pages/ErrorPage';
 import StudentOrTeacherPage from './pages/StudentOrTeacherPage';
 import RulesOverview from './pages/RulesOverview';
+import NavBar from './components/NavBar';
+
 
 
 
@@ -26,6 +28,7 @@ function App() {
   return (
     <div>
       <Router>
+        <NavBar />
         <Routes>
           <Route path="/" element={<StudentOrTeacherPage/>} />
           <Route path="/rules-overview" element={<RulesOverview/>}/>

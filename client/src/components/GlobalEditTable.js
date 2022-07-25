@@ -2,10 +2,10 @@ import React, { useEffect, useState }from 'react';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import { Avatar, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import PaydayButton from './PaydayButton';
-import RentButton from './RentButton';
-import CollectRentButton from './CollectRentButton';
-import PrivilegeButton from './PrivilegeButton';
+import PaydayButton from './Buttons/GlobalStudentEditButtons/PaydayButton';
+import RentButton from './Buttons/GlobalStudentEditButtons/RentButton';
+import CollectRentButton from './Buttons/GlobalStudentEditButtons/CollectRentButton';
+import PrivilegeButton from './Buttons/GlobalStudentEditButtons/PrivilegeButton';
 
 
 
@@ -154,7 +154,7 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
         return (
           <div>
             {result.map((desk) => (
-              <Typography>Desk #{desk}</Typography>
+              <Typography key={desk.id}>Desk #{desk}</Typography>
             ))}
            
           </div>
@@ -174,7 +174,7 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
         return (
           <div>
             {result.map((desk) => (
-              <Typography>Desk #{desk}</Typography>
+              <Typography key={desk.id}>Desk #{desk}</Typography>
             ))}
            
           </div>

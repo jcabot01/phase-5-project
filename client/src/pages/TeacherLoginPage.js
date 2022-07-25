@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import TeacherLoginForm from '../components/Logins.js/TeacherLoginForm';
-import TeacherSignupForm from '../components/Logins.js/TeacherSignupForm';
+import TeacherLoginForm from '../components/Logins/TeacherLoginForm';
+import TeacherSignupForm from '../components/Logins/TeacherSignupForm';
 import Image from '../images/board-game-gd3b62ce94_1920.jpg';
 import { Box, Typography, Button, Paper } from '@mui/material';
 import styled from '@emotion/styled';

@@ -91,14 +91,8 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
       }
     },
     { 
-      field: "first_name", 
-      headerName: 'First Name', 
-      editable: true, 
-      width: 80 
-    },
-    { 
-      field: "last_name", 
-      headerName: 'Last Name', 
+      field: "username", 
+      headerName: 'Username', 
       editable: true, 
       width: 80 
     },
@@ -150,7 +144,7 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
       width: 80,
       renderCell: (params) => {
         let result = []
-        params.row.student_desks.map((desk) => desk.is_owned_or_rented == "rented" ? result.push(desk.desk_id) : null)        
+        params.row.student_desks.map((desk) => desk.is_owned_or_rented === "rented" ? result.push(desk.desk_id) : null)        
         return (
           <div>
             {result.map((desk) => (
@@ -170,7 +164,7 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
       width: 80, 
       renderCell: (params) => {
         let result = []
-        params.row.student_desks.map((desk) => desk.is_owned_or_rented == "owned" ? result.push(desk.desk_id) : null)        
+        params.row.student_desks.map((desk) => desk.is_owned_or_rented === "owned" ? result.push(desk.desk_id) : null)        
         return (
           <div>
             {result.map((desk) => (

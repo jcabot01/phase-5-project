@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@mui/material';
+import PrivilegeDialog from './PrivilegeDialog';
 
 
 function PrivilegeButton() {
@@ -8,7 +9,7 @@ function PrivilegeButton() {
       variant="contained"
       size="small"
       color='secondary'
-      onClick={() => console.log("purchase a privilege")}>
+      onClick={() => <PrivilegeDialog />}>
         Privilege
     </Button>
   )

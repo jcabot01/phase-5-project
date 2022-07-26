@@ -5,7 +5,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import PaydayButton from './Buttons/GlobalStudentEditButtons/PaydayButton';
 import RentButton from './Buttons/GlobalStudentEditButtons/RentButton';
 import CollectRentButton from './Buttons/GlobalStudentEditButtons/CollectRentButton';
-import PrivilegeButton from './Buttons/GlobalStudentEditButtons/PrivilegeButton';
+import PrivilegeDialog from './Buttons/GlobalStudentEditButtons/PrivilegeDialog';
+
 
 
 
@@ -19,12 +20,13 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
       .then((studentsData) => setStudents(studentsData))
   }, []);
 
-  function handleDelete(id) {
-    console.log(id)
+  function handleDelete(e) {
+    console.log(e)
   }
 
 //Datagrid Helper Functions & Variables
   const currencyFormatter = new Intl.NumberFormat('en-US', {
+    maximumSignificantDigits: 3,
     style: 'currency',
     currency: 'USD',
   });
@@ -61,21 +63,21 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
     'Student #15',
   ];
 
-  // const copyOfStudents = [...students]
-  // function studentData () {
-  //   return copyOfStudents.map((student) => student)
-  // } 
-  // const {student} = studentData();
-  // console.log({student})
-  console.log(students)
+ 
+  // console.log(students)
   
-  // console.log(students[0].job.title)
 
   const columns = [
     { 
       field: 'id', 
       headerName: 'ID', 
       width: 10 
+    },
+    {
+      field: "class_period", 
+      headerName: 'Period', 
+      editable: true, 
+      width: 60
     },
     { 
       field: 'avatar_url', 
@@ -119,8 +121,7 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
       editable: true, 
       width: 55, 
       type: 'number', 
-      valueFormatter: ({ value }) => currencyFormatter.format(value),
-      renderCell: (params) => params.row.job.salary
+      renderCell: (params) => currencyFormatter.format(params.row.job.salary)
     },
     {  
       field: "payday", 
@@ -148,7 +149,7 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
         return (
           <div>
             {result.map((desk) => (
-              <Typography key={desk.id}>Desk #{desk}</Typography>
+              <Typography key={desk}>Desk #{desk}</Typography>
             ))}
            
           </div>
@@ -168,7 +169,8 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
         return (
           <div>
             {result.map((desk) => (
-              <Typography key={desk.id}>Desk #{desk}</Typography>
+
+              <Typography key={desk}>Desk #{desk}</Typography>
             ))}
            
           </div>
@@ -193,8 +195,8 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
       field: "privilege", 
       headerName: 'Purchase a Privilege', 
       editable: true, 
-      width: 96, 
-      renderCell: () => <PrivilegeButton /> 
+      width: 104, 
+      renderCell: () => <PrivilegeDialog /> 
     }, //a button, onClick => dialog popup to purchase privilege; snack, music, investment
     { 
       field: "investment", 
@@ -217,26 +219,26 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
         <GridActionsCellItem
           icon={<DeleteIcon />}
           label="Delete"
-          // onClick={handleDelete(params.id)}
+          onClick={handleDelete(params.id)}
         />,
         ]
     }
   ]
 
-  // const studentJob = students.map((student) => student.job)
-  // const jobTitle = studentJob.map((job) => job.title)
-  // const studentsToFlat = [...students]
-  // let flattendStudents = studentsToFlat.flat(5)
+  // const rows = students?.map(student => {
+  //   return {
+  //     id: student?.id,
+  //     class_period: student?.class_period,
+  //     avatar_url: student?.avatar_url,
+  //     username: student?.username,
+  //     balance: student?.balance,
+  //     job: student?.job.title,
+  //     salary: student?.job.salary,
+  //     work_habit_score: student?.work_habit_score,
+  //     desks: student?.desks.desk
 
-  // const rows = students.map((row) => ({
-  //   id: row.id,
-  //   avatar_url: row.avatar_url,
-  //   first_name: row.first_name,
-  //   balance: row.balance,
-  //   job: row.job
-  //   // salary: row.salary,
-     
-  // }))
+  //   }
+  // })
 
   // console.log(students)
   return (

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem, FormControl, InputLabel} from '@mui/material'
-// import BuyDeskSelect from './BuyDeskSelect';
+
 
 
 function BuyDeskDialog({params}) {
@@ -20,32 +20,36 @@ function BuyDeskDialog({params}) {
   const [studentId, setStudentId] = useState('');
   const [isOwnedOrRented, setIsOwnedOrRented] = useState("");
   const [studentDeskId, setStudentDeskId] = useState("")
+  const [paramsStudentDeskObj, setParamsStudentDeskObj] = useState('')
+  const [deskId, setDeskId] = useState('')
   
 
 
   function handleBuyDeskSubmit(e) {
     e.preventDefault()
-    console.log(deskNum)
-    console.log(studentId)
-    console.log(isOwnedOrRented)
-    console.log(studentDeskId[0])
+    console.log(deskNum) //desk_id /or number in question
+    console.log(studentId) //student_id purchasing
+    // console.log(isOwnedOrRented) //status of that particular desk
+    console.log(studentDeskId) //for PATCH:  id of "student_desk" join containing the above student_id & desk_id
+    console.log(paramsStudentDeskObj) //for PATCH: 
+    console.log(deskId)
 
-    // const newOwnDeskObject = {
-    //   is_owned_or_rented: "owned",
-    //   student_id: studentId,
-    //   desk_id: deskNum
-    // }
+    const ownershipStatus = isOwnedOrRented[0]
+    const deskID = deskId[0]
+    console.log(ownershipStatus)
+    console.log(deskID)
+    
+    const newOwnDeskObject = {
+      is_owned_or_rented: "owned",
+      student_id: studentId,
+      desk_id: deskNum
+    }
 
     const updateOwnershipObject = {
       is_owned_or_rented: 'owned'
     }
-  // if desk_id params from cell === form values; it's a PATCH to student_desks/:id (based on params.row.student_desks.id); it's an update of is_owned_or_rented to "owned" from the existing "rented", otherwise, they already own it and can't buy it again.
-  // if desk_id params from cell !=== form values; it's a POST to student_desks; the student is not affiliated with that desk yet.  We need studentId and deskNum and is_owned_or_rented to "owned"
-  
-      // if (params.row.student_desks.map((desk) => desk.desk_id) === deskNum && params.row.student_desks.map((desk) => desk.is_owned_or_rented) === "rented") {
-      //   // if (params.row.student_desks.desk_id === deskNum && params.row.student_desks.is_owned_or_rented === "rented") {
-       
-  
+   if (ownershipStatus === 'rented' && deskNum === deskID ) { // && paramsStudentDeskObj === studentId
+   
     fetch(`/student_desks/${studentDeskId[0]}`, {
       method: "PATCH",
       headers: {
@@ -55,6 +59,34 @@ function BuyDeskDialog({params}) {
     })
     .then((res) => res.json())
     .then((updatedStudentDeskObject) => console.log(updatedStudentDeskObject)) 
+   } else {
+    fetch('/student_desks', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newOwnDeskObject)
+    })
+    .then((res) => res.json())
+    .then((newStudentDeskObject) => console.log(newStudentDeskObject))
+   }
+    
+  // if desk_id params from cell === form values; it's a PATCH to student_desks/:id (based on params.row.student_desks.id); it's an update of is_owned_or_rented to "owned" from the existing "rented", otherwise, they already own it and can't buy it again.
+  // if desk_id params from cell !=== form values; it's a POST to student_desks; the student is not affiliated with that desk yet.  We need studentId and deskNum and is_owned_or_rented to "owned"
+  
+      // if (params.row.student_desks.map((desk) => desk.desk_id) === deskNum && params.row.student_desks.map((desk) => desk.is_owned_or_rented) === "rented") {
+      //   // if (params.row.student_desks.desk_id === deskNum && params.row.student_desks.is_owned_or_rented === "rented") {
+       
+  
+    // fetch(`/student_desks/${studentDeskId[0]}`, {
+    //   method: "PATCH",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(updateOwnershipObject)
+    // })
+    // .then((res) => res.json())
+    // .then((updatedStudentDeskObject) => console.log(updatedStudentDeskObject)) 
   }
    
 
@@ -63,6 +95,8 @@ function BuyDeskDialog({params}) {
       setStudentId(params.row.id)
       setIsOwnedOrRented(params.row.student_desks.map((desk) => desk.is_owned_or_rented))
       setStudentDeskId(params.row.student_desks.map((desk) => desk.id))
+      setParamsStudentDeskObj(params.row.student_desks.map((desk) => desk.student_id))
+      setDeskId(params.row.student_desks.map((desk) => desk.desk_id))
       // console.log(e.target.value, params.row.id, params.row.student_desks.map((desk) => desk.is_owned_or_rented))
       
     }

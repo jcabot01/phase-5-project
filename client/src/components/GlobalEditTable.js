@@ -1,18 +1,35 @@
 import React, { useEffect, useState }from 'react';
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
-import { Avatar, Typography } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { DataGrid } from '@mui/x-data-grid';
+import { Avatar, Typography, Button } from '@mui/material';
 import PaydayButton from './Buttons/GlobalStudentEditButtons/PaydayButton';
 import RentButton from './Buttons/GlobalStudentEditButtons/RentButton';
 import CollectRentButton from './Buttons/GlobalStudentEditButtons/CollectRentButton';
 import PrivilegeDialog from './Buttons/GlobalStudentEditButtons/PrivilegeDialog';
+import BuyDeskDialog from './Buttons/GlobalStudentEditButtons/BuyDeskDialog';
 
 
 
 
 function GlobalEditTable() {  //import students objects, fetch one level higher?
   const [students, setStudents] = useState([]);
+  const [deskPurchase, setDeskPurchase] = useState('1')
+
+  function handleCommit(e) {
+    console.log(e.value)
+  }
+
+  // const handleCommit = (e:GridCellEditCommitParams)=>{
+  //   const array = students.map(r=>{
+  //     if (r.id === e.id) {
+  //       return {...r, [e.field]: e.value}
+  //     } else {
+  //       return {...r}
+  //     }
+  //   })
+  //   setStudents(array)
+  // }
  
+/////////////////////////////////////////////////////////////////////////////////////////////////////////  
 //API and CRUD
   useEffect(() => {
     fetch("/students")
@@ -20,9 +37,13 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
       .then((studentsData) => setStudents(studentsData))
   }, []);
 
-  function handleDelete(e) {
-    console.log(e)
+  function deleteUser(id) {
+    setStudents((prevStudents) => prevStudents.filter((row) => row.id !== id));  
   }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // function onBuyDesk(e){
+  //   console.log(e)
+  // }
 
 //Datagrid Helper Functions & Variables
   const currencyFormatter = new Intl.NumberFormat('en-US', {
@@ -63,10 +84,39 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
     'Student #15',
   ];
 
+  // const desks = [
+  //   { value: 1, label: "Desk #1" },
+  //   { value: 2, label: "Desk #2" },
+  //   { value: 3, label: "Desk #3" },
+  //   { value: 4, label: "Desk #4" },
+  //   { value: 5, label: "Desk #5" },
+  //   { value: 6, label: "Desk #6" },
+  //   { value: 7, label: "Desk #7" },
+  //   { value: 8, label: "Desk #8" },
+  //   { value: 9, label: "Desk #9" },
+  //   { value: 10, label: "Desk #10" },
+  //   { value: 11, label: "Desk #11" },
+  //   { value: 12, label: "Desk #12" },
+  //   { value: 13, label: "Desk #13" },
+  //   { value: 14, label: "Desk #14" },
+  //   { value: 15, label: "Desk #15" },
+  //   { value: 16, label: "Desk #16" },
+  //   { value: 17, label: "Desk #17" },
+  //   { value: 18, label: "Desk #18" },
+  //   { value: 19, label: "Desk #19" },
+  //   { value: 20, label: "Desk #20" },
+  //   { value: 21, label: "Desk #21" },
+  //   { value: 22, label: "Desk #22" },
+  //   { value: 23, label: "Desk #23" },
+  //   { value: 24, label: "Desk #24" },
+  //   { value: 25, label: "Desk #25" },
+  //   { value: 26, label: "Desk #26" },
+  //   { value: 27, label: "Desk #27" },
+  //   { value: 28, label: "Desk #28" },
+  //   { value: 29, label: "Desk #29" },
+  //   { value: 30, label: "Desk #30" },
+  // ];
  
-  // console.log(students)
-  
-
   const columns = [
     { 
       field: 'id', 
@@ -76,7 +126,7 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
     {
       field: "class_period", 
       headerName: 'Period', 
-      editable: true, 
+      editable: true,
       width: 60
     },
     { 
@@ -84,6 +134,7 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
       headerName: 'Avatar', 
       width: 55,
       editable: true,
+      sortable: false,
       renderCell: (students) => {
         return (
           <>
@@ -140,7 +191,7 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
     { 
       field: "desk_rented", 
       headerName: 'Desk Rented', 
-      editable: true, 
+      editable: false, 
       type: 'number',
       width: 80,
       renderCell: (params) => {
@@ -160,7 +211,7 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
     { 
       field: "desks_owned", 
       headerName: 'Desk(s) Owned', 
-      editable: true, 
+      editable: false, 
       type: 'string', 
       width: 80, 
       renderCell: (params) => {
@@ -176,14 +227,15 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
           </div>
         )
       }  
-    }, //onChange => student.desks.desk_number if owned ?
+    },
     { 
       field: "monthly_rent", 
       headerName: 'Monthly Rent', 
       editable: true, 
       width: 90, 
       renderCell: () => <RentButton /> 
-    }, //a button, onClick => student.balance - 10 
+    }, //a button, onClick => student.balance - 10
+     //Buy desk button 
     { 
       field: "collect_rent", 
       headerName: 'Collect Rent', 
@@ -191,6 +243,14 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
       width: 124, 
       renderCell: () => <CollectRentButton /> 
     }, //a button, onClick => student.balance - 10 
+    {
+      field: "buy_desk",
+      headerName: "Buy Desk",
+      editable: true, 
+      type: 'singleSelect',
+      width: 100,
+      renderCell: (params) => <BuyDeskDialog params={params} /> 
+    },
     { 
       field: "privilege", 
       headerName: 'Purchase a Privilege', 
@@ -201,53 +261,48 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
     { 
       field: "investment", 
       headerName: 'Investment $', 
-      editable: true, 
+      editable: false, 
       width: 80, 
       type: 'number', 
       valueFormatter: ({ value }) => currencyFormatter.format(value),
       renderCell: (params) => params.row.privileges.map((privilege) => {
         if (privilege.event === "Invest") {
           return currencyFormatter.format(privilege.amount)
+        } else {
+          return null
         }
       }) 
     },
-    {
-      field: 'actions',
-      type: 'actions',
-      width: 80,
-      getActions: (params) => [
-        <GridActionsCellItem
-          icon={<DeleteIcon />}
-          label="Delete"
-          onClick={handleDelete(params.id)}
-        />,
-        ]
-    }
-  ]
-
-  // const rows = students?.map(student => {
-  //   return {
-  //     id: student?.id,
-  //     class_period: student?.class_period,
-  //     avatar_url: student?.avatar_url,
-  //     username: student?.username,
-  //     balance: student?.balance,
-  //     job: student?.job.title,
-  //     salary: student?.job.salary,
-  //     work_habit_score: student?.work_habit_score,
-  //     desks: student?.desks.desk
-
-  //   }
-  // })
-
-  // console.log(students)
+    { 
+      field: "delete", 
+      headerName: 'Remove User', 
+      editable: false, 
+      width: 90, 
+      renderCell: (params) => {
+        return (
+          <Button 
+            variant="contained"
+            size="small"
+            color='error'
+            onClick={() => {
+              deleteUser(params.row.id);
+            }}
+          >
+          Delete
+          </Button>
+        )
+      }
+    }, 
+  ];
+  
   return (
-    <div>
+    <div style={{ height: 700, width: '100%' }}>
       <DataGrid
         autoHeight
         rows={students}
-        // rows={rows}
         columns={columns}
+        getRowId={(row) => row.id}
+        onCellEditCommit={handleCommit}
         
       />
     </div>

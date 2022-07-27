@@ -9,7 +9,7 @@ class PrivilegesController < ApplicationController
   #GET
   # '/privileges/:id'
   def show  
-    privilege = Privilege.find(params[:id])
+    privilege = find_privilege
     render json: privilege, status: :ok
   end
 
@@ -24,7 +24,7 @@ class PrivilegesController < ApplicationController
   # '/privileges/:id'
   def update
     privilege = find_privilege
-    Privilege.update!(privilege_params)
+    privilege.update!(privilege_params)
     render json: privilege, status: :accepted
   end
 

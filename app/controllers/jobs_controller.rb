@@ -1,27 +1,27 @@
-class JobController < ApplicationController
+class JobsController < ApplicationController
   #GET
-  # '/job'
+  # '/jobs'
   def index
-    job = Job.all 
-    render json: job, status: :ok, include: ['job'] 
+    jobs = Job.all 
+    render json: jobs, status: :ok, include: ['job'] 
   end
 
   #GET
-  # '/job/:id'
+  # '/jobs/:id'
   def show  
     job = Job.find(params[:id])
     render json: job, status: :ok
   end
 
   #POST
-  # '/job
+  # '/jobs
   def create 
     job = Job.create!(job_params)
     render json: job, status: :accepted
   end
 
   #PATCH
-  # '/job/:id'
+  # '/jobs/:id'
   def update
     job = find_job
     job.update!(job_params)
@@ -29,7 +29,7 @@ class JobController < ApplicationController
   end
 
   #DELETE
-  # '/job/:id'
+  # '/jobs/:id'
   def destroy
     job = find_job
     job.destroy

@@ -37,7 +37,7 @@ function StudentSignupForm() {
         last_name: lastName,
         balance: 15,
         work_habit_score: 0,
-        goal: "No goal submitted yet...",
+        goal: "No goal submitted yet...",     
         class_period: classPeriod,
         admin: false,
         teacher_id: teacherId,
@@ -47,7 +47,7 @@ function StudentSignupForm() {
       })
     }).then((r) => {
       if (r.ok) {
-        // r.json().then((user) => onLogin(user)); //pass user response object up to App
+        // r.json().then((user) => onLogin(user)); //pass user response object up to State via Redux
         r.json().then((teacher) => console.log(teacher))
       } else {
         r.json().then((err) => setErrors(err.errors));
@@ -105,13 +105,28 @@ function StudentSignupForm() {
               id='student-form-teacher-select'
               value={teacherId} 
               onChange={(e) => setTeacherId(e.target.value)}  
-            />
+            >
             {allTeachers.map((teacher) => (
-              <MenuItem value={teacher.id}>{teacher.last_name}</MenuItem>
+              <MenuItem key={teacher.id} value={teacher.id}>{teacher.last_name}</MenuItem>
             ))}
+            </Select>
             </FormControl>
-            
           </Grid>
+          {/* <Grid item xs={6} md={6} lg={6}>
+            <FormControl fullWidth>
+              <InputLabel id="get-job">Job</InputLabel>
+              <Select
+              labelId='get-job'
+              id='student-form-job-select'
+              value={jobSelect} 
+              onChange={(e) => setJobSelect(e.target.value)}  
+            >
+            {jobs.map((job) => (
+              <MenuItem key={job.id} value={job.id}>{job.title}</MenuItem>
+            ))}
+            </Select>
+            </FormControl>
+          </Grid> */}
           <Grid item xs={6} md={6} lg={6}>
             <TextField 
               value={username} onChange={(e) => setUsername(e.target.value)}

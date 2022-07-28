@@ -6,6 +6,7 @@ import RentButton from './Buttons/GlobalStudentEditButtons/RentButton';
 import CollectRentButton from './Buttons/GlobalStudentEditButtons/CollectRentButton';
 import PrivilegeDialog from './Buttons/GlobalStudentEditButtons/PrivilegeDialog';
 import BuyDeskDialog from './Buttons/GlobalStudentEditButtons/BuyDeskDialog';
+import JobTitleSelect from './Buttons/GlobalStudentEditButtons/JobTitleSelect';
 
 
 
@@ -14,8 +15,8 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
   const [students, setStudents] = useState([]);
   const [deskPurchase, setDeskPurchase] = useState('1')
   const [pageSize, setPageSize] = useState(30);
-
-  function handleDataSubmit(e) {
+ 
+  function handleDataSubmit(e) { //don't delete
     console.log (e)
   }
    
@@ -43,36 +44,44 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
   });
 
 //jobs to populate select dropdown
-  const jobs = [ //literal job choices, once selected, they persist to DB as student job
-    'Accountant', 
-    'Point Pusher 1', 
-    'Point Pusher 2', 
-    'Class tutor 1', 
-    'Class tutor 2', 
-    'Financial Analyst', 
-    'Crate Buster 1', 
-    'Crate Buster 2', 
-    'Paper Pusher 1', 
-    'Paper Pusher 2', 
-    'Techie',
-    'Teacher\'s Pet',
-    'Substitute',
-    'Student #1',
-    'Student #2',
-    'Student #3',
-    'Student #4', 
-    'Student #5', 
-    'Student #6', 
-    'Student #7', 
-    'Student #8', 
-    'Student #9', 
-    'Student #10', 
-    'Student #11', 
-    'Student #12', 
-    'Student #13', 
-    'Student #14', 
-    'Student #15',
-  ];
+const [jobs, setJobs] = useState([])
+
+useEffect(() => {
+  fetch("/jobs")
+  .then((r) => r.json())
+  .then((job) => setJobs(job))
+}, [])
+
+  // const jobs = [ //literal job choices, once selected, they persist to DB as student job
+  //   'Accountant', 
+  //   'Point Pusher 1', 
+  //   'Point Pusher 2', 
+  //   'Class tutor 1', 
+  //   'Class tutor 2', 
+  //   'Financial Analyst', 
+  //   'Crate Buster 1', 
+  //   'Crate Buster 2', 
+  //   'Paper Pusher 1', 
+  //   'Paper Pusher 2', 
+  //   'Techie',
+  //   'Teacher\'s Pet',
+  //   'Substitute',
+  //   'Student #1',
+  //   'Student #2',
+  //   'Student #3',
+  //   'Student #4', 
+  //   'Student #5', 
+  //   'Student #6', 
+  //   'Student #7', 
+  //   'Student #8', 
+  //   'Student #9', 
+  //   'Student #10', 
+  //   'Student #11', 
+  //   'Student #12', 
+  //   'Student #13', 
+  //   'Student #14', 
+  //   'Student #15',
+  // ];
 
   // const desks = [
   //   { value: 1, label: "Desk #1" },
@@ -151,19 +160,20 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
       field: "job",
       headerName: "Job",
       editable: true, 
-      type: 'singleSelect', 
-      valueOptions: jobs,
+      // type: 'singleSelect', 
+      // valueOptions: jobs,
       width: 100,
-      renderCell: (params) => params.row.job.title
+      renderCell: (params) => <JobTitleSelect params={params} jobs={jobs} />
+      // renderCell: (params) => params.row.job.title
     },
-    { 
-      field: "salary", 
-      headerName: 'Salary', 
-      editable: true, 
-      width: 55, 
-      type: 'number', 
-      renderCell: (params) => currencyFormatter.format(params.row.job.salary)
-    },
+    // { 
+    //   field: "salary", 
+    //   headerName: 'Salary', 
+    //   editable: true, 
+    //   width: 55, 
+    //   type: 'number', 
+    //   renderCell: (params) => currencyFormatter.format(params.row.job.salary)
+    // },
     {  
       field: "payday", 
       headerName: 'Payday', 

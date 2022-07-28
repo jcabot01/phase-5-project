@@ -89,10 +89,10 @@ function BuyDeskDialog({params}) {
           <DialogContent>
             <form onSubmit={handleBuyDeskSubmit} id="deskSelect"> 
             <FormControl sx={{ m: 1, width: 300 }}>
-              <InputLabel id="demo-simple-select-label">Select one</InputLabel>
+              <InputLabel id="desk-select-label">Select one</InputLabel>
               <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                labelId="desk-select-label"
+                id="desk-select"
                 value={deskNum}
                 label="Desks"
                 onChange={handleChange}

@@ -17,9 +17,9 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
   const [pageSize, setPageSize] = useState(30);
  
   function handleDataSubmit(e) { //don't delete
-    console.log (e)
+    console.log (e.value)
   }
-   
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////  
 //API and CRUD
   useEffect(() => {
@@ -161,10 +161,20 @@ useEffect(() => {
       headerName: "Job",
       editable: true, 
       // type: 'singleSelect', 
-      // valueOptions: jobs,
-      width: 100,
-      renderCell: (params) => <JobTitleSelect params={params} jobs={jobs} />
-      // renderCell: (params) => params.row.job.title
+      // valueOptions: jobs.map((job) => job.title),
+      width: 150,
+    
+      // renderCell: (params) => <JobTitleSelect params={params} jobs={jobs} />
+      renderCell: (params) => {
+        let result = (params.row.jobs.map((job) => job.title))
+        console.log(result)
+          return (
+            <div>
+              <JobTitleSelect result={result} jobs={jobs}/>     
+            </div>
+          )
+      }
+
     },
     // { 
     //   field: "salary", 

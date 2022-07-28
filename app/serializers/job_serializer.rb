@@ -1,5 +1,5 @@
 class JobSerializer < ActiveModel::Serializer
-  attributes :id, :title, :salary, :student_id
+  attributes :id, :title, :salary
 
-belongs_to :student
+  has_many :students
 end

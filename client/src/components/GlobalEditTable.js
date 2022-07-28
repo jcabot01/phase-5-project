@@ -13,22 +13,12 @@ import BuyDeskDialog from './Buttons/GlobalStudentEditButtons/BuyDeskDialog';
 function GlobalEditTable() {  //import students objects, fetch one level higher?
   const [students, setStudents] = useState([]);
   const [deskPurchase, setDeskPurchase] = useState('1')
+  const [pageSize, setPageSize] = useState(30);
 
-  function handleCommit(e) {
-    console.log(e.value)
+  function handleDataSubmit(e) {
+    console.log (e)
   }
-
-  // const handleCommit = (e:GridCellEditCommitParams)=>{
-  //   const array = students.map(r=>{
-  //     if (r.id === e.id) {
-  //       return {...r, [e.field]: e.value}
-  //     } else {
-  //       return {...r}
-  //     }
-  //   })
-  //   setStudents(array)
-  // }
- 
+   
 /////////////////////////////////////////////////////////////////////////////////////////////////////////  
 //API and CRUD
   useEffect(() => {
@@ -302,8 +292,11 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
         rows={students}
         columns={columns}
         getRowId={(row) => row.id}
-        onCellEditCommit={handleCommit}
-        
+        pageSize={pageSize}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+        rowsPerPageOptions={[10, 30, 60]}
+        pagination
+        onCellEditCommit={handleDataSubmit}
       />
     </div>
   )

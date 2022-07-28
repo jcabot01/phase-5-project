@@ -34,7 +34,7 @@ function App() {
           <Route path="/rules-overview" element={<RulesOverview/>}/>
           <Route path="/student-login" element={<StudentLoginPage/>} />
           <Route path="/teacher-login" element={<TeacherLoginPage/>} />
-          <Route path="/students" element={<GlobalEditTable/>} />
+          <Route path="/global-edit" element={<GlobalEditTable/>} />
           <Route path="*" element={<ErrorPage/>} />
         </Routes>
       </Router>

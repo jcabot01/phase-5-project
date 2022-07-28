@@ -23,33 +23,24 @@ function BuyDeskDialog({params}) {
   const [paramsStudentDeskObj, setParamsStudentDeskObj] = useState('')
   const [deskId, setDeskId] = useState('')
   
-
-
+  
   function handleBuyDeskSubmit(e) {
     e.preventDefault()
-    console.log(deskNum) //desk_id /or number in question
-    console.log(studentId) //student_id purchasing
-    // console.log(isOwnedOrRented) //status of that particular desk
-    console.log(studentDeskId) //for PATCH:  id of "student_desk" join containing the above student_id & desk_id
-    console.log(paramsStudentDeskObj) //for PATCH: 
-    console.log(deskId)
 
     const ownershipStatus = isOwnedOrRented[0]
     const deskID = deskId[0]
-    console.log(ownershipStatus)
-    console.log(deskID)
-    
-    const newOwnDeskObject = {
+       
+    const newOwnDeskObject = { //POST object for new student_desk instance
       is_owned_or_rented: "owned",
       student_id: studentId,
       desk_id: deskNum
     }
 
-    const updateOwnershipObject = {
+    const updateOwnershipObject = {//PATCH object for updating existing student_desk from 'rented' to 'owned'
       is_owned_or_rented: 'owned'
     }
-   if (ownershipStatus === 'rented' && deskNum === deskID ) { // && paramsStudentDeskObj === studentId
-   
+
+   if (ownershipStatus === 'rented' && deskNum === deskID ) {
     fetch(`/student_desks/${studentDeskId[0]}`, {
       method: "PATCH",
       headers: {
@@ -59,7 +50,9 @@ function BuyDeskDialog({params}) {
     })
     .then((res) => res.json())
     .then((updatedStudentDeskObject) => console.log(updatedStudentDeskObject)) 
-   } else {
+   
+  } else {
+
     fetch('/student_desks', {
       method: "POST",
       headers: {
@@ -70,36 +63,17 @@ function BuyDeskDialog({params}) {
     .then((res) => res.json())
     .then((newStudentDeskObject) => console.log(newStudentDeskObject))
    }
-    
-  // if desk_id params from cell === form values; it's a PATCH to student_desks/:id (based on params.row.student_desks.id); it's an update of is_owned_or_rented to "owned" from the existing "rented", otherwise, they already own it and can't buy it again.
-  // if desk_id params from cell !=== form values; it's a POST to student_desks; the student is not affiliated with that desk yet.  We need studentId and deskNum and is_owned_or_rented to "owned"
-  
-      // if (params.row.student_desks.map((desk) => desk.desk_id) === deskNum && params.row.student_desks.map((desk) => desk.is_owned_or_rented) === "rented") {
-      //   // if (params.row.student_desks.desk_id === deskNum && params.row.student_desks.is_owned_or_rented === "rented") {
-       
-  
-    // fetch(`/student_desks/${studentDeskId[0]}`, {
-    //   method: "PATCH",
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify(updateOwnershipObject)
-    // })
-    // .then((res) => res.json())
-    // .then((updatedStudentDeskObject) => console.log(updatedStudentDeskObject)) 
   }
    
+  function handleChange(e) {
+    setDeskNum(e.target.value)
+    setStudentId(params.row.id)
+    setIsOwnedOrRented(params.row.student_desks.map((desk) => desk.is_owned_or_rented))
+    setStudentDeskId(params.row.student_desks.map((desk) => desk.id))
+    setParamsStudentDeskObj(params.row.student_desks.map((desk) => desk.student_id))
+    setDeskId(params.row.student_desks.map((desk) => desk.desk_id))
+  }
 
-    function handleChange(e) {
-      setDeskNum(e.target.value)
-      setStudentId(params.row.id)
-      setIsOwnedOrRented(params.row.student_desks.map((desk) => desk.is_owned_or_rented))
-      setStudentDeskId(params.row.student_desks.map((desk) => desk.id))
-      setParamsStudentDeskObj(params.row.student_desks.map((desk) => desk.student_id))
-      setDeskId(params.row.student_desks.map((desk) => desk.desk_id))
-      // console.log(e.target.value, params.row.id, params.row.student_desks.map((desk) => desk.is_owned_or_rented))
-      
-    }
   return (
     <div>
       <Button 

@@ -1,5 +1,5 @@
-import { React, useState } from 'react';
-import { Typography, TextField, Box, Button, Link, Grid } from '@mui/material';
+import { React, useEffect, useState } from 'react';
+import { Typography, TextField, Box, Button, Link, Grid, Select, FormControl, InputLabel, MenuItem } from '@mui/material';
 import styled from '@emotion/styled';
 
 function StudentSignupForm() {
@@ -9,28 +9,50 @@ function StudentSignupForm() {
   const [classPeriod, setClassPeriod] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("")
-  const [admin, setAdmin] = useState(false);
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  // const [admin, setAdmin] = useState(false);
+  const [teacherId, setTeacherId] = useState("");
+  const [allTeachers, setAllTeachers] = useState([])
   const [errors, setErrors] = useState([]);
+
+
+  useEffect(() => {
+    fetch("/teachers")
+    .then((r) => r.json())
+    .then((teachers) => setAllTeachers(teachers))
+  }, [])
 
   function handleSubmit(e) { //sessions#create => set session-hash to user_id
     e.preventDefault();
-    console.log(firstName, lastName, avatar, classPeriod, username, password, passwordConfirmation, admin, errors)
-    // e.preventDefault()
-    // setErrors([]);
+    // console.log(firstName, lastName, avatar, classPeriod, username, password, passwordConfirmation, admin, errors)
+    setErrors([]);
     // fetch("/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({username, password})
-    // }).then((r) => {
-    //   if (r.ok) {
-    //     r.json().then((user) => onLogin(user)); //pass user response object up to App
-    //   } else {
-    //     r.json().then((err) => setErrors(err.errors));
-    //   }
-    // });
+    fetch("/students", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        first_name: firstName,
+        last_name: lastName,
+        balance: 15,
+        work_habit_score: 0,
+        goal: "No goal submitted yet...",
+        class_period: classPeriod,
+        admin: false,
+        teacher_id: teacherId,
+        username: username, 
+        password: password,
+        password_confirmation: passwordConfirmation
+      })
+    }).then((r) => {
+      if (r.ok) {
+        // r.json().then((user) => onLogin(user)); //pass user response object up to App
+        r.json().then((teacher) => console.log(teacher))
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
   };
 
   return (
@@ -74,6 +96,21 @@ function StudentSignupForm() {
               placeholder="Class Period ex: 1"
               sx={{width: '28ch', backgroundColor: '#ffffff' }}
             />
+          </Grid>
+          <Grid item xs={6} md={6} lg={6}>
+            <FormControl fullWidth>
+              <InputLabel id="get-teacher">Teacher</InputLabel>
+              <Select
+              labelId='get-teacher'
+              id='student-form-teacher-select'
+              value={teacherId} 
+              onChange={(e) => setTeacherId(e.target.value)}  
+            />
+            {allTeachers.map((teacher) => (
+              <MenuItem value={teacher.id}>{teacher.last_name}</MenuItem>
+            ))}
+            </FormControl>
+            
           </Grid>
           <Grid item xs={6} md={6} lg={6}>
             <TextField 

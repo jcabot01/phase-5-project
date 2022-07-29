@@ -201,7 +201,7 @@ useEffect(() => {
       headerName: 'Payday', 
       editable: true, 
       width: 75, 
-      renderCell: () => <PaydayButton /> 
+      renderCell: (params) => <PaydayButton params={params} /> 
     }, //a button, onClick => student.balance += student.salary
     { 
       field: "work_habit_score", 

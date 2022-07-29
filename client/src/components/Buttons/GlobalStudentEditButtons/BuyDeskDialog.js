@@ -29,7 +29,13 @@ function BuyDeskDialog({params}) {
 
     const ownershipStatus = isOwnedOrRented[0]
     const deskID = deskId[0]
-       
+    const studentBalance = params.row.balance //need existing to subtract cost of purchase
+    const newBalanceAfterPurchase = studentBalance - 50
+
+    const newBalancePayload = {
+      balance: newBalanceAfterPurchase
+    }
+
     const newOwnDeskObject = { //POST object for new student_desk instance
       is_owned_or_rented: "owned",
       student_id: studentId,
@@ -41,7 +47,7 @@ function BuyDeskDialog({params}) {
     }
 
    if (ownershipStatus === 'rented' && deskNum === deskID ) {
-    fetch(`/student_desks/${studentDeskId[0]}`, {
+    fetch(`/student_desks/${studentDeskId[0]}`, { //if they already rent, then this converts it to 'owned'
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
@@ -49,11 +55,10 @@ function BuyDeskDialog({params}) {
       body: JSON.stringify(updateOwnershipObject)
     })
     .then((res) => res.json())
-    .then((updatedStudentDeskObject) => console.log(updatedStudentDeskObject)) 
-   
+    .then((updatedStudentDeskObject) => console.log(updatedStudentDeskObject))  //ready for redux   
   } else {
-
-    fetch('/student_desks', {
+////////////////////////////////////////////////////////////////////////////////////////////////////
+    fetch('/student_desks', { //if they already own a desk, this creates another new desk instance
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -61,8 +66,18 @@ function BuyDeskDialog({params}) {
       body: JSON.stringify(newOwnDeskObject)
     })
     .then((res) => res.json())
-    .then((newStudentDeskObject) => console.log(newStudentDeskObject))
+    .then((newStudentDeskObject) => console.log(newStudentDeskObject))   //ready for redux
    }
+ ////////////////////////////////////////////////////////////////////////////////////////////////// 
+   fetch(`/students/${studentId}`, { //either way, they have to pay and this decrements their balance
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newBalancePayload)
+  })
+  .then((res) => res.json())
+  .then((updatedBalance) => console.log(updatedBalance)) //ready for redux
   }
    
   function handleChange(e) {

@@ -7,6 +7,7 @@ import CollectRentButton from './Buttons/GlobalStudentEditButtons/CollectRentBut
 import PrivilegeDialog from './Buttons/GlobalStudentEditButtons/PrivilegeDialog';
 import BuyDeskDialog from './Buttons/GlobalStudentEditButtons/BuyDeskDialog';
 import JobTitleSelect from './Buttons/GlobalStudentEditButtons/JobTitleSelect';
+import DeleteStudentButton from './Buttons/GlobalStudentEditButtons/DeleteStudentButton';
 
 
 
@@ -39,12 +40,21 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
     
 
     switch (studentData.field) {
+      case 'class_period':
+        handlePatch()
+        break;
+      case 'avatar_url':
+        handlePatch()
+        break;
       case 'balance':
         handlePatch()
         break;
-      case 'class_period':
-        console.log("got the class period");
+      case 'work_habit_score':
+        handlePatch()
         break;
+      
+      
+
       default:
         console.log("nada")
     }
@@ -60,7 +70,10 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
   }, []);
 
   function deleteUser(id) {
-    setStudents((prevStudents) => prevStudents.filter((row) => row.id !== id));  
+    setStudents((prevStudents) => prevStudents.filter((row) => row.id !== id));
+    fetch(`/students/${id}`, {
+      method: "DELETE",
+    })  
   }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
   // function onBuyDesk(e){
@@ -82,37 +95,6 @@ useEffect(() => {
   .then((r) => r.json())
   .then((job) => setJobs(job))
 }, [])
-
-  // const jobs = [ //literal job choices, once selected, they persist to DB as student job
-  //   'Accountant', 
-  //   'Point Pusher 1', 
-  //   'Point Pusher 2', 
-  //   'Class tutor 1', 
-  //   'Class tutor 2', 
-  //   'Financial Analyst', 
-  //   'Crate Buster 1', 
-  //   'Crate Buster 2', 
-  //   'Paper Pusher 1', 
-  //   'Paper Pusher 2', 
-  //   'Techie',
-  //   'Teacher\'s Pet',
-  //   'Substitute',
-  //   'Student #1',
-  //   'Student #2',
-  //   'Student #3',
-  //   'Student #4', 
-  //   'Student #5', 
-  //   'Student #6', 
-  //   'Student #7', 
-  //   'Student #8', 
-  //   'Student #9', 
-  //   'Student #10', 
-  //   'Student #11', 
-  //   'Student #12', 
-  //   'Student #13', 
-  //   'Student #14', 
-  //   'Student #15',
-  // ];
 
   // const desks = [
   //   { value: 1, label: "Desk #1" },
@@ -326,16 +308,7 @@ useEffect(() => {
       width: 90, 
       renderCell: (params) => {
         return (
-          <Button 
-            variant="contained"
-            size="small"
-            color='error'
-            onClick={() => {
-              deleteUser(params.row.id);
-            }}
-          >
-          Delete
-          </Button>
+          <DeleteStudentButton params={params} deleteUser={deleteUser} />
         )
       }
     }, 

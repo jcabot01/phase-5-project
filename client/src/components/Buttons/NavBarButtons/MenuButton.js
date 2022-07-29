@@ -1,8 +1,11 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
+
+
 
 
 
@@ -41,8 +44,8 @@ function MenuButton() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Rules</MenuItem>
-        <MenuItem onClick={handleClose}>Global Student Edit</MenuItem>
+        <MenuItem component={Link} to="/rules-overview" onClick={handleClose} >Rules</MenuItem>
+        <MenuItem component={Link} to="/global-edit" onClick={handleClose}>Global Student Edit</MenuItem>
         
       </Menu>
     </div>

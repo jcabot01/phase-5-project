@@ -2,7 +2,7 @@ import React, { useEffect, useState }from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Avatar, Typography, Button } from '@mui/material';
 import PaydayButton from './Buttons/GlobalStudentEditButtons/PaydayButton';
-import RentButton from './Buttons/GlobalStudentEditButtons/RentButton';
+import PayRentButton from './Buttons/GlobalStudentEditButtons/PayRentButton';
 import CollectRentButton from './Buttons/GlobalStudentEditButtons/CollectRentButton';
 import PrivilegeDialog from './Buttons/GlobalStudentEditButtons/PrivilegeDialog';
 import BuyDeskDialog from './Buttons/GlobalStudentEditButtons/BuyDeskDialog';
@@ -160,30 +160,28 @@ useEffect(() => {
       field: "job",
       headerName: "Job",
       editable: true, 
-      // type: 'singleSelect', 
-      // valueOptions: jobs.map((job) => job.title),
       width: 150,
-    
-      // renderCell: (params) => <JobTitleSelect params={params} jobs={jobs} />
       renderCell: (params) => {
         let result = (params.row.jobs.map((job) => job.title))
-        console.log(result)
           return (
             <div>
               <JobTitleSelect result={result} jobs={jobs}/>     
             </div>
           )
       }
-
     },
-    // { 
-    //   field: "salary", 
-    //   headerName: 'Salary', 
-    //   editable: true, 
-    //   width: 55, 
-    //   type: 'number', 
-    //   renderCell: (params) => currencyFormatter.format(params.row.job.salary)
-    // },
+    { 
+      field: "salary", 
+      headerName: 'Salary', 
+      width: 55, 
+      type: 'number', 
+      renderCell: (params) => {
+        let salary = (params.row.jobs.map((job) => job.salary))
+          return (
+            <Typography>{currencyFormatter.format(salary[0])}</Typography>
+          )
+      }
+    },
     {  
       field: "payday", 
       headerName: 'Payday', 
@@ -243,7 +241,13 @@ useEffect(() => {
       headerName: 'Monthly Rent', 
       editable: true, 
       width: 90, 
-      renderCell: () => <RentButton /> 
+      renderCell: (params) => {
+        const balance = params.row.balance
+        const studentId = params.row.id
+          return (
+            <PayRentButton balance={balance} studentId={studentId}/>
+          )
+      } 
     }, //a button, onClick => student.balance - 10
      //Buy desk button 
     { 

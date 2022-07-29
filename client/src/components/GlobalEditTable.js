@@ -17,8 +17,39 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
   const [pageSize, setPageSize] = useState(30);
  
   function handleDataSubmit(e) { //don't delete
-    console.log (e.value)
+    let studentData = e;
+    let fieldName = e.field;
+    let studentId = e.id;
+    let value = e.value;
+
+
+    const updatedObject = {[fieldName]: value}
+
+    function handlePatch() {
+      fetch(`/students/${studentId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedObject)
+      })
+        .then((res) => res.json())
+        .then((editedStudent) => console.log(editedStudent))
+    };
+    
+
+    switch (studentData.field) {
+      case 'balance':
+        handlePatch()
+        break;
+      case 'class_period':
+        console.log("got the class period");
+        break;
+      default:
+        console.log("nada")
+    }
   }
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////  
 //API and CRUD
@@ -162,10 +193,11 @@ useEffect(() => {
       editable: true, 
       width: 150,
       renderCell: (params) => {
-        let result = (params.row.jobs.map((job) => job.title))
+        const jobTitle = (params.row.jobs.map((job) => job.title))
+        const studentId = params.row.id
           return (
             <div>
-              <JobTitleSelect result={result} jobs={jobs}/>     
+              <JobTitleSelect jobTitle={jobTitle} jobs={jobs} studentId={studentId}/>
             </div>
           )
       }

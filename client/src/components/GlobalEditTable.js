@@ -202,7 +202,7 @@ useEffect(() => {
       editable: true, 
       width: 75, 
       renderCell: (params) => <PaydayButton params={params} /> 
-    }, //a button, onClick => student.balance += student.salary
+    },
     { 
       field: "work_habit_score", 
       headerName: 'Work Habit (0/4)', 
@@ -228,8 +228,7 @@ useEffect(() => {
           </div>
         )
       }  
-      
-    }, //onChange => student.desks.desk_number if rented ?
+    },
     { 
       field: "desks_owned", 
       headerName: 'Desk(s) Owned', 
@@ -262,14 +261,13 @@ useEffect(() => {
             <PayRentButton balance={balance} studentId={studentId}/>
           )
       } 
-    }, //a button, onClick => student.balance - 10
-     //Buy desk button 
+    },
     { 
       field: "collect_rent", 
       headerName: 'Collect Rent', 
       editable: true, 
       width: 124, 
-      renderCell: () => <CollectRentButton /> 
+      renderCell: (params) => <CollectRentButton params={params}/> 
     }, //a button, onClick => student.balance - 10 
     {
       field: "buy_desk",

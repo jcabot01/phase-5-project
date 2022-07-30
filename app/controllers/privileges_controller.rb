@@ -3,7 +3,7 @@ class PrivilegesController < ApplicationController
   # '/privileges'
   def index
     privileges = Privilege.all 
-    render json: privileges, status: :ok, #include: ['privileges'] 
+    render json: privileges, status: :ok#, include: ['privileges'] 
   end
 
   #GET
@@ -45,4 +45,6 @@ class PrivilegesController < ApplicationController
   def privilege_params
     params.permit(:event, :amount, :value, :student_id) # :admin
   end
+
+
 end

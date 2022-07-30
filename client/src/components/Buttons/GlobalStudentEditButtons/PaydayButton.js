@@ -25,7 +25,7 @@ function PaydayButton({params}) {
   }
 
   return (
-    <Button 
+    <Button sx={{fontSize: "10px"}}
       variant="contained"
       size="small"
       color='success'

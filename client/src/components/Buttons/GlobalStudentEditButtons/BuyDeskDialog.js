@@ -91,7 +91,7 @@ function BuyDeskDialog({params}) {
 
   return (
     <div>
-      <Button 
+      <Button sx={{fontSize: "10px"}}
         variant="contained"
         onClick={handleClickOpen}
         size="small"

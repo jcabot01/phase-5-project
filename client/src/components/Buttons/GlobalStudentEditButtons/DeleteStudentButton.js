@@ -23,7 +23,7 @@ function DeleteStudentButton({deleteUser, params}) {
 
   return (
     <div>
-      <Button 
+      <Button sx={{fontSize: "10px"}}
         variant="contained"
         size="small"
         color='error'

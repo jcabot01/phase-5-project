@@ -3,7 +3,7 @@ import { Button, Dialog, DialogTitle, DialogContent, DialogActions} from '@mui/m
 import PrivilegeSelect from './PrivilegeSelect';
 
 
-function PrivilegeDialog() {
+function PrivilegeDialog({params}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -16,7 +16,7 @@ function PrivilegeDialog() {
 
   return (
     <div>
-      <Button 
+      <Button sx={{fontSize: "10px"}}
         variant="contained"
         onClick={handleClickOpen}
         size="small"
@@ -27,7 +27,7 @@ function PrivilegeDialog() {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Purchase a Privilege</DialogTitle>
         <DialogContent>
-          <PrivilegeSelect/>
+          <PrivilegeSelect params={params}/>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

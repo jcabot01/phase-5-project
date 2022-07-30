@@ -25,7 +25,7 @@ function CollectRentButton({params}) {
   }
 
   return (
-    <Button 
+    <Button sx={{fontSize: "10px"}}
     variant="contained"
     size="small"
     color='warning'

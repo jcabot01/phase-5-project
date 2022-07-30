@@ -8,6 +8,7 @@ import PrivilegeDialog from './Buttons/GlobalStudentEditButtons/PrivilegeDialog'
 import BuyDeskDialog from './Buttons/GlobalStudentEditButtons/BuyDeskDialog';
 import JobTitleSelect from './Buttons/GlobalStudentEditButtons/JobTitleSelect';
 import DeleteStudentButton from './Buttons/GlobalStudentEditButtons/DeleteStudentButton';
+import InvestmentDialog from './Buttons/GlobalStudentEditButtons/InvestmentDialog';
 
 
 
@@ -53,10 +54,8 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
         handlePatch()
         break;
       
-      
-
       default:
-        console.log("nada")
+        console.log("sorry, property doesn't exist")
     }
   }
 
@@ -76,10 +75,6 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
     })  
   }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // function onBuyDesk(e){
-  //   console.log(e)
-  // }
-
 //Datagrid Helper Functions & Variables
   const currencyFormatter = new Intl.NumberFormat('en-US', {
     maximumSignificantDigits: 3,
@@ -96,38 +91,6 @@ useEffect(() => {
   .then((job) => setJobs(job))
 }, [])
 
-  // const desks = [
-  //   { value: 1, label: "Desk #1" },
-  //   { value: 2, label: "Desk #2" },
-  //   { value: 3, label: "Desk #3" },
-  //   { value: 4, label: "Desk #4" },
-  //   { value: 5, label: "Desk #5" },
-  //   { value: 6, label: "Desk #6" },
-  //   { value: 7, label: "Desk #7" },
-  //   { value: 8, label: "Desk #8" },
-  //   { value: 9, label: "Desk #9" },
-  //   { value: 10, label: "Desk #10" },
-  //   { value: 11, label: "Desk #11" },
-  //   { value: 12, label: "Desk #12" },
-  //   { value: 13, label: "Desk #13" },
-  //   { value: 14, label: "Desk #14" },
-  //   { value: 15, label: "Desk #15" },
-  //   { value: 16, label: "Desk #16" },
-  //   { value: 17, label: "Desk #17" },
-  //   { value: 18, label: "Desk #18" },
-  //   { value: 19, label: "Desk #19" },
-  //   { value: 20, label: "Desk #20" },
-  //   { value: 21, label: "Desk #21" },
-  //   { value: 22, label: "Desk #22" },
-  //   { value: 23, label: "Desk #23" },
-  //   { value: 24, label: "Desk #24" },
-  //   { value: 25, label: "Desk #25" },
-  //   { value: 26, label: "Desk #26" },
-  //   { value: 27, label: "Desk #27" },
-  //   { value: 28, label: "Desk #28" },
-  //   { value: 29, label: "Desk #29" },
-  //   { value: 30, label: "Desk #30" },
-  // ];
  
   const columns = [
     { 
@@ -282,22 +245,14 @@ useEffect(() => {
       headerName: 'Purchase a Privilege', 
       editable: true, 
       width: 104, 
-      renderCell: () => <PrivilegeDialog /> 
-    }, //a button, onClick => dialog popup to purchase privilege; snack, music, investment
+      renderCell: (params) => <PrivilegeDialog params={params}/> 
+    },
     { 
       field: "investment", 
       headerName: 'Investment $', 
       editable: false, 
-      width: 80, 
-      type: 'number', 
-      valueFormatter: ({ value }) => currencyFormatter.format(value),
-      renderCell: (params) => params.row.privileges.map((privilege) => {
-        if (privilege.event === "Invest") {
-          return currencyFormatter.format(privilege.amount)
-        } else {
-          return null
-        }
-      }) 
+      width: 110, 
+      renderCell: (params) => <InvestmentDialog params={params} />
     },
     { 
       field: "delete", 

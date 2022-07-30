@@ -26,7 +26,7 @@ function PayRentButton({balance, studentId}) {
   }
   
   return (
-    <Button 
+    <Button sx={{fontSize: "10px"}}
       variant="contained"
       size="small"
       color='primary'

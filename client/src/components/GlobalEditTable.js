@@ -205,7 +205,7 @@ useEffect(() => {
           <div>
             {result.map((desk) => (
 
-              <Typography key={desk}>Desk #{desk}</Typography>
+              <Typography sx={{margin: "4px", fontSize: "11px", lineHeight: 1}}key={desk}>Desk #{desk}</Typography>
             ))}
            
           </div>

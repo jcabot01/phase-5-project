@@ -4,23 +4,43 @@ import { FormControl, OutlinedInput, InputLabel, Select, MenuItem } from '@mui/m
 function JobTitleSelect({jobs, jobTitle, studentId}) {
   const [jobSelect, setJobSelect] = useState("");
  
-  // console.log(result)
+  
   // console.log(jobId)
   
-  function handlePatch(jobId){
+  function handlePatch(jobId) {
     const updatedJobPayload = {
-      job_id: jobId
+      job_id: jobId,
     }
 
-    fetch(`/student_jobs/${studentId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(updatedJobPayload)
-    })
-    .then((res) => res.json())
-    .then((updatedJob) => console.log(updatedJob)) //redux dispatch eventually
+    const newJobObject = {
+      job_id: jobId,
+      student_id: studentId 
+    }
+
+    if (jobTitle == "") {
+      console.log("job is null")
+      fetch('/student_jobs', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newJobObject)
+      })
+      .then((res) => res.json())
+      .then((newJob) => console.log(newJob))
+      
+    } else {
+      
+      fetch(`/student_jobs/${studentId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedJobPayload)
+      })
+      .then((res) => res.json())
+      .then((updatedJob) => console.log(updatedJob))  //redux dispatch eventually
+      }
   }
 
   function handleChange(e) {

@@ -48,7 +48,7 @@ function StudentSignupForm() {
     }).then((r) => {
       if (r.ok) {
         // r.json().then((user) => onLogin(user)); //pass user response object up to State via Redux
-        r.json().then((teacher) => console.log(teacher))
+        r.json().then((student) => console.log(student))
       } else {
         r.json().then((err) => setErrors(err.errors));
       }

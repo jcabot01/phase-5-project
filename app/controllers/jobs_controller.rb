@@ -43,6 +43,6 @@ class JobsController < ApplicationController
   end
 
   def job_params
-    params.permit(:salary, :title, :student_id) # :admin
+    params.permit(:salary, :title) # :admin
   end
 end

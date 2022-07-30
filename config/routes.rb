@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :student_desks
   resources :teachers
   resources :student_jobs
-  # get './desks', to 'desks#index' #get all desks data
-  # get './desks/:id', to 'desks#show' #get all desks data
+  get '/desks', to: 'desks#index' #get all desks data
+  get '/desks/:id', to: 'desks#show' #get all desks data
 
 
 

@@ -5,8 +5,6 @@ function JobTitleSelect({jobs, jobTitle, studentId}) {
   const [jobSelect, setJobSelect] = useState("");
  
   
-  // console.log(jobId)
-  
   function handlePatch(jobId) {
     const updatedJobPayload = {
       job_id: jobId,
@@ -18,7 +16,6 @@ function JobTitleSelect({jobs, jobTitle, studentId}) {
     }
 
     if (jobTitle == "") {
-      console.log("job is null")
       fetch('/student_jobs', {
         method: "POST",
         headers: {
@@ -28,7 +25,7 @@ function JobTitleSelect({jobs, jobTitle, studentId}) {
       })
       .then((res) => res.json())
       .then((newJob) => console.log(newJob))
-      
+
     } else {
       
       fetch(`/student_jobs/${studentId}`, {
@@ -76,47 +73,3 @@ function JobTitleSelect({jobs, jobTitle, studentId}) {
 }
 
 export default JobTitleSelect
-
-
-// function JobTitleSelect({jobs, result}) {
-
-//   const [jobSelect, setJobSelect] = useState("")
-//   const [jobChoice, setJobChoice] = useState("")
-  
-  
-  
-//     function handleJobSubmit(e) {
-//       e.preventDefault()
-//       console.log(jobChoice)
-//     }
-  
-//     function handleChange(e) {
-//       setJobSelect(e.target.value)
-//       const jobState = params.row.jobs.map((job) => job.title)
-//       setJobChoice(jobState[0])
-//       // console.log(params)
-//     }
-  
-//     return (
-//       <form onSubmit={handleJobSubmit} id="jobSelect"> 
-//               <FormControl fullWidth>
-//                 <InputLabel id="job-select-label">Select Job</InputLabel>
-//                 <Select
-//                   labelId="job-select-label"
-//                   id="job-select"
-//                   value={jobSelect}
-//                   label="Jobs"
-//                   onChange={handleChange}
-//                   // type='submit'
-//                   // form="jobSelect"
-//                 > 
-//                 {jobs.map((job) => (
-//                     <MenuItem key={job.id} value={job.id}>{job.title}</MenuItem>
-//                 ))}   
-//                 </Select>
-//               </FormControl>
-//               </form>
-//     )
-//   }
-  
-//   export default JobTitleSelect

@@ -9,6 +9,7 @@ import BuyDeskDialog from './Buttons/GlobalStudentEditButtons/BuyDeskDialog';
 import JobTitleSelect from './Buttons/GlobalStudentEditButtons/JobTitleSelect';
 import DeleteStudentButton from './Buttons/GlobalStudentEditButtons/DeleteStudentButton';
 import InvestmentDialog from './Buttons/GlobalStudentEditButtons/InvestmentDialog';
+import RentedDesk from './Buttons/GlobalStudentEditButtons/RentedDesk';
 
 
 
@@ -98,7 +99,14 @@ function handleClick() {
   const average = workHabitScoresArray.reduce((a, b) => a + b, 0) / workHabitScoresArray.length;
   setAverage(average)
 }
+//desk to populate rental dropdown
+const [desks, setDesks] = useState([])
 
+useEffect(() => {
+  fetch('/desks')
+  .then((r) => r.json())
+  .then((desk) => setDesks(desk))
+}, [])
  
   const columns = [
     { 
@@ -184,20 +192,24 @@ function handleClick() {
     { 
       field: "desk_rented", 
       headerName: 'Desk Rented', 
-      editable: false, 
-      type: 'number',
+      editable: true, 
       width: 80,
       renderCell: (params) => {
-        let result = []
-        params.row.student_desks.map((desk) => desk.is_owned_or_rented === "rented" ? result.push(desk.desk_id) : null)        
-        return (
-          <div>
-            {result.map((desk) => (
-              <Typography key={desk}>Desk #{desk}</Typography>
-            ))}
-           
-          </div>
-        )
+        if (params.row.student_desks.length == 0) {
+          return (
+            <RentedDesk desks={desks} params={params}/>
+          )
+        } else {
+            let result = []
+            params.row.student_desks.map((desk) => desk.is_owned_or_rented === "rented" ? result.push(desk.desk_id) : null)        
+              return (
+                <div>
+                  {result.map((desk) => (
+                    <Typography key={desk}>Desk #{desk}</Typography>
+                  ))}
+                </div>
+              )
+        }
       }  
     },
     { 

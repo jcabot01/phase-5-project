@@ -7,6 +7,7 @@ import ErrorPage from './pages/ErrorPage';
 import StudentOrTeacherPage from './pages/StudentOrTeacherPage';
 import RulesOverview from './pages/RulesOverview';
 import NavBar from './components/NavBar';
+import GlobalStudentEditPage from './pages/GlobalStudentEditPage';
 
 
 
@@ -34,7 +35,7 @@ function App() {
           <Route path="/rules-overview" element={<RulesOverview/>}/>
           <Route path="/student-login" element={<StudentLoginPage/>} />
           <Route path="/teacher-login" element={<TeacherLoginPage/>} />
-          <Route path="/global-edit" element={<GlobalEditTable/>} />
+          <Route path="/global-edit" element={<GlobalStudentEditPage />} />
           <Route path="*" element={<ErrorPage/>} />
         </Routes>
       </Router>

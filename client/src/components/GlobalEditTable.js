@@ -1,6 +1,6 @@
 import React, { useEffect, useState }from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { Avatar, Typography, Button } from '@mui/material';
+import { Avatar, Typography, Button, Box } from '@mui/material';
 import PaydayButton from './Buttons/GlobalStudentEditButtons/PaydayButton';
 import PayRentButton from './Buttons/GlobalStudentEditButtons/PayRentButton';
 import CollectRentButton from './Buttons/GlobalStudentEditButtons/CollectRentButton';
@@ -17,6 +17,7 @@ function GlobalEditTable() {  //import students objects, fetch one level higher?
   const [students, setStudents] = useState([]);
   const [deskPurchase, setDeskPurchase] = useState('1')
   const [pageSize, setPageSize] = useState(30);
+  const [average, setAverage] = useState("No Scores")
  
   function handleDataSubmit(e) { //don't delete
     let studentData = e;
@@ -90,6 +91,13 @@ useEffect(() => {
   .then((r) => r.json())
   .then((job) => setJobs(job))
 }, [])
+
+//average the work_habit_scores
+function handleClick() {
+  const workHabitScoresArray = students.map((student) => student.work_habit_score)
+  const average = workHabitScoresArray.reduce((a, b) => a + b, 0) / workHabitScoresArray.length;
+  setAverage(average)
+}
 
  
   const columns = [
@@ -280,6 +288,18 @@ useEffect(() => {
         pagination
         onCellEditCommit={handleDataSubmit}
       />
+      <Box textAlign={'center'} marginBottom="20px">
+        <Button 
+        variant="contained"
+        size="small"
+        color='primary'
+        onClick={() => handleClick()}>
+          Click to Average
+        </Button>
+        
+        <Typography>{average}</Typography>
+      </Box>
+
     </div>
   )
 }

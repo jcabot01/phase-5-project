@@ -29,7 +29,7 @@ function RulesOverview() {
             -Prior to the 1st Day of the Month:
           </Typography>
           <Typography sx={{marginLeft: 2}}>
-            Students volunteer for a job that interests them. Once they decide, the Teacher assigns the job on the "Students" page, in the Class Global Edit table.
+            Students volunteer for a job that interests them. Once they decide, the Teacher assigns the job on the large data table found the in "Global Student Edit" page.  The "Salary" associated with that particular job will be automatically updated to match the job.
           </Typography>
 
         <Box sx={{height: 20}}>
@@ -39,14 +39,14 @@ function RulesOverview() {
             -On the 1st Day of the Month
           </Typography>
           <Typography sx={{marginLeft: 2}}>
-            The student Accountant pays their class a monthly Salary by pressing on the "GET PAID!" button for each student. If a student rents a desk, the Accountant will deduct the rent by pressing the "Pay Rent" button. If a student owns their desk, they don't owe any rent for the month.  If a student owns a 2nd desk, then the Accountant must also click the "Collect Rent" button to pay the owner.
+            The student Accountant pays their class a monthly Salary by pressing the "Payday!" button for each student. If a student rents a desk, the Accountant will deduct the rent by pressing the "Pay Rent" button. If a student owns their desk, they don't owe any rent for the month.  If a student owns a 2nd desk, then the Accountant must also click the "Collect Rent" button to pay the owner.  In order for students to purchase a 2nd desk, they MUST have already purchased the original desk that they were renting.
           </Typography>
         
         <Box sx={{height: 20}}>
         </Box>
         
           <Typography sx={{marginLeft: 2}}>
-            -At this point the student has received their monthly income (salary and real estate investment (collected rent from tenant). They have fulfilled their living expense obligation. Now it is time to spend!        
+            -At this point the student has received their monthly income (salary and real estate investment income (collected rent from tenant). They have fulfilled their living expense obligations. Now it is time to spend!        
           </Typography>
 
         <Box sx={{height: 20}}>
@@ -56,7 +56,7 @@ function RulesOverview() {
             Privileges
           </Typography>
           <Typography sx={{marginLeft: 2}}>
-            Students can look at their remaining balance to see how they want to spend. Do they save (do nothing)? Do they invest (buy a another desk or Investment fund)? Do they splurge on fun and entertainment (Music and Snack cards)? Careful though, there are NO REFUNDS, once the Priviledge is submitted, there is no turning back. You must live with your choice!
+            Students can look at their remaining balance to see how they want to spend. Do they save (do nothing)? Do they invest (buy a another desk or purchase into the Investment Fund)? Do they splurge on fun and entertainment (Music and Snack cards)? Careful though, there are NO REFUNDS, once the Priviledge is submitted, there is no turning back. You must live with your choice!  By clicking the "Investments" button, you can see your investment history into the Investment Fund; more on that later.
           </Typography>
 
         <Box sx={{height: 20}}>
@@ -69,13 +69,13 @@ function RulesOverview() {
             -Rental Desks:
           </Typography>
           <Typography sx={{marginLeft: 2}}>
-            Students can buy additional desks for rental income; ex: if purchased in month 2, student collects rent in month 3.
+            Students can buy additional desks for rental income; ex: if they purchased it in month 2, student collects rent in month 3.
           </Typography>
           <Typography sx={{marginLeft: 1, fontWeight: 'bold'}} >
             -Investment Fund:
           </Typography>
           <Typography sx={{marginLeft: 2}}>
-            Students will be given a "Work Habit Score" by the Teacher at the end of the month. This score will be combined and averaged as a class. The Analyst will have to perform the calculation (by hand) to find the average. The Teacher can check their work by pressing "Click to Average" button at the bottom of the Class Global Edit table. If the class average went up from the previous month, the students who invested into the Investment Fund will double their investment. If not, they will lose their entire investment. Students must place their "bets" at some point during the month, prior to the end-of-month average calculation.  When a student makes a Fund investment, it is immediately deducted from the Student's balance, therefore if the investment turns out to be a loss, it will already be reflected.  If the investment wins, then the Analyst needs to multiply the Investment $ by 2, then apply that amount to the Student's Current Balance.
+            Students will be given a "Work Habit Score" by the Teacher at the end of the month. This score will be combined and averaged as a class. The Analyst will have to perform the calculation (by hand) to find the average. The Teacher can check their work by pressing "Click to Average" button at the bottom of the Class Global Edit table. If the class average went up from the previous month, the students who invested into the Investment Fund will double their investment. If not, they will lose their entire investment. Students must place their "bets" at some point during the month, prior to the end-of-month average calculation.  When a student makes a Fund investment via the "Privileges" button, it is immediately deducted from the Student's balance, therefore if the investment turns out to be a loss, it will already be reflected.  If the investment wins, then the Analyst needs to multiply the Investment amount by 2, then apply that amount to the Student's Current Balance.
           </Typography>
 
         <Box sx={{height: 20}}>

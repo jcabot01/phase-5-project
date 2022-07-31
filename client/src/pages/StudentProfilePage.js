@@ -16,20 +16,20 @@ function StudentProfilePage() {
           <Typography component={'div'} sx={{width: 'fit-content', border: '2px solid'}}>Balance: $  "student.balance"</Typography>
       </BalanceWrapper>
       <Box>
-        <Box display={'flex'}>
-          <Box>
-            <Box>
-              Profile pic <Avatar />
+        <Box display={'flex'} marginLeft={12}>
+          <Box marginRight={5}>
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <Avatar />
             </Box>
             <GoalsWrapper>
-              <Box>
+              <Box width='fit-content'>
                 Goals: "student.goals"
               </Box>
             </GoalsWrapper>
           </Box>
-            <Box>
-             <StudentProfileStack />
-            </Box>
+          <Box marginLeft={5}marginRight={'200px'}>
+            <StudentProfileStack />
+          </Box>
         </Box>
       </Box>
     </Box>
@@ -57,5 +57,4 @@ const BalanceWrapper = styled.section`
 const GoalsWrapper = styled.section`
   text-align: center;
   width: 200px;
-  border: 2px solid
 `;

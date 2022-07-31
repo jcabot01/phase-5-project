@@ -1,15 +1,15 @@
 import styled from '@emotion/styled'
 import { Box, Typography } from '@mui/material'
 import React from 'react'
-import LogoutButton from './Buttons/NavBarButtons/LogoutButton'
-import MenuButton from './Buttons/NavBarButtons/MenuButton'
+import LogoutButton from '../Buttons/NavBarButtons/LogoutButton'
 
 
 
-function NavBar() {
+
+function StudentNavBar() {
   return (
     <Box display={'flex'} sx={{margin: 3, borderRadius: 7, bgcolor: '#cccccc'}}>
-      <Box display="flex" justifyContent="center" alignItems="center" marginRight="32px">
+      <Box display="flex" justifyContent="center" alignItems="center">
         <Typography sx={{marginLeft: 2}}>
           Welcome User!
         </Typography>
@@ -19,8 +19,7 @@ function NavBar() {
         <Logo>Class-o-poly</Logo>
       </LogoWrapper>
       
-      <Box display="flex" alignItems="center" justifyContent="center" sx={{marginRight: 2}} >
-        <MenuButton />
+      <Box display="flex" alignItems="center" justifyContent="center" sx={{marginRight: "43px"}} >
         <LogoutButton />
       </Box>
     </Box>
@@ -48,4 +47,4 @@ padding: 5px;
 border: 3px
 `;
 
-export default NavBar
+export default StudentNavBar

@@ -8,6 +8,7 @@ import StudentOrTeacherPage from './pages/StudentOrTeacherPage';
 import RulesOverview from './pages/RulesOverview';
 import NavBar from './components/NavBar';
 import GlobalStudentEditPage from './pages/GlobalStudentEditPage';
+import StudentProfilePage from './pages/StudentProfilePage';
 
 
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/student-login" element={<StudentLoginPage/>} />
           <Route path="/teacher-login" element={<TeacherLoginPage/>} />
           <Route path="/global-edit" element={<GlobalStudentEditPage />} />
+          <Route path="/student-profile" element={<StudentProfilePage />} />
           <Route path="*" element={<ErrorPage/>} />
         </Routes>
       </Router>

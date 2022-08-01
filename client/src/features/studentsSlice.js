@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { v4 as uuid } from "uuid";
 // Action Creators
 
 // async actions
@@ -58,15 +59,15 @@ const studentsSlice = createSlice({
         };
     });
     },
-    // updateInvestmentDialog(state, action) {
-    //   state.entities.map((student) => {
-    //     if (student.id === action.payload.id) {
-    //         return student.balance = action.payload.balance;
-    //     } else {
-    //         return state;
-    //     };
-    // });
-    // },
+    updateInvestmentDialog(state, action) {
+      state.entities.map((student) => {
+        if (student.id === action.payload.id) {
+            return student.privileges.push({amount: action.payload.amount, created_at: action.payload.created_at, event: action.payload.event, id: uuid()})
+        } else {
+            return state;
+        };
+    });
+    },
     // showInvestmentAmount(state, action) {
     //   state.entities.map((student) => {
     //     if (student.id === action.payload.id) {
@@ -101,6 +102,7 @@ export const {payRent,
               collectRent, 
               deleteUser, 
               updateBalanceAfterPrivilege,
+              updateInvestmentDialog,
               paydayUpdateBalance,
              } = studentsSlice.actions;
 

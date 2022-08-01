@@ -1,28 +1,34 @@
 import React, { useState } from 'react'
 import { FormControl, MenuItem, Select, InputLabel, Typography, Box} from '@mui/material'
 import { useDispatch } from 'react-redux'
-import { updateBalanceAfterPrivilege } from '../../../features/studentsSlice';
+import { updateBalanceAfterPrivilege, updateInvestmentDialog } from '../../../features/studentsSlice';
 
 
 
 function PrivilegeSelect({params}) {
-const [amount, setAmount] = useState('');
+const [amountSpent, setAmountSpent] = useState('');
 const dispatch = useDispatch();
 const studentId = params.row.id
 
 
-
   function handleChange(e) {
-    setAmount(e.target.value)
+    setAmountSpent(e.target.value)
     const privilegeCase = e.target.value
     
-
     function handlePost(privilegeObject){
       const oldBalance = params.row.balance
       const newBalance = oldBalance - privilegeObject.amount
+      const amount = privilegeObject.amount
+
       dispatch(updateBalanceAfterPrivilege({id: studentId, balance: newBalance }))
-      // dispatch(updateInvestmentDialog({id: studentId, privileges}))
-        fetch('/privileges', {
+      
+      function isEvent (eventIsInvest) {
+         return eventIsInvest ? dispatch(updateInvestmentDialog({id: studentId, amount: amount, event: "Invest", created_at: "just now..."})) : null
+      }
+      isEvent(privilegeObject.event === "Invest")   
+     
+
+        fetch('/privileges', {  //create new privilege in DB
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -30,7 +36,21 @@ const studentId = params.row.id
           body: JSON.stringify(privilegeObject)
         })
           .then((res) => res.json())
-          .then((newPrivilege) => console.log(newPrivilege))   
+          .then((newPrivilege) => console.log(newPrivilege)) 
+      /////////////////////////////////////////////////////////////////////////////////  
+        const newBalancePayload = {
+          balance: newBalance
+        }
+        
+        fetch(`/students/${studentId}`, { //Decrements the student's balance
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newBalancePayload)
+        })
+        .then((res) => res.json())
+        .then((updatedBalance) => console.log(updatedBalance)) //ready for redux
     }
     
     switch (privilegeCase) {
@@ -71,7 +91,7 @@ const studentId = params.row.id
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={amount}
+          value={amountSpent}
           label="Privileges"
           onChange={handleChange}
         >

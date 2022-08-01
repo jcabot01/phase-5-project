@@ -23,9 +23,10 @@ const studentsSlice = createSlice({
     //   state.entities.push(action.payload);
     // },
   
-    // catUpdated(state, action) {
-    //   const cat = state.entities.find((cat) => cat.id === action.payload.id);
-    //   cat.url = action.payload.url;
+    // salaryUpdated(state, action) {
+    //   const student = state.entities.find((student) => student.id === action.payload.id);
+    //   const job = state.entities.map((student) => student.jobs[0])
+    //   cat.job.salary = action.payload.salary;
     // },
   },
   extraReducers: {

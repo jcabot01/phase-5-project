@@ -11,8 +11,6 @@ import DeleteStudentButton from './Buttons/GlobalStudentEditButtons/DeleteStuden
 import InvestmentDialog from './Buttons/GlobalStudentEditButtons/InvestmentDialog';
 import RentedDesk from './Buttons/GlobalStudentEditButtons/RentedDesk';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchStudents } from '../features/studentsSlice';
 
 
 function GlobalEditTable({students}) {

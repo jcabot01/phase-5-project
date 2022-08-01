@@ -1,11 +1,16 @@
 import React, {useState} from 'react'
 import { FormControl, OutlinedInput, InputLabel, Select, MenuItem } from '@mui/material'
+import { useDispatch } from 'react-redux';
+
 
 function JobTitleSelect({jobs, jobTitle, studentId}) {
   const [jobSelect, setJobSelect] = useState("");
+  const dispatch = useDispatch()
  
   
   function handlePatch(jobId) {
+
+    
     const updatedJobPayload = {
       job_id: jobId,
     }

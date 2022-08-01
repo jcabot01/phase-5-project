@@ -30,8 +30,7 @@ function PrivilegeDialog({params}) {
           <PrivilegeSelect params={params}/>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Submit</Button>
+          <Button onClick={handleClose}>Close</Button>
         </DialogActions>
       </Dialog>
     </div>

@@ -1,14 +1,22 @@
 import React from 'react';
 import { Button } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { paydayUpdateBalance } from '../../../features/studentsSlice';
+
+
 
 
 function PaydayButton({params}) {
   // const [getPaid, setGetPaid]
+  const dispatch = useDispatch();
+
   function handleClick(){
     const salary = params.row.jobs.map((job) => job.salary)
     const oldBalance = params.row.balance
     const newBalance = salary[0] + oldBalance
     const studentId = params.row.id
+
+    dispatch(paydayUpdateBalance({id: studentId, balance: newBalance}))
 
     const newBalancePayload = {
       balance: newBalance

@@ -5,9 +5,13 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useDispatch } from 'react-redux';
+import { deleteUser } from '../../../features/studentsSlice';
 
-function DeleteStudentButton({deleteUser, params}) {
+function DeleteStudentButton({params}) {
   const [open, setOpen] = React.useState(false);
+  const studentId = params.row.id
+  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -18,7 +22,10 @@ function DeleteStudentButton({deleteUser, params}) {
   };
 
   function handleDelete() {
-    deleteUser(params.row.id)
+    dispatch(deleteUser({id: studentId}))
+    fetch(`/students/${studentId}`, {
+      method: "DELETE",
+    })
   }
 
   return (
@@ -46,7 +53,7 @@ function DeleteStudentButton({deleteUser, params}) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose  && handleDelete} autoFocus>
+          <Button onClick={handleClose  &&  handleDelete} autoFocus>
             Confirm
           </Button>
         </DialogActions>

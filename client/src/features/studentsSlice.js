@@ -18,9 +18,64 @@ const studentsSlice = createSlice({
     status: "idle", // loading state
   },
   reducers: {
-    // catAdded(state, action) {
-    //   //using createSlice lets us mutate state!
-    //   state.entities.push(action.payload);
+    paydayUpdateBalance(state, action) {
+      state.entities.map((student) => {
+        if (student.id === action.payload.id) {
+            return student.balance = action.payload.balance;
+        } else {
+            return state;
+        };
+    });
+    },
+    payRent(state, action) {
+      state.entities.map((student) => {
+        if (student.id === action.payload.id) {
+            return student.balance = action.payload.balance;
+        } else {
+            return state;
+        };
+    });
+    },
+    collectRent(state, action) {
+      state.entities.map((student) => {
+        if (student.id === action.payload.id) {
+            return student.balance = action.payload.balance;
+        } else {
+            return state;
+        };
+    });
+    },
+    deleteUser(state, action) {
+      const index = state.entities.findIndex((student) => student.id === action.payload.id)
+      state.entities.splice(index, 1);
+    },
+    updateBalanceAfterPrivilege(state, action) {
+      state.entities.map((student) => {
+        if (student.id === action.payload.id) {
+            return student.balance = action.payload.balance;
+        } else {
+            return state;
+        };
+    });
+    },
+    // updateInvestmentDialog(state, action) {
+    //   state.entities.map((student) => {
+    //     if (student.id === action.payload.id) {
+    //         return student.balance = action.payload.balance;
+    //     } else {
+    //         return state;
+    //     };
+    // });
+    // },
+    // showInvestmentAmount(state, action) {
+    //   state.entities.map((student) => {
+    //     if (student.id === action.payload.id) {
+    //         return student.balance = action.payload.balance;
+    //     } else {
+    //         return state;
+    //     };
+    // });
+ 
     // },
   
     // salaryUpdated(state, action) {
@@ -42,6 +97,11 @@ const studentsSlice = createSlice({
 })
     
 
-// export const { catAdded, catUpdated } = catsSlice.actions;
+export const {payRent, 
+              collectRent, 
+              deleteUser, 
+              updateBalanceAfterPrivilege,
+              paydayUpdateBalance,
+             } = studentsSlice.actions;
 
 export default studentsSlice.reducer;

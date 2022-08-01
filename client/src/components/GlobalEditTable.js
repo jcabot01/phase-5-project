@@ -71,12 +71,7 @@ function GlobalEditTable({students}) {
   //     .then((studentsData) => setStudents(studentsData))
   // }, []);
 
-  // function deleteUser(id) {
-  //   setStudents((prevStudents) => prevStudents.filter((row) => row.id !== id));
-  //   fetch(`/students/${id}`, {
-  //     method: "DELETE",
-  //   })  
-  // }
+  
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Datagrid Helper Functions & Variables
   const currencyFormatter = new Intl.NumberFormat('en-US', {
@@ -275,17 +270,17 @@ useEffect(() => {
       width: 110, 
       renderCell: (params) => <InvestmentDialog params={params} />
     },
-    // { 
-    //   field: "delete", 
-    //   headerName: 'Remove User', 
-    //   editable: false, 
-    //   width: 90, 
-    //   renderCell: (params) => {
-    //     return (
-    //       <DeleteStudentButton params={params} deleteUser={deleteUser} />
-    //     )
-    //   }
-    // }, 
+    { 
+      field: "delete", 
+      headerName: 'Remove User', 
+      editable: false, 
+      width: 90, 
+      renderCell: (params) => {
+        return (
+          <DeleteStudentButton params={params} />
+        )
+      }
+    }, 
   ];
   
   return (

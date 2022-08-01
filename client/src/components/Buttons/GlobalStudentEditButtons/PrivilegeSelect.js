@@ -1,9 +1,16 @@
 import React, { useState } from 'react'
 import { FormControl, MenuItem, Select, InputLabel, Typography, Box} from '@mui/material'
+import { useDispatch } from 'react-redux'
+import { updateBalanceAfterPrivilege } from '../../../features/studentsSlice';
+
+
 
 function PrivilegeSelect({params}) {
-const [amount, setAmount] = useState('')
+const [amount, setAmount] = useState('');
+const dispatch = useDispatch();
 const studentId = params.row.id
+
+
 
   function handleChange(e) {
     setAmount(e.target.value)
@@ -11,16 +18,19 @@ const studentId = params.row.id
     
 
     function handlePost(privilegeObject){
-      // console.log(privilegeObject)
-      fetch('/privileges', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(privilegeObject)
-      })
-        .then((res) => res.json())
-        .then((newPrivilege) => console.log(newPrivilege)) //ready for redux
+      const oldBalance = params.row.balance
+      const newBalance = oldBalance - privilegeObject.amount
+      dispatch(updateBalanceAfterPrivilege({id: studentId, balance: newBalance }))
+      // dispatch(updateInvestmentDialog({id: studentId, privileges}))
+        fetch('/privileges', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(privilegeObject)
+        })
+          .then((res) => res.json())
+          .then((newPrivilege) => console.log(newPrivilege))   
     }
     
     switch (privilegeCase) {

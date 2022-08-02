@@ -1,5 +1,9 @@
 import React, {useState} from 'react'
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem, FormControl, InputLabel} from '@mui/material'
+import { useDispatch } from 'react-redux';
+import { updateBalance } from '../../../features/studentsSlice';
+
+
 
 
 
@@ -19,10 +23,10 @@ function BuyDeskDialog({params}) {
   const [deskNum, setDeskNum] = useState('');
   const [studentId, setStudentId] = useState('');
   const [isOwnedOrRented, setIsOwnedOrRented] = useState("");
-  const [studentDeskId, setStudentDeskId] = useState("")
-  const [paramsStudentDeskObj, setParamsStudentDeskObj] = useState('')
-  const [deskId, setDeskId] = useState('')
-  
+  const [studentDeskId, setStudentDeskId] = useState("");
+  const [paramsStudentDeskObj, setParamsStudentDeskObj] = useState('');
+  const [deskId, setDeskId] = useState('');
+  const dispatch = useDispatch();
   
   function handleBuyDeskSubmit(e) {
     e.preventDefault()
@@ -32,6 +36,9 @@ function BuyDeskDialog({params}) {
     const studentBalance = params.row.balance //need existing to subtract cost of purchase
     const newBalanceAfterPurchase = studentBalance - 50
 
+    //dispatch to adjust balance - 50
+    // dispatch(updateBalance({}))
+    //dispatch to place desk #{id} into DesksOwned column
     const newBalancePayload = {
       balance: newBalanceAfterPurchase
     }

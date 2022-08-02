@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { paydayUpdateBalance } from '../../../features/studentsSlice';
+import { updateBalance } from '../../../features/studentsSlice';
 
 
 
@@ -16,7 +16,7 @@ function PaydayButton({params}) {
     const newBalance = salary[0] + oldBalance
     const studentId = params.row.id
 
-    dispatch(paydayUpdateBalance({id: studentId, balance: newBalance}))
+    dispatch(updateBalance({id: studentId, balance: newBalance}))
 
     const newBalancePayload = {
       balance: newBalance

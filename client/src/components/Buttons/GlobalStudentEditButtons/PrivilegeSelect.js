@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FormControl, MenuItem, Select, InputLabel, Typography, Box} from '@mui/material'
 import { useDispatch } from 'react-redux'
-import { updateBalanceAfterPrivilege, updateInvestmentDialog } from '../../../features/studentsSlice';
+import { updateBalance, updateInvestmentDialog } from '../../../features/studentsSlice';
 
 
 
@@ -20,7 +20,7 @@ const studentId = params.row.id
       const newBalance = oldBalance - privilegeObject.amount
       const amount = privilegeObject.amount
 
-      dispatch(updateBalanceAfterPrivilege({id: studentId, balance: newBalance }))
+      dispatch(updateBalance({id: studentId, balance: newBalance }))
       
       function isEvent (eventIsInvest) {
          return eventIsInvest ? dispatch(updateInvestmentDialog({id: studentId, amount: amount, event: "Invest", created_at: "just now..."})) : null

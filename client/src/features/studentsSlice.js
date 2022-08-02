@@ -29,7 +29,7 @@ const studentsSlice = createSlice({
         };
     });
     },
-    paydayUpdateBalance(state, action) {
+    updateBalance(state, action) {
       state.entities.map((student) => {
         if (student.id === action.payload.id) {
             return student.balance = action.payload.balance;
@@ -47,36 +47,9 @@ const studentsSlice = createSlice({
         };
     });
     },
-    payRent(state, action) {
-      state.entities.map((student) => {
-        if (student.id === action.payload.id) {
-            return student.balance = action.payload.balance;
-        } else {
-            return state;
-        };
-    });
-    },
-    collectRent(state, action) {
-      state.entities.map((student) => {
-        if (student.id === action.payload.id) {
-            return student.balance = action.payload.balance;
-        } else {
-            return state;
-        };
-    });
-    },
     deleteUser(state, action) {
       const index = state.entities.findIndex((student) => student.id === action.payload.id)
       state.entities.splice(index, 1);
-    },
-    updateBalanceAfterPrivilege(state, action) {
-      state.entities.map((student) => {
-        if (student.id === action.payload.id) {
-            return student.balance = action.payload.balance;
-        } else {
-            return state;
-        };
-    });
     },
     updateInvestmentDialog(state, action) {
       state.entities.map((student) => {
@@ -87,22 +60,6 @@ const studentsSlice = createSlice({
         };
     });
     },
-    // showInvestmentAmount(state, action) {
-    //   state.entities.map((student) => {
-    //     if (student.id === action.payload.id) {
-    //         return student.balance = action.payload.balance;
-    //     } else {
-    //         return state;
-    //     };
-    // });
- 
-    // },
-  
-    // salaryUpdated(state, action) {
-    //   const student = state.entities.find((student) => student.id === action.payload.id);
-    //   const job = state.entities.map((student) => student.jobs[0])
-    //   cat.job.salary = action.payload.salary;
-    // },
   },
   extraReducers: {
     // handle async action types
@@ -117,14 +74,11 @@ const studentsSlice = createSlice({
 })
     
 
-export const {payRent, 
-              collectRent, 
-              deleteUser, 
-              updateBalanceAfterPrivilege,
+export const {deleteUser, 
               updateInvestmentDialog,
-              paydayUpdateBalance,
+              updateBalance,
               jobSelectChangeSalary,
-              updateWorkHabitScore
-             } = studentsSlice.actions;
+              updateWorkHabitScore,
+              } = studentsSlice.actions;
 
 export default studentsSlice.reducer;

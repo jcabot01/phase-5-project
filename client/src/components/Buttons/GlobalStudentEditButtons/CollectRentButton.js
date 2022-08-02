@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '@mui/material'
 import { useDispatch } from 'react-redux'
-import { collectRent } from '../../../features/studentsSlice';
+import { updateBalance } from '../../../features/studentsSlice';
 
 
 
@@ -14,7 +14,7 @@ function CollectRentButton({params}) {
     const rentalIncome = 10
     const newBalance = studentBalance + rentalIncome
 
-    dispatch(collectRent({id: studentId, balance: newBalance}))
+    dispatch(updateBalance({id: studentId, balance: newBalance}))
 
     const collectRentPayload = {
       balance: newBalance

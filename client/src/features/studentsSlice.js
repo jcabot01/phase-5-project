@@ -15,10 +15,20 @@ export const fetchStudents = createAsyncThunk("students/fetchStudents", () => {
 const studentsSlice = createSlice({
   name: "students",
   initialState: {
-    entities: [], // array of cats
+    entities: [], // array of students
     status: "idle", // loading state
   },
   reducers: {
+    jobSelectChangeSalary(state, action) {
+      state.entities.map((student) => {
+        if (student.id === action.payload.id) {
+            const result = student.jobs.splice(0,0,{title: action.payload.title, salary: action.payload.salary, id: action.payload.jobId})
+            return result
+        } else {
+            return state;
+        };
+    });
+    },
     paydayUpdateBalance(state, action) {
       state.entities.map((student) => {
         if (student.id === action.payload.id) {
@@ -104,6 +114,7 @@ export const {payRent,
               updateBalanceAfterPrivilege,
               updateInvestmentDialog,
               paydayUpdateBalance,
+              jobSelectChangeSalary,
              } = studentsSlice.actions;
 
 export default studentsSlice.reducer;

@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import { FormControl, OutlinedInput, InputLabel, Select, MenuItem } from '@mui/material'
 import { useDispatch } from 'react-redux';
+import { jobSelectChangeSalary } from '../../../features/studentsSlice';
+
 
 
 function JobTitleSelect({jobs, jobTitle, studentId}) {
@@ -8,8 +10,11 @@ function JobTitleSelect({jobs, jobTitle, studentId}) {
   const dispatch = useDispatch()
  
   
-  function handlePatch(jobId) {
+  function handleSubmit(jobId) {
+    const jobMatch = jobs.find((job) => job.id === jobId)
+    console.log("job before post", jobMatch)
 
+    dispatch(jobSelectChangeSalary({id: studentId, title: jobMatch.title, salary: jobMatch.salary, jobId: jobMatch.id}))
     
     const updatedJobPayload = {
       job_id: jobId,
@@ -20,7 +25,7 @@ function JobTitleSelect({jobs, jobTitle, studentId}) {
       student_id: studentId 
     }
 
-    if (jobTitle == "") {
+    if (jobTitle === "") {  //brand new student, no job association yet
       fetch('/student_jobs', {
         method: "POST",
         headers: {
@@ -33,7 +38,7 @@ function JobTitleSelect({jobs, jobTitle, studentId}) {
 
     } else {
       
-      fetch(`/student_jobs/${studentId}`, {
+      fetch(`/student_jobs/${studentId}`, { //if they have a job, this updates it
         method: "PATCH",
         headers: {
           "Content-Type": "application/json"
@@ -47,7 +52,7 @@ function JobTitleSelect({jobs, jobTitle, studentId}) {
 
   function handleChange(e) {
     setJobSelect(e.target.value)
-    handlePatch(e.target.value)
+    handleSubmit(e.target.value)
   };
 
   const menuItems = jobs.map((job) => (

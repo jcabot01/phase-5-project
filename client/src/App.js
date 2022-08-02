@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import GlobalEditTable from './components/GlobalEditTable';
 import StudentLoginPage from './pages/StudentLoginPage';
 import TeacherLoginPage from './pages/TeacherLoginPage';
 import ErrorPage from './pages/ErrorPage';

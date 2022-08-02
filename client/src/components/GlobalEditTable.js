@@ -198,7 +198,7 @@ useEffect(() => {
           )
         } else {
             let result = []
-            params.row.student_desks.map((desk) => desk.is_owned_or_rented === "rented" ? result.push(desk.desk_id) : null)        
+            params.row.student_desks.map((desk) => desk.is_owned_or_rented == "rented" ? result.push(desk.desk_id) : null)        
               return (
                 <div>
                   {result.map((desk) => (

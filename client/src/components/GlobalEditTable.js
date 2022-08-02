@@ -10,23 +10,22 @@ import JobTitleSelect from './Buttons/GlobalStudentEditButtons/JobTitleSelect';
 import DeleteStudentButton from './Buttons/GlobalStudentEditButtons/DeleteStudentButton';
 import InvestmentDialog from './Buttons/GlobalStudentEditButtons/InvestmentDialog';
 import RentedDesk from './Buttons/GlobalStudentEditButtons/RentedDesk';
+import { useDispatch } from 'react-redux';
+import { updateWorkHabitScore } from '../features/studentsSlice';
+
 
 
 
 function GlobalEditTable({students}) {
-  
-
-  // const [students, setStudents] = useState([]);
-  const [deskPurchase, setDeskPurchase] = useState('1')
   const [pageSize, setPageSize] = useState(30);
   const [average, setAverage] = useState("No Scores")
+  const dispatch = useDispatch();
  
   function handleDataSubmit(e) { //don't delete
     let studentData = e;
     let fieldName = e.field;
     let studentId = e.id;
     let value = e.value;
-
 
     const updatedObject = {[fieldName]: value}
 
@@ -54,6 +53,7 @@ function GlobalEditTable({students}) {
         handlePatch()
         break;
       case 'work_habit_score':
+        dispatch(updateWorkHabitScore({studentId: studentData.id, score: studentData.value}))
         handlePatch()
         break;
       
@@ -183,7 +183,8 @@ useEffect(() => {
       headerName: 'Work Habit (0/4)', 
       editable: true, 
       type: 'number', 
-      width: 80 
+      width: 80,
+      renderCell:(params) => params.row.work_habit_score 
     },
     { 
       field: "desk_rented", 

@@ -12,7 +12,6 @@ function JobTitleSelect({jobs, jobTitle, studentId}) {
   
   function handleSubmit(jobId) {
     const jobMatch = jobs.find((job) => job.id === jobId)
-    console.log("job before post", jobMatch)
 
     dispatch(jobSelectChangeSalary({id: studentId, title: jobMatch.title, salary: jobMatch.salary, jobId: jobMatch.id}))
     
@@ -25,7 +24,7 @@ function JobTitleSelect({jobs, jobTitle, studentId}) {
       student_id: studentId 
     }
 
-    if (jobTitle === "") {  //brand new student, no job association yet
+    if (jobTitle == "") {  //brand new student, no job association yet
       fetch('/student_jobs', {
         method: "POST",
         headers: {

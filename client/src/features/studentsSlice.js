@@ -38,6 +38,15 @@ const studentsSlice = createSlice({
         };
     });
     },
+    updateWorkHabitScore(state, action) {
+      state.entities.map((student) => {
+        if (student.id === action.payload.studentId) {
+            return student.work_habit_score = action.payload.score;
+        } else {
+            return state;
+        };
+    });
+    },
     payRent(state, action) {
       state.entities.map((student) => {
         if (student.id === action.payload.id) {
@@ -115,6 +124,7 @@ export const {payRent,
               updateInvestmentDialog,
               paydayUpdateBalance,
               jobSelectChangeSalary,
+              updateWorkHabitScore
              } = studentsSlice.actions;
 
 export default studentsSlice.reducer;

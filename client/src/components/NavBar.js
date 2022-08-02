@@ -6,7 +6,7 @@ import MenuButton from './Buttons/NavBarButtons/MenuButton'
 
 
 
-function NavBar() {
+function NavBar({setUser}) {
   return (
     <Box display={'flex'} sx={{margin: 3, borderRadius: 7, bgcolor: '#cccccc'}}>
       <Box display="flex" justifyContent="center" alignItems="center" marginRight="32px">
@@ -21,7 +21,7 @@ function NavBar() {
       
       <Box display="flex" alignItems="center" justifyContent="center" sx={{marginRight: 2}} >
         <MenuButton />
-        <LogoutButton />
+        <LogoutButton setUser={setUser} />
       </Box>
     </Box>
   )

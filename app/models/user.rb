@@ -1,6 +1,8 @@
-# class User < ApplicationRecord
-
+class User < ApplicationRecord
   # has_secure_password
-  # authentication initialization
   
-# end
+
+  has_one :student
+  has_one :teacher
+  
+end

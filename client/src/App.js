@@ -24,14 +24,14 @@ function App() {
     });
   }, []);
   
-  // if (!user) return <StudentOrTeacherPAGE onLogin={setUser} />
+  // if (!user) return <StudentOrTeacherPage onLogin={setUser} />
   
   return (
     <div>
       <Router>
-        <NavBar />
+        <NavBar setUser={setUser}/>
         <Routes>
-          <Route path="/" element={<StudentOrTeacherPage/>} />
+          {/* <Route path="/" element={<StudentOrTeacherPage/>} /> */}
           <Route path="/rules-overview" element={<RulesOverview/>}/>
           <Route path="/student-login" element={<StudentLoginPage/>} />
           <Route path="/teacher-login" element={<TeacherLoginPage/>} />

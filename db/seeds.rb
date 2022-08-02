@@ -1,24 +1,33 @@
 Student.destroy_all
 Job.destroy_all
 StudentDesk.destroy_all
+StudentJob.destroy_all
 Desk.destroy_all
+User.destroy_all
+Privilege.destroy_all
+
 
 puts "seeding database..."
 
+
+
 t1 = Teacher.create(first_name: "Kristel", last_name: "Lunn", username: "klunn")
 
+# these can go if needed
 s1 = Student.create(first_name: "Jeff", last_name: "Smith", balance: 15, class_period: 1, work_habit_score: 4, goal: "Buy a Snack Card next month & invest!", username: "jeffS", teacher_id: t1.id, avatar_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwy0tXDjDYjpMzIeO0A1qeY8_a3Zo6BjM99A&usqp=CAU")
 s2 = Student.create(first_name: "Sara", last_name: "Johnson", balance: 15, class_period: 1, work_habit_score: 3, goal: "Buy a rental property to make money while I sleep.", username: "saraJ", teacher_id: t1.id, avatar_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMFCpyn1iyXLKdIwXF0s7Kn2BSk3R6cb1eeg&usqp=CAU")
 s3 = Student.create(first_name: "LeBron", last_name: "James", balance: 15, class_period: 1, work_habit_score: 4, goal: "Try to get a better job to earn more.", username: "lebronJ", teacher_id: t1.id, avatar_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKjqBUTrXc_t6Q4pOLHTCfmY1_cOngpx6KQw&usqp=CAU")
 s4 = Student.create(first_name: "Test", last_name: "Test", balance: 15, class_period: 1, work_habit_score: 4, goal: "Test", username: "Test", teacher_id: t1.id, avatar_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKjqBUTrXc_t6Q4pOLHTCfmY1_cOngpx6KQw&usqp=CAU")
 
+u1 = User.create(username: "jeffS", admin: false, student_id: 1)
+# these can go if needed
 p1 = Privilege.create(event: "Music Card", amount: 20, value: 20, student_id: s1.id)
 p2 = Privilege.create(event: "Music Card", amount: 20, value: 20, student_id: s2.id)
 p3 = Privilege.create(event: "Invest", amount: 20, value: 20, student_id: s1.id)
 p4 = Privilege.create(event: "Snack Card", amount: 20, value: 20, student_id: s1.id)
 p5 = Privilege.create(event: "Snack Card", amount: 20, value: 20, student_id: s3.id)
 
-
+# don't delete these, they are needed for student_job relationships
 j1 = Job.create(title: "Accountant", salary: 35)
 j2 = Job.create(title: "Point Pusher #1", salary: 35)
 j3 = Job.create(title: "Point Pusher #2", salary: 35)
@@ -51,6 +60,7 @@ j29 = Job.create(title: "Student #14", salary: 15)
 j30 = Job.create(title: "Student #15", salary: 15)
 j31 = Job.create(title: "Default", salary: 0)
 
+# these can go if needed
 sj1 = StudentJob.create(job_id: j1.id, student_id: s1.id)
 sj2 = StudentJob.create(job_id: j2.id, student_id: s2.id)
 sj3 = StudentJob.create(job_id: j3.id, student_id: s3.id)
@@ -82,7 +92,7 @@ sj4 = StudentJob.create(job_id: j4.id, student_id: s4.id)
 # sj29 = StudentJob.create(job_id: j29.id, student_id: s29.id)
 # sj30 = StudentJob.create(job_id: j30.id, student_id: s30.id)
 
-
+# don't delete these, they are needed for student_desk relationships
 d1 = Desk.create(desk_number: 1, cost: 50, value: 100)
 d2 = Desk.create(desk_number: 2, cost: 50, value: 100)
 d3 = Desk.create(desk_number: 3, cost: 50, value: 100)
@@ -114,6 +124,7 @@ d28 = Desk.create(desk_number: 28, cost: 50, value: 100)
 d29 = Desk.create(desk_number: 29, cost: 50, value: 100)
 d30 = Desk.create(desk_number: 30, cost: 50, value: 100)
 
+# these can go if needed
 sd1 = StudentDesk.create(is_owned_or_rented: "owned", desk_id: d1.id, student_id: s1.id)
 sd2 = StudentDesk.create(is_owned_or_rented: "rented", desk_id: d2.id, student_id: s2.id)
 sd3 = StudentDesk.create(is_owned_or_rented: "rented", desk_id: d3.id, student_id: s3.id)

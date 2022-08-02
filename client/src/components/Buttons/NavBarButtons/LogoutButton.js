@@ -2,14 +2,14 @@ import { Box, Button, Link } from '@mui/material'
 import React from 'react'
 
 
-function LogoutButton() {
+function LogoutButton({setUser}) {
 
   function handleClick(){
-    // fetch("/logout", {method: "DELETE"}).then((r) => {
-    //   if (r.ok) {
-    //     setUser(null)
-    //   }
-    // });
+    fetch("/logout", {method: "DELETE"}).then((r) => {
+      if (r.ok) {
+        setUser(null)
+      }
+    });
     console.log("Logged out")
   }
 

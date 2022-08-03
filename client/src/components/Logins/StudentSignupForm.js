@@ -36,7 +36,8 @@ function StudentSignupForm({onLogin}) {
     //   body: JSON.stringify({
     //     username: username,
     //     password: password,
-    //     password_confirmation: passwordConfirmation
+    //     password_confirmation: passwordConfirmation,
+          // admin: false
     //   }),
     // }).then((r) => {
     //   if (r.ok) {

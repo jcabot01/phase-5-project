@@ -13,6 +13,9 @@ class SessionsController < ApplicationController
   #   end 
   # end
 
+  #def studentSignup
+#end
+
   # #DELETE destroy session hash to logout out user
   # ##destroy   /logout
   # def destroy

@@ -8,6 +8,7 @@ import RulesOverview from './pages/RulesOverview';
 import NavBar from './components/NavBar';
 import GlobalStudentEditPage from './pages/GlobalStudentEditPage';
 import StudentProfilePage from './pages/StudentProfilePage';
+// import studentsSlice from './features/studentsSlice';
 
 
 
@@ -27,6 +28,7 @@ function App() {
   // if (!user) return <StudentOrTeacherPage onLogin={setUser} />
   // if (!user) return <StudentLoginPage onLogin={setUser} /> //changed for testing
   
+  // if student.admin === false ? <StudentProfilePage /> : <ErrorPage />
   return (
     <div>
       <Router>

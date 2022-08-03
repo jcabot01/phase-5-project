@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_02_213420) do
+ActiveRecord::Schema.define(version: 2022_07_28_192357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2022_08_02_213420) do
     t.string "password_digest"
     t.integer "class_period"
     t.integer "teacher_id"
+    t.boolean "admin"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -76,16 +77,7 @@ ActiveRecord::Schema.define(version: 2022_08_02_213420) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password_digest"
     t.boolean "admin"
-    t.integer "student_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "teacher_id"
   end
 
 end

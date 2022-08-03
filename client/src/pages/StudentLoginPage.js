@@ -8,7 +8,7 @@ import styled from '@emotion/styled';
 
 
 
-function StudentLoginPage() {
+function StudentLoginPage({onLogin}) {
   const [showLogin, setShowLogin] = useState(true)
 
   const styles = {
@@ -31,7 +31,7 @@ function StudentLoginPage() {
             <Typography>Student Portal</Typography>
             {showLogin ? (
               <>
-                <StudentLoginForm />
+                <StudentLoginForm onLogin={onLogin}/>
                 <Box>
                   Don't have an account? &nbsp;
                   <Button color="primary" onClick={() => setShowLogin(false)}>
@@ -41,7 +41,7 @@ function StudentLoginPage() {
               </>
             ) : (
               <>
-                <StudentSignupForm />
+                <StudentSignupForm onLogin={onLogin} />
                 <Box>
                   Already have an account? &nbsp;
                   <Button color="primary" onClick={() => setShowLogin(true)}>

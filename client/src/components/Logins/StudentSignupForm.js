@@ -2,7 +2,7 @@ import { React, useEffect, useState } from 'react';
 import { Typography, TextField, Box, Button, Link, Grid, Select, FormControl, InputLabel, MenuItem } from '@mui/material';
 import styled from '@emotion/styled';
 
-function StudentSignupForm() {
+function StudentSignupForm({onLogin}) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -17,7 +17,9 @@ function StudentSignupForm() {
 
 
   useEffect(() => {
-    fetch("/teachers")
+    fetch("/teachers", {
+      method: "GET"
+    })
     .then((r) => r.json())
     .then((teachers) => setAllTeachers(teachers))
   }, [])
@@ -26,7 +28,25 @@ function StudentSignupForm() {
     e.preventDefault();
     // console.log(firstName, lastName, avatar, classPeriod, username, password, passwordConfirmation, admin, errors)
     setErrors([]);
-    // fetch("/login", {
+    // fetch("/signup", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     username: username,
+    //     password: password,
+    //     password_confirmation: passwordConfirmation
+    //   }),
+    // }).then((r) => {
+    //   if (r.ok) {
+    //     r.json().then((user) => onLogin(user));
+    //   } else {
+    //     r.json().then((err) => setErrors(err.errors))
+    //   }
+    // });
+    
+
     fetch("/students", {
       method: "POST",
       headers: {
@@ -39,11 +59,11 @@ function StudentSignupForm() {
         work_habit_score: 0,
         goal: "No goal submitted yet...",     
         class_period: classPeriod,
-        admin: false,
+        // admin: false,
         teacher_id: teacherId,
         username: username, 
-        password: password,
-        password_confirmation: passwordConfirmation
+        // password: password,
+        // password_confirmation: passwordConfirmation
       })
     }).then((r) => {
       if (r.ok) {
@@ -109,6 +129,7 @@ function StudentSignupForm() {
             {allTeachers.map((teacher) => (
               <MenuItem key={teacher.id} value={teacher.id}>{teacher.last_name}</MenuItem>
             ))}
+              {/* <MenuItem key={"Lunn"} value={1}>Lunn</MenuItem> */}
             </Select>
             </FormControl>
           </Grid>

@@ -25,13 +25,14 @@ function App() {
   }, []);
   
   // if (!user) return <StudentOrTeacherPage onLogin={setUser} />
+  // if (!user) return <StudentLoginPage onLogin={setUser} /> //changed for testing
   
   return (
     <div>
       <Router>
         <NavBar setUser={setUser}/>
         <Routes>
-          {/* <Route path="/" element={<StudentOrTeacherPage/>} /> */}
+          <Route path="/" element={<StudentOrTeacherPage/>} />
           <Route path="/rules-overview" element={<RulesOverview/>}/>
           <Route path="/student-login" element={<StudentLoginPage/>} />
           <Route path="/teacher-login" element={<TeacherLoginPage/>} />

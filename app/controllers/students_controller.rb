@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  # skip_before_action :authorize, only: [:create]
   #GET
   # '/students'
   def index

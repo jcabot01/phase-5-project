@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 
 
 
-function StudentOrTeacherPAGE() {
+function StudentOrTeacherPAGE({setUser}) {
   const styles = {
         paperContainer: { 
             backgroundSize: 'cover',

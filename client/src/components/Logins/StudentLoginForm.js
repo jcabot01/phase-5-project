@@ -1,7 +1,7 @@
 import React, {useState} from 'react' //probably use Redux here
 import { TextField, Button, Typography, Box, Link, Stack } from '@mui/material';
 
-function StudentLoginForm() {
+function StudentLoginForm({onLogin}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -10,20 +10,20 @@ function StudentLoginForm() {
     e.preventDefault();
     console.log(username, password)
     // e.preventDefault()
-    // setErrors([]);
-    // fetch("/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({username, password})
-    // }).then((r) => {
-    //   if (r.ok) {
-    //     r.json().then((user) => onLogin(user)); //pass user response object up to App
-    //   } else {
-    //     r.json().then((err) => setErrors(err.errors));
-    //   }
-    // });
+    setErrors([]);
+    fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({username, password})
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((user) => onLogin(user)); //pass user response object up to App
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
   }
 
   return (
@@ -48,7 +48,7 @@ function StudentLoginForm() {
             placeholder="Password"
             sx={{width: '28ch', backgroundColor: '#ffffff' }}
           />
-          <Link href="/">
+          <Link href="/student-profile">
             <Button 
               type='submit'
               color="primary"

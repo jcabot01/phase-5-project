@@ -8,7 +8,7 @@ import React from 'react'
 //map over is_owned_or_rented to create additional properties
 //map over snack, music, and investments to produce a history of purchases
 
-function StudentProfileStack() {
+function StudentProfileStack({user}) {
   return (
     <Grid container spacing={2} marginTop={2} maxWidth={600}>
         <Grid item xs={12} display='flex' border='2px solid'>

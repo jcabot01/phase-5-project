@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-  # skip_before_action :authorize, only: [:index] #added this so we can map over teachers to select the correct one on student Signup
+  skip_before_action :authorize, only: [:index] #added this so we can map over teachers to select the correct one on student Signup
   #GET
   # '/teachers'
   def index

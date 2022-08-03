@@ -12,10 +12,10 @@ Rails.application.routes.draw do
 
 
   #Authentication/Authorization
-  post '/login', to: 'sessions#create'  #login existing user params[username and password], set session hash
+  post '/login', to: 'sessions#create'  #login existing student params[username and password], set session hash
   delete '/logout', to: 'sessions#destroy'
-  post '/signup', to: 'users#create'  #create new user params[username, pw, pw-confirm] & set session hash
-  get '/me', to: 'users#show' #check if session hash and user.id match, useEffect on every page load
+  post '/signup', to: 'students#create'  #create new student params[username, pw, pw-confirm] & set session hash
+  get '/me', to: 'students#show' #check if session hash and student.id match, useEffect on every page load
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

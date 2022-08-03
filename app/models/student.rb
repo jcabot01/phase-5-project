@@ -1,4 +1,5 @@
 class Student < ApplicationRecord #switch out with this... Student < User
+  has_secure_password
   # has_one :user
 
   has_many :student_desks

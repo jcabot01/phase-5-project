@@ -2,6 +2,7 @@ import { React, useEffect, useState } from 'react';
 import { Typography, TextField, Box, Button, Link, Grid, Select, FormControl, InputLabel, MenuItem } from '@mui/material';
 import styled from '@emotion/styled';
 
+
 function StudentSignupForm({onLogin}) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -10,11 +11,11 @@ function StudentSignupForm({onLogin}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  // const [admin, setAdmin] = useState(false);
   const [teacherId, setTeacherId] = useState("");
-  const [allTeachers, setAllTeachers] = useState([])
+  const [allTeachers, setAllTeachers] = useState([]);
   const [errors, setErrors] = useState([]);
 
+ 
 
   useEffect(() => {
     fetch("/teachers", {
@@ -48,7 +49,7 @@ function StudentSignupForm({onLogin}) {
     // });
     
 
-    fetch("/students", {
+    fetch("/signup", {  //formerly "/students"
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,20 +59,21 @@ function StudentSignupForm({onLogin}) {
         last_name: lastName,
         balance: 15,
         work_habit_score: 0,
+        avatar_url: avatar, 
         goal: "No goal submitted yet...",     
         class_period: classPeriod,
-        // admin: false,
+        admin: false,
         teacher_id: teacherId,
         username: username, 
-        // password: password,
-        // password_confirmation: passwordConfirmation
+        password: password,
+        password_confirmation: passwordConfirmation
       })
     }).then((r) => {
       if (r.ok) {
-        // r.json().then((user) => onLogin(user)); //pass user response object up to State via Redux
-        r.json().then((student) => console.log(student))
+        r.json().then((user) => onLogin(user)); //pass user response object up to State via Redux
+        // r.json().then((student) => console.log(student))
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        r.json().then((err) => alert(err.errors));
       }
     });
   };
@@ -179,7 +181,7 @@ function StudentSignupForm({onLogin}) {
             />
           </Grid>
           <Grid item xs={6} md={6} lg={6}>
-            <Link href="/">
+          <Link href="/student-profile">
               <Button 
                 type='submit'
                 color="primary"
@@ -188,7 +190,7 @@ function StudentSignupForm({onLogin}) {
               >
                 Submit
               </Button>
-            </Link>
+           </Link>
           </Grid>
             </Grid>
             

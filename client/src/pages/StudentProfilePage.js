@@ -5,7 +5,8 @@ import StudentProfileStack from '../components/StudentProfileComponents/StudentP
 import styled from '@emotion/styled'
 
 
-function StudentProfilePage() {
+function StudentProfilePage({user}) {
+ 
   return (
     <Box>
       <StudentNavBar />
@@ -13,22 +14,22 @@ function StudentProfilePage() {
           <Typography variant='h5'>Student Profile</Typography>
       </Wrapper>
       <BalanceWrapper>
-          <Typography component={'div'} sx={{width: 'fit-content', border: '2px solid'}}>Balance: $  "student.balance"</Typography>
+          <Typography component={'div'} sx={{width: 'fit-content', border: '2px solid'}}>Balance: $  {user.balance}</Typography>
       </BalanceWrapper>
       <Box>
         <Box display={'flex'} marginLeft={12}>
           <Box marginRight={5}>
             <Box display="flex" justifyContent="center" alignItems="center">
-              <Avatar />
+              <Avatar src={user.avatar_url}/>
             </Box>
             <GoalsWrapper>
               <Box width='fit-content'>
-                Goals: "student.goals"
+                <Typography>Goals: "{user.goal}"</Typography>
               </Box>
             </GoalsWrapper>
           </Box>
           <Box marginLeft={5}marginRight={'200px'}>
-            <StudentProfileStack />
+            <StudentProfileStack user={user}/>
           </Box>
         </Box>
       </Box>

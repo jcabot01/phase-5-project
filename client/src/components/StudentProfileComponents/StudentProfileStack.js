@@ -9,6 +9,41 @@ import React from 'react'
 //map over snack, music, and investments to produce a history of purchases
 
 function StudentProfileStack({user}) {
+
+  const rentedDesk = user.student_desks.filter((desk) => {
+    if (desk.is_owned_or_rented === "rented") {
+      return desk
+    }
+  })
+
+  console.log(rentedDesk)
+
+  const ownedDesksArray = user.student_desks.map((desk) => {
+    if (desk.is_owned_or_rented === "owned") {
+      return desk
+    }
+  })
+
+  const musicCards = user.privileges.filter((privilege) => {
+    if (privilege.event === "Music Card") {
+      return privilege
+    }
+  })
+
+  const snackCards = user.privileges.filter((privilege) => {
+    if (privilege.event === "Snack Card") {
+      return privilege
+    }
+  })
+
+  const investments = user.privileges.filter((privilege) => {
+    if (privilege.event === "Invest") {
+      return privilege
+    }
+  })
+  
+
+  
   return (
     <Grid container spacing={2} marginTop={2} maxWidth={600}>
         <Grid item xs={12} display='flex' border='2px solid'>
@@ -18,11 +53,19 @@ function StudentProfileStack({user}) {
           <Stack>
             <Box width='fit-content' display='flex'>
               <Typography fontWeight={'bold'} >Desk Rented:</Typography> &nbsp;
-              <Typography>Desk #1</Typography>
+              <Stack>
+              {rentedDesk.map((desk) => (
+                <Typography key={desk.id}>#{desk.desk_id}{" "}{desk.created_at.slice(0, 10)}</Typography>
+              ))}
+              </Stack>    
             </Box>
             <Box width='fit-content' display='flex'>
-              <Typography fontWeight={'bold'} >Desk Owned: </Typography> &nbsp;
-              <Typography>Desk #2 timestamp  , Purchased for $  , Value $   .</Typography>
+              <Typography fontWeight={'bold'} >Desk(s) Owned: </Typography> &nbsp;
+              <Stack>
+              {ownedDesksArray.map((desk) => (
+                <Typography key={desk.id}>#{desk.desk_id}{" "}{desk.created_at.slice(0, 10)}, Purchased for $50, Value $100</Typography>
+              ))}
+              </Stack>
             </Box>
           </Stack>
         </Grid>
@@ -33,7 +76,11 @@ function StudentProfileStack({user}) {
           <Stack>
             <Box width='fit-content' display='flex'>
               <Typography fontWeight={'bold'} >Music Card: </Typography> &nbsp;
-              <Typography>timestamp  , Purchased for $  , Value $   .</Typography>
+              <Stack>
+              {musicCards.map((musicCard) => (
+                <Typography key={musicCard.id}>{musicCard.created_at.slice(0, 10)}, Purchased for $20, Value $20</Typography>
+              ))}
+              </Stack>
             </Box>
           </Stack>
         </Grid>
@@ -44,7 +91,11 @@ function StudentProfileStack({user}) {
           <Stack>
             <Box width='fit-content' display='flex'>
               <Typography fontWeight={'bold'} >Snack Card: </Typography> &nbsp;
-              <Typography>timestamp  , Purchased for $  , Value $   .</Typography>
+              <Stack>
+              {snackCards.map((snackCard) => (
+                <Typography key={snackCard.id}>{snackCard.created_at.slice(0, 10)}, Purchased for $20, Value $20</Typography>
+              ))}
+              </Stack>
             </Box>
           </Stack>
         </Grid>
@@ -55,7 +106,11 @@ function StudentProfileStack({user}) {
           <Stack>
             <Box width='fit-content' display='flex'>
               <Typography fontWeight={'bold'} >Investments: </Typography> &nbsp;
-              <Typography>timestamp  , Purchased for $  , Value $   .</Typography>
+              <Stack>
+              {investments.map((investment) => (
+                <Typography key={investment.id}>{investment.created_at.slice(0, 10)}, Purchased for ${investment.amount}, Value ${investment.value}</Typography>
+              ))}
+              </Stack>
             </Box>
           </Stack>
         </Grid>

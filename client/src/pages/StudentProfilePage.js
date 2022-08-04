@@ -2,6 +2,10 @@ import { Avatar, Box, Typography } from '@mui/material'
 import React from 'react'
 import StudentNavBar from '../components/StudentProfileComponents/StudentNavBar'
 import StudentProfileStack from '../components/StudentProfileComponents/StudentProfileStack'
+import HouseIcon from '@mui/icons-material/House';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import FastfoodIcon from '@mui/icons-material/Fastfood';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
 import styled from '@emotion/styled'
 
 
@@ -20,7 +24,7 @@ function StudentProfilePage({user}) {
         <Box display={'flex'} marginLeft={12}>
           <Box marginRight={5}>
             <Box display="flex" justifyContent="center" alignItems="center">
-              <Avatar src={user.avatar_url}/>
+              <Avatar src={user.avatar_url} sx={{ width: 90, height: 90 }}/>
             </Box>
             <GoalsWrapper>
               <Box width='fit-content'>

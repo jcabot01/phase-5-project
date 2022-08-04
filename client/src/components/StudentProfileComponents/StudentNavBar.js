@@ -6,12 +6,12 @@ import LogoutButton from '../Buttons/NavBarButtons/LogoutButton'
 
 
 
-function StudentNavBar() {
+function StudentNavBar({user}) {
   return (
     <Box display={'flex'} sx={{margin: 3, borderRadius: 7, bgcolor: '#cccccc'}}>
       <Box display="flex" justifyContent="center" alignItems="center">
         <Typography sx={{marginLeft: 2}}>
-          Welcome User!
+          Welcome {user.first_name}!
         </Typography>
       </Box>
       

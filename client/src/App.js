@@ -33,6 +33,7 @@ function App() {
     return (<StudentProfilePage user={user} /> )
   }
   
+  
   return (
     <div>
       <Router>

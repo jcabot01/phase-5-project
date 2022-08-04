@@ -15,7 +15,6 @@ function StudentProfileStack({user}) {
       return desk
     }
   })
-  console.log(rentedDesk.length > 0)
 
   const ownedDesksArray = user.student_desks.map((desk) => {
     if (desk.is_owned_or_rented === "owned") {

@@ -19,6 +19,15 @@ const studentsSlice = createSlice({
     status: "idle", // loading state
   },
   reducers: {
+    updateStudentGoal(state, action) {
+      state.entities.map((student) => {
+        if (student.id === action.payload.id) {
+          return student.goal = action.payload.goal;
+        } else {
+          return state;
+        }
+      })
+    },
     jobSelectChangeSalary(state, action) {
       state.entities.map((student) => {
         if (student.id === action.payload.id) {
@@ -88,7 +97,8 @@ export const {deleteUser,
               updateBalance,
               jobSelectChangeSalary,
               updateWorkHabitScore,
-              moveRentedDeskToOwnedColumn
+              moveRentedDeskToOwnedColumn,
+              updateStudentGoal
               } = studentsSlice.actions;
 
 export default studentsSlice.reducer;

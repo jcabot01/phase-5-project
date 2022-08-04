@@ -1,5 +1,5 @@
-import { Avatar, Box, Typography, Stack } from '@mui/material'
-import React from 'react'
+import { Avatar, Box, Typography, Stack, TextField, Button } from '@mui/material'
+import React, { useState, useEffect } from 'react'
 import StudentNavBar from '../components/StudentProfileComponents/StudentNavBar'
 import StudentProfileStack from '../components/StudentProfileComponents/StudentProfileStack'
 import HouseIcon from '@mui/icons-material/House';
@@ -10,18 +10,45 @@ import { pink } from '@mui/material/colors';
 import styled from '@emotion/styled'
 
 
-function StudentProfilePage({user}) {
+
+
+function StudentProfilePage({user}) { 
+  const [goal, setGoal] = useState("")
+  
+
   const snackCard = user.privileges.find((privilege) => privilege.event === "Snack Card")
   const musicCard = user.privileges.find((privilege) => privilege.event === "Music Card")
   const investor = user.privileges.find((privilege) => privilege.event === "Invest")
   const deskOwner = user.student_desks.find((desk) => desk.is_owned_or_rented === "owned")
   const secondDesk = user.student_desks.filter((desk) => desk.is_owned_or_rented === "owned")
   
+ function handleChange(e) {
+  setGoal(e.target.value)
+ }
+//  console.log(goal)
  
+ const updatedGoal = {
+  goal: goal
+}
+
+ function handleSubmit(e) {
+  e.preventDefault();
+ 
+  fetch(`/students/${user.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(updatedGoal)
+  })
+  .then((res) => res.json())
+  .then((student) => console.log(student))
+  setGoal("")
+ }
 
   return (
     <Box>
-      <StudentNavBar />
+      <StudentNavBar user={user} />
       <Wrapper component={'div'} style={{ borderRadius: '7px' }}>
           <Typography variant='h5'>Student Profile</Typography>
       </Wrapper>
@@ -47,7 +74,22 @@ function StudentProfilePage({user}) {
             </Box>
             <GoalsWrapper>
               <Box width='fit-content'>
-                <Typography>Goals: "{user.goal}"</Typography>
+              
+                <Box border='2px solid'>
+                  <Typography>Goals:</Typography>
+                  {user.goal}</Box>
+                  <form onSubmit={handleSubmit}>
+                    <TextField
+                      id="filled-multiline-flexible"
+                      label={"Create new goal"}
+                      multiline
+                      maxRows={4}
+                      value={goal}
+                      onChange={handleChange}
+                      variant="filled"
+                    />
+                    <Button type='submit' variant='contained' color='primary' size='small'>Submit</Button>
+                  </form>
               </Box>
             </GoalsWrapper>
           </Box>

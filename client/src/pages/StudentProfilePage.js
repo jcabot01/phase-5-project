@@ -54,52 +54,51 @@ function StudentProfilePage({user, onUpdateUser}) {
       <Wrapper component={'div'} style={{ borderRadius: '7px' }}>
           <Typography variant='h5'>Student Profile</Typography>
       </Wrapper>
-      <BalanceWrapper>
-          <Typography component={'div'} sx={{width: 'fit-content', border: '2px solid'}}>Balance: $  {user.balance}</Typography>
-      </BalanceWrapper>
-      <Box>
-        <Box display={'flex'} marginLeft={12}>
-          <Box marginRight={5}>
-            <Box display="flex" justifyContent="center" alignItems="center">
-              <Stack spacing={7}>
-                <Box>{(snackCard ? <FastfoodIcon /> : null)}</Box>
-                <Box>{(musicCard ? <MusicNoteIcon /> : null)}</Box>
-              </Stack>
-           
-               <StudentAvatarChange user={user} onUpdateUser={onUpdateUser}/>
-           
-              <Stack spacing={5}>
-                <Box>
-                  <Box>{(deskOwner ? <HouseIcon /> : null)}</Box>
-                  <Box>{(secondDesk.length > 1 ? <HouseIcon fontSize='small' sx={{ color: pink[500]}}/> : null)}</Box>
-                </Box>
-                <Box>{(investor ? <ShowChartIcon /> : null)}</Box>
-              </Stack>
-            </Box>
-            <GoalsWrapper>
-              <Box width='fit-content'>
-              
-                <Box border='2px solid'>
-                  <Typography>Goals:</Typography>
-                  {user.goal}</Box>
-                  <form onSubmit={handleSubmit}>
-                    <TextField
-                      id="filled-multiline-flexible"
-                      label={"Create new goal"}
-                      multiline
-                      maxRows={4}
-                      value={goal}
-                      onChange={handleChange}
-                      variant="filled"
-                    />
-                    <Button type='submit' variant='contained' color='primary' size='small'>Submit</Button>
-                  </form>
+      <Box display={'flex'} alignItems="center" justifyContent="center" marginTop={3} marginBottom={3}>
+          <Typography component={'div'} sx={{width: 'fit-content', border: '2px solid', paddingLeft: '2px', paddingRight: '2px'}}>Balance: $  {user.balance}</Typography>
+      </Box>
+      <Box display={'flex'} alignItems="center" justifyContent="center">
+        <Box marginRight={3}>
+          <Box display="flex" justifyContent="center" alignItems="center">
+            <Stack spacing={7}>
+              <Box>{(snackCard ? <FastfoodIcon /> : null)}</Box>
+              <Box>{(musicCard ? <MusicNoteIcon /> : null)}</Box>
+            </Stack>
+            <StudentAvatarChange user={user} onUpdateUser={onUpdateUser}/>
+            <Stack spacing={5}>
+              <Box>
+                <Box>{(deskOwner ? <HouseIcon /> : null)}</Box>
+                <Box>{(secondDesk.length > 1 ? <HouseIcon fontSize='small' sx={{ color: pink[500]}}/> : null)}</Box>
               </Box>
-            </GoalsWrapper>
+              <Box>{(investor ? <ShowChartIcon /> : null)}</Box>
+            </Stack>
           </Box>
-          <Box marginLeft={5}marginRight={'200px'}>
-            <StudentProfileStack user={user}/>
-          </Box>
+          <GoalsWrapper>
+            <Box width='fit-content'>
+            
+              <Box border='2px solid'>
+                <Typography>Goals:</Typography>
+                {user.goal}</Box>
+                <form onSubmit={handleSubmit}>
+                  <TextField
+                    id="filled-multiline-flexible"
+                    label={"Create new goal"}
+                    multiline
+                    maxRows={4}
+                    value={goal}
+                    onChange={handleChange}
+                    variant="filled"
+                  />
+                  <Box marginTop={1}>
+                   <Button type='submit' variant='contained' color='primary' size='small' >Submit</Button>
+                  </Box>
+                  
+                </form>
+            </Box>
+          </GoalsWrapper>
+        </Box>
+        <Box marginLeft={7} width={'fit-content'}>
+          <StudentProfileStack user={user}/>
         </Box>
       </Box>
     </Box>

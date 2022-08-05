@@ -53,7 +53,7 @@ function App() {
   return (
     <div>
       <Router>
-        <NavBar setUser={setUser}/>
+        <NavBar user={user} setUser={setUser}/>
         <Routes>
           {/* <Route path="/" element={<StudentOrTeacherPage/>} /> */}
           <Route path="/rules-overview" element={<RulesOverview/>}/>

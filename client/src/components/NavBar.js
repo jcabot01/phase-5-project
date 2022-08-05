@@ -6,12 +6,12 @@ import MenuButton from './Buttons/NavBarButtons/MenuButton'
 
 
 
-function NavBar({setUser}) {
+function NavBar({user, setUser}) {
   return (
     <Box display={'flex'} sx={{margin: 3, borderRadius: 7, bgcolor: '#cccccc'}}>
       <Box display="flex" justifyContent="center" alignItems="center" marginRight="32px">
         <Typography sx={{marginLeft: 2}}>
-          Welcome User!
+          Welcome {user.first_name}!
         </Typography>
       </Box>
       

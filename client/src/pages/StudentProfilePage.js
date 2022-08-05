@@ -14,7 +14,7 @@ import styled from '@emotion/styled'
 
 
 
-function StudentProfilePage({user, onUpdateUser}) { 
+function StudentProfilePage({user, setUser, onUpdateUser}) { 
   const [goal, setGoal] = useState("")
   
 
@@ -50,7 +50,7 @@ function StudentProfilePage({user, onUpdateUser}) {
 
   return (
     <Box>
-      <StudentNavBar user={user} />
+      <StudentNavBar user={user} setUser={setUser} />
       <Wrapper component={'div'} style={{ borderRadius: '7px' }}>
           <Typography variant='h5'>Student Profile</Typography>
       </Wrapper>

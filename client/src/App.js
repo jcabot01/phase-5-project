@@ -34,7 +34,7 @@ function App() {
   
   console.log(user)
   if (user.admin === false) {
-    return (<StudentProfilePage user={user} onUpdateUser={onUpdateUser}/> )
+    return (<StudentProfilePage user={user} setUser={setUser} onUpdateUser={onUpdateUser}/> )
   }
   
   
@@ -46,8 +46,8 @@ function App() {
           {/* <Route path="/" element={<StudentOrTeacherPage/>} /> */}
           {/* <Route path="/rules-overview" element={<RulesOverview/>}/> */}
           <Route path="/" element={<RulesOverview/>}/>
-          <Route path="/student-login" element={<StudentLoginPage/>} />
-          <Route path="/teacher-login" element={<TeacherLoginPage/>} />
+          {/* <Route path="/student-login" element={<StudentLoginPage/>} />
+          <Route path="/teacher-login" element={<TeacherLoginPage/>} /> */}
           <Route path="/global-edit" element={<GlobalStudentEditPage />} />
           <Route path="/student-profile" element={<StudentProfilePage />} />
           <Route path="*" element={<ErrorPage/>} />

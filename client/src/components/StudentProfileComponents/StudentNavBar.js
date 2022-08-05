@@ -6,7 +6,7 @@ import LogoutButton from '../Buttons/NavBarButtons/LogoutButton'
 
 
 
-function StudentNavBar({user}) {
+function StudentNavBar({user, setUser}) {
   return (
     <Box display={'flex'} sx={{margin: 3, borderRadius: 7, bgcolor: '#cccccc'}}>
       <Box display="flex" justifyContent="center" alignItems="center">
@@ -20,7 +20,7 @@ function StudentNavBar({user}) {
       </LogoWrapper>
       
       <Box display="flex" alignItems="center" justifyContent="center" sx={{marginRight: "43px"}} >
-        <LogoutButton />
+        <LogoutButton setUser={setUser} />
       </Box>
     </Box>
   )

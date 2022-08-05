@@ -3,7 +3,7 @@ import { Typography, TextField, Box, Button, Link, Grid, Select, FormControl, In
 import styled from '@emotion/styled';
 
 
-function StudentSignupForm({onLogin}) {
+function StudentSignupForm({setUser}) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -70,7 +70,7 @@ function StudentSignupForm({onLogin}) {
       })
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => onLogin(user)); //pass user response object up to State via Redux
+        r.json().then((user) => setUser(user)); //pass user response object up to State via Redux
         // r.json().then((student) => console.log(student))
       } else {
         r.json().then((err) => alert(err.errors));

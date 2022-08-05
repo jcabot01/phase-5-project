@@ -1,7 +1,7 @@
 import React, {useState} from 'react' //probably use Redux here
 import { TextField, Button, Typography, Box, Link, Stack } from '@mui/material';
 
-function TeacherLoginForm() {
+function TeacherLoginForm(setUser) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -19,7 +19,7 @@ function TeacherLoginForm() {
     //   body: JSON.stringify({username, password})
     // }).then((r) => {
     //   if (r.ok) {
-    //     r.json().then((user) => onLogin(user)); //pass user response object up to App
+    //     r.json().then((user) => setUser(user)); //pass user response object up to App
     //   } else {
     //     r.json().then((err) => setErrors(err.errors));
     //   }

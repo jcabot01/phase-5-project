@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { Typography, TextField, Box, Button, Link, Grid } from '@mui/material';
 
-function TeacherSignupForm() {
+function TeacherSignupForm(setUser) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -23,7 +23,7 @@ function TeacherSignupForm() {
     //   body: JSON.stringify({username, password})
     // }).then((r) => {
     //   if (r.ok) {
-    //     r.json().then((user) => onLogin(user)); //pass user response object up to App
+    //     r.json().then((user) => setUser(user)); //pass user response object up to App
     //   } else {
     //     r.json().then((err) => setErrors(err.errors));
     //   }

@@ -1,12 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from '../images/board-game-gd3b62ce94_1920.jpg';
-import { Button, Box, Typography, Paper } from '@mui/material';
+import { Button, Box, Typography, Paper, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import styled from '@emotion/styled';
+import StudentLoginPage from './StudentLoginPage';
+import TeacherLoginPage from './TeacherLoginPage';
+
 
 
 
 
 function StudentOrTeacherPAGE({setUser}) {
+  const [studentOpen, setStudentOpen] = useState(false);
+  const [teacherOpen, setTeacherOpen] = useState(false);
+
+  const handleStudentOpen = () => {
+    setStudentOpen(true);
+  };
+
+  const handleStudentClose = () => {
+    setStudentOpen(false);
+  };
+
+  const handleTeacherOpen = () => {
+    setTeacherOpen(true);
+  };
+
+  const handleTeacherClose = () => {
+    setTeacherOpen(false);
+  };
+
   const styles = {
         paperContainer: { 
             backgroundSize: 'cover',
@@ -25,25 +47,48 @@ function StudentOrTeacherPAGE({setUser}) {
         </LogoWrapper>
         <Wrapper>
           <Typography>Click your role to begin!</Typography>
-          <Button 
-            sx={{marginTop: 2}}
-            variant='contained' 
-            color='primary' 
-            // onClick={() => navigate("/student-login")}
-            href="/student-login"
-          >
-          Student
-          </Button>     
+          <Box>
+            <Button
+              id="student-btn" 
+              sx={{marginTop: 2}}
+              variant='contained' 
+              color='primary' 
+              onClick={handleStudentOpen}
+            >
+            Student
+            </Button>   
+            <Dialog open={studentOpen} onClose={handleStudentClose} id="student-btn">
+              <DialogContent>
+                <StudentLoginPage setUser={setUser} />
+              </DialogContent>
+              <DialogActions>
+                <Button id="student-btn" onClick={handleStudentClose}>Close</Button>
+              </DialogActions>
+            </Dialog>
+          </Box>
+          
           <Typography>or</Typography>
-          <Button 
-            sx={{marginBottom: 2}}
-            variant='contained' 
-            color='primary' 
-            // onClick={() => navigate("/teacher-login")}
-            href="/teacher-login"
-          >
-          Teacher
-          </Button>
+
+          <Box>
+            <Button 
+              id="teacher-btn"
+              sx={{marginBottom: 2}}
+              variant='contained' 
+              color='primary' 
+              onClick={handleTeacherOpen}
+            >
+            Teacher
+            </Button>
+            <Dialog id="teacher-btn"open={teacherOpen} onClose={handleTeacherClose}>
+              <DialogContent>
+                <TeacherLoginPage setUser={setUser} />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleTeacherClose}>Close</Button>
+              </DialogActions>
+            </Dialog>
+          </Box>
+         
         </Wrapper>
       </Paper>
     </Box>

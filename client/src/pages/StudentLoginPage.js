@@ -8,30 +8,18 @@ import styled from '@emotion/styled';
 
 
 
-function StudentLoginPage({onLogin}) {
+function StudentLoginPage({setUser}) {
   const [showLogin, setShowLogin] = useState(true)
 
-  const styles = {
-    paperContainer: { 
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundImage: `url(${Image})`
-    }
-  };
   return (
     <Box>
-        <Paper style={styles.paperContainer} sx={{backgroundRepeat: 'no-repeat', margin: 3, height: 565 }}>
-        <Box sx={{height: 50}}>
-        </Box>
-        <LogoWrapper component={'div'} style={{ border: '4px solid' }}>
-          <Logo>Class-o-poly</Logo>
-        </LogoWrapper>
+        
         <Box>
           <Wrapper>
-            <Typography>Student Portal</Typography>
+          <Typography>Student Portal</Typography>
             {showLogin ? (
               <>
-                <StudentLoginForm onLogin={onLogin}/>
+                <StudentLoginForm setUser={setUser}/>
                 <Box>
                   Don't have an account? &nbsp;
                   <Button color="primary" onClick={() => setShowLogin(false)}>
@@ -41,7 +29,7 @@ function StudentLoginPage({onLogin}) {
               </>
             ) : (
               <>
-                <StudentSignupForm onLogin={onLogin} />
+                <StudentSignupForm setUser={setUser} />
                 <Box>
                   Already have an account? &nbsp;
                   <Button color="primary" onClick={() => setShowLogin(true)}>
@@ -53,7 +41,6 @@ function StudentLoginPage({onLogin}) {
             )}
           </Wrapper>
         </Box>
-        </Paper>
     </Box>
   )
 }

@@ -25,8 +25,8 @@ function App() {
     });
   }, []);
   
-  // if (!user) return <StudentOrTeacherPage onLogin={setUser} />
-  if (!user) return <StudentLoginPage onLogin={setUser} /> //changed for testing
+  if (!user) return <StudentOrTeacherPage setUser={setUser} />
+  // if (!user) return <StudentLoginPage onLogin={setUser} /> //changed for testing
 
   function onUpdateUser(updatedUserObject) {
     setUser(updatedUserObject)

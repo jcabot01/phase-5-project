@@ -1,7 +1,7 @@
 import React, {useState} from 'react' //probably use Redux here
 import { TextField, Button, Typography, Box, Link, Stack } from '@mui/material';
 
-function StudentLoginForm({onLogin}) {
+function StudentLoginForm({setUser}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -19,7 +19,7 @@ function StudentLoginForm({onLogin}) {
       body: JSON.stringify({username, password})
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => onLogin(user)); //pass user response object up to App
+        r.json().then((user) => setUser(user)); //pass user response object up to App
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -34,7 +34,7 @@ function StudentLoginForm({onLogin}) {
         <Stack spacing={2} direction={'column'} alignItems="center">
           <TextField 
             value={username} onChange={(e) => setUsername(e.target.value)}
-            id="Username"  
+            id="StudentUsername"  
             variant="outlined"
             placeholder="Username"
             sx={{width: '28ch', backgroundColor: '#ffffff', marginTop: 2 }}
@@ -42,7 +42,7 @@ function StudentLoginForm({onLogin}) {
           />
           <TextField 
             value={password} onChange={(e) => setPassword(e.target.value)}
-            id="Password"
+            id="StudentPassword"
             type={'password'}  
             variant="outlined"
             placeholder="Password"

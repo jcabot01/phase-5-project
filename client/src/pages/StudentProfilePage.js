@@ -1,7 +1,8 @@
-import { Avatar, Box, Typography, Stack, TextField, Button } from '@mui/material'
-import React, { useState, useEffect } from 'react'
+import { Box, Typography, Stack, TextField, Button } from '@mui/material'
+import React, { useState } from 'react'
 import StudentNavBar from '../components/StudentProfileComponents/StudentNavBar'
 import StudentProfileStack from '../components/StudentProfileComponents/StudentProfileStack'
+import StudentAvatarChange from '../components/StudentProfileComponents/StudentAvatarChange'
 import HouseIcon from '@mui/icons-material/House';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
@@ -12,7 +13,8 @@ import styled from '@emotion/styled'
 
 
 
-function StudentProfilePage({user}) { 
+
+function StudentProfilePage({user, onUpdateUser}) { 
   const [goal, setGoal] = useState("")
   
 
@@ -42,7 +44,7 @@ function StudentProfilePage({user}) {
     body: JSON.stringify(updatedGoal)
   })
   .then((res) => res.json())
-  .then((student) => console.log(student))
+  .then((student) => onUpdateUser(student))
   setGoal("")
  }
 
@@ -63,7 +65,9 @@ function StudentProfilePage({user}) {
                 <Box>{(snackCard ? <FastfoodIcon /> : null)}</Box>
                 <Box>{(musicCard ? <MusicNoteIcon /> : null)}</Box>
               </Stack>
-              <Avatar src={user.avatar_url} sx={{ width: 90, height: 90 }}/>
+           
+               <StudentAvatarChange user={user} onUpdateUser={onUpdateUser}/>
+           
               <Stack spacing={5}>
                 <Box>
                   <Box>{(deskOwner ? <HouseIcon /> : null)}</Box>

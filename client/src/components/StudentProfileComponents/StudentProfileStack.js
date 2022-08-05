@@ -51,13 +51,13 @@ function StudentProfileStack({user}) {
           <Stack>
             <Box width='fit-content' display='flex'>
               <Typography fontWeight={'bold'} >Desk Rented:</Typography> &nbsp;
-              {rentedDesk.length > 0 ? <Typography>#{rentedDesk.desk_id}</Typography> : "Not renting anymore"}   
+              {rentedDesk.length > 0 ? <Typography>#{rentedDesk.desk_id},</Typography> : "Not renting anymore"}   
             </Box>
             <Box width='fit-content' display='flex'>
               <Typography fontWeight={'bold'} >Desk(s) Owned: </Typography> &nbsp;
               <Stack>
               {ownedDesksArray.map((desk) => (
-                <Typography key={desk.id}>#{desk.desk_id}{" "}{desk.created_at.slice(0, 10)}, Purchased for $50, Value $100</Typography>
+                <Typography key={desk.id}>#{desk.desk_id},{" "}{desk.created_at.slice(0, 10)}, Purchased for $50, Value $100</Typography>
               ))}
               </Stack>
             </Box>

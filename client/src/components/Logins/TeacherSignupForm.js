@@ -1,33 +1,37 @@
 import { React, useState } from 'react';
 import { Typography, TextField, Box, Button, Link, Grid } from '@mui/material';
 
-function TeacherSignupForm(setUser) {
+function TeacherSignupForm({setUser}) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("")
-  const [admin, setAdmin] = useState(true);
   const [errors, setErrors] = useState([]);
 
   function handleSubmit(e) { //sessions#create => set session-hash to user_id
     e.preventDefault();
-    console.log(firstName, lastName, username, password, passwordConfirmation, admin, errors)
-    // e.preventDefault()
-    // setErrors([]);
-    // fetch("/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({username, password})
-    // }).then((r) => {
-    //   if (r.ok) {
-    //     r.json().then((user) => setUser(user)); //pass user response object up to App
-    //   } else {
-    //     r.json().then((err) => setErrors(err.errors));
-    //   }
-    // });
+    setErrors([]);
+    fetch("/signup/teacher", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        first_name: firstName,
+        last_name: lastName,
+        username: username,
+        password: password,
+        password_confirmation: passwordConfirmation,
+        admin: true,
+      })
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user)); //pass user response object up to App
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
   };
 
  return (
@@ -97,7 +101,7 @@ function TeacherSignupForm(setUser) {
           </Grid>
         </Grid>
             {errors.map((err) => (
-              <Typography key={err} >{err}</Typography>
+              <Typography key={err} alert={err} >{err}</Typography>
             ))}
       </form>
     </Box>

@@ -7,7 +7,7 @@ import styled from '@emotion/styled';
 
 
 
-function TeacherLoginPage(setUser) {
+function TeacherLoginPage({setUser}) {
   const [showLogin, setShowLogin] = useState(true)
 
   return (

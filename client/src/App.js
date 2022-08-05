@@ -18,12 +18,26 @@ function App() {
   const [user, setUser] = useState(null)
   
   useEffect(() => {
-    fetch("/me").then((r) => {  //check if session-hash matches user_id
+    fetch("/me/student").then((r) => {  //check if session-hash matches user_id
     if (r.ok) {
       r.json().then((user) => setUser(user));
+    } else {
+      fetch("/me/teacher").then((r) => {  //check if session-hash matches user_id
+        if (r.ok) {
+          r.json().then((user) => setUser(user));
+        }
+        });
     }
     });
   }, []);
+
+  // useEffect(() => {
+  //   fetch("/me/teacher").then((r) => {  //check if session-hash matches user_id
+  //   if (r.ok) {
+  //     r.json().then((user) => setUser(user));
+  //   }
+  //   });
+  // }, []);
   
   if (!user) return <StudentOrTeacherPage setUser={setUser} />
   // if (!user) return <StudentLoginPage onLogin={setUser} /> //changed for testing
@@ -33,9 +47,7 @@ function App() {
   }
   
   console.log(user)
-  if (user.admin === false) {
-    return (<StudentProfilePage user={user} setUser={setUser} onUpdateUser={onUpdateUser}/> )
-  }
+  if (user.admin === false) return <StudentProfilePage user={user} setUser={setUser} onUpdateUser={onUpdateUser}/>
   
   
   return (
@@ -44,12 +56,12 @@ function App() {
         <NavBar setUser={setUser}/>
         <Routes>
           {/* <Route path="/" element={<StudentOrTeacherPage/>} /> */}
-          {/* <Route path="/rules-overview" element={<RulesOverview/>}/> */}
+          <Route path="/rules-overview" element={<RulesOverview/>}/>
           <Route path="/" element={<RulesOverview/>}/>
           {/* <Route path="/student-login" element={<StudentLoginPage/>} />
           <Route path="/teacher-login" element={<TeacherLoginPage/>} /> */}
           <Route path="/global-edit" element={<GlobalStudentEditPage />} />
-          <Route path="/student-profile" element={<StudentProfilePage />} />
+          {/* <Route path="/student-profile" element={<StudentProfilePage />} /> */}
           <Route path="*" element={<ErrorPage/>} />
         </Routes>
       </Router>

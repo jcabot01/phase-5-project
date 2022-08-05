@@ -49,7 +49,7 @@ function StudentSignupForm({setUser}) {
     // });
     
 
-    fetch("/signup", {  //formerly "/students"
+    fetch("/signup/student", {  //formerly "/students"
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ function StudentSignupForm({setUser}) {
         r.json().then((user) => setUser(user)); //pass user response object up to State via Redux
         // r.json().then((student) => console.log(student))
       } else {
-        r.json().then((err) => alert(err.errors));
+        r.json().then((err) => setErrors(err.errors));
       }
     });
   };
@@ -132,25 +132,9 @@ function StudentSignupForm({setUser}) {
             {allTeachers.map((teacher) => (
               <MenuItem key={teacher.id} value={teacher.id}>{teacher.last_name}</MenuItem>
             ))}
-              {/* <MenuItem key={"Lunn"} value={1}>Lunn</MenuItem> */}
             </Select>
             </FormControl>
           </Grid>
-          {/* <Grid item xs={6} md={6} lg={6}>
-            <FormControl fullWidth>
-              <InputLabel id="get-job">Job</InputLabel>
-              <Select
-              labelId='get-job'
-              id='student-form-job-select'
-              value={jobSelect} 
-              onChange={(e) => setJobSelect(e.target.value)}  
-            >
-            {jobs.map((job) => (
-              <MenuItem key={job.id} value={job.id}>{job.title}</MenuItem>
-            ))}
-            </Select>
-            </FormControl>
-          </Grid> */}
           <Grid item xs={6} md={6} lg={6}>
             <TextField 
               value={username} onChange={(e) => setUsername(e.target.value)}

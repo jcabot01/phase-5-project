@@ -8,10 +8,8 @@ function StudentLoginForm({setUser}) {
 
   function handleSubmit(e) { //sessions#create => set session-hash to user_id
     e.preventDefault();
-    console.log(username, password)
-    // e.preventDefault()
     setErrors([]);
-    fetch("/login", {
+    fetch("/login/student", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

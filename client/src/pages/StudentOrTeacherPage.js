@@ -7,8 +7,6 @@ import TeacherLoginPage from './TeacherLoginPage';
 
 
 
-
-
 function StudentOrTeacherPAGE({setUser}) {
   const [studentOpen, setStudentOpen] = useState(false);
   const [teacherOpen, setTeacherOpen] = useState(false);

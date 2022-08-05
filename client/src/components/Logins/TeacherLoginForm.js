@@ -1,29 +1,27 @@
 import React, {useState} from 'react' //probably use Redux here
 import { TextField, Button, Typography, Box, Link, Stack } from '@mui/material';
 
-function TeacherLoginForm(setUser) {
+function TeacherLoginForm({setUser}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
   function handleSubmit(e) { //sessions#create => set session-hash to user_id
-    e.preventDefault();
-    console.log(username, password)
-    // e.preventDefault()
-    // setErrors([]);
-    // fetch("/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({username, password})
-    // }).then((r) => {
-    //   if (r.ok) {
-    //     r.json().then((user) => setUser(user)); //pass user response object up to App
-    //   } else {
-    //     r.json().then((err) => setErrors(err.errors));
-    //   }
-    // });
+    e.preventDefault(); 
+    setErrors([]);
+    fetch("/login/teacher", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({username, password})
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user)); //pass user response object up to App
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
   }
 
  return (

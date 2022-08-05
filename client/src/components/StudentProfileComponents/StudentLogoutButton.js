@@ -2,10 +2,10 @@ import { Box, Button, Link } from '@mui/material'
 import React from 'react'
 
 
-function LogoutButton({setUser}) {
+function StudentLogoutButton({setUser}) {
 
   function handleClick(){
-    fetch("/logout/teacher", {method: "DELETE"}).then((r) => {
+    fetch("/logout/student", {method: "DELETE"}).then((r) => {
       if (r.ok) {
         setUser(null)
       }
@@ -24,4 +24,4 @@ function LogoutButton({setUser}) {
   )
 }
 
-export default LogoutButton
+export default StudentLogoutButton

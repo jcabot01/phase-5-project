@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
 import { Box, Typography } from '@mui/material'
 import React from 'react'
-import LogoutButton from '../Buttons/NavBarButtons/LogoutButton'
+import StudentLogoutButton from './StudentLogoutButton'
+
 
 
 
@@ -20,7 +21,7 @@ function StudentNavBar({user, setUser}) {
       </LogoWrapper>
       
       <Box display="flex" alignItems="center" justifyContent="center" sx={{marginRight: "43px"}} >
-        <LogoutButton setUser={setUser} />
+        <StudentLogoutButton setUser={setUser} />
       </Box>
     </Box>
   )

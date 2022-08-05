@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
   wrap_parameters format: []
 
   #Authentication//////////////////////////////////////////////////////////////////////////
- #POST  2 actions: 1)signup to db & 2)set session hash to user_id      session[:user_id]
+ #POST  2 actions: 1)signup to db & 2)set session hash to user_id      session[:student_id]
   #create   /signup
   def create
     student = Student.create!(student_params)
@@ -72,6 +72,6 @@ class StudentsController < ApplicationController
   end
 
   def student_params
-    params.permit(:first_name, :last_name, :balance, :work_habit_score, :avatar_url, :goal, :class_period, :admin, :teacher_id, :username, :jobs, :password, :password_confirmation) # :admin
+    params.permit(:first_name, :last_name, :balance, :work_habit_score, :avatar_url, :goal, :class_period, :admin, :teacher_id, :username, :jobs, :password, :password_confirmation)
   end
 end

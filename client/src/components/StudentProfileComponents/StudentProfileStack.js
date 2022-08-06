@@ -2,7 +2,7 @@ import { Grid, Typography, Box, Stack } from '@mui/material'
 import HouseIcon from '@mui/icons-material/House';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
-import ShowChartIcon from '@mui/icons-material/ShowChart';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import React from 'react'
 import { pink } from '@mui/material/colors';
 
@@ -45,7 +45,7 @@ function StudentProfileStack({user}) {
 
   
   return (
-    <Grid container spacing={2} marginTop={2} maxWidth={500}>
+    <Grid container spacing={2} marginTop={0.25} maxWidth={500}>
         <Grid item xs={12} display='flex' border='2px solid'>
           <Box>
             <Stack>
@@ -70,7 +70,7 @@ function StudentProfileStack({user}) {
         </Grid>
         <Grid item xs={12} display='flex' border='2px solid'>
           <Box>
-            <MusicNoteIcon />
+            <MusicNoteIcon color="primary" />
           </Box>
           <Stack>
             <Box width='fit-content' display='flex'>
@@ -85,7 +85,7 @@ function StudentProfileStack({user}) {
         </Grid>
         <Grid item xs={12} display='flex' border='2px solid'>
           <Box>
-            <FastfoodIcon />
+            <FastfoodIcon color="secondary"/>
           </Box>
           <Stack>
             <Box width='fit-content' display='flex'>
@@ -100,7 +100,7 @@ function StudentProfileStack({user}) {
         </Grid>
         <Grid item xs={12} display='flex' border='2px solid'>
           <Box>
-            <ShowChartIcon />
+            <MonetizationOnIcon color="success" />
           </Box>
           <Stack>
             <Box width='fit-content' display='flex' align-items='end'>

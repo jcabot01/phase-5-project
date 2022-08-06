@@ -6,7 +6,7 @@ import StudentAvatarChange from '../components/StudentProfileComponents/StudentA
 import HouseIcon from '@mui/icons-material/House';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
-import ShowChartIcon from '@mui/icons-material/ShowChart';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import { pink } from '@mui/material/colors';
 import styled from '@emotion/styled'
 
@@ -27,7 +27,6 @@ function StudentProfilePage({user, setUser, onUpdateUser}) {
  function handleChange(e) {
   setGoal(e.target.value)
  }
-//  console.log(goal)
  
  const updatedGoal = {
   goal: goal
@@ -51,18 +50,18 @@ function StudentProfilePage({user, setUser, onUpdateUser}) {
   return (
     <Box>
       <StudentNavBar user={user} setUser={setUser} />
-      <Wrapper component={'div'} style={{ borderRadius: '7px' }}>
+      <Wrapper component={'div'} style={{ borderRadius: 7 }}>
           <Typography variant='h5'>Student Profile</Typography>
       </Wrapper>
       <Box display={'flex'} alignItems="center" justifyContent="center" marginTop={3} marginBottom={3}>
-          <Typography component={'div'} sx={{width: 'fit-content', border: '2px solid', paddingLeft: '2px', paddingRight: '2px'}}>Balance: $  {user.balance}</Typography>
+          <Typography component={'div'} bgcolor='#65d931' sx={{width: 'fit-content', border: '2px solid', paddingLeft: 2, paddingRight: 2, borderRadius: 7}}>Balance: $  {user.balance}</Typography>
       </Box>
-      <Box display={'flex'} alignItems="center" justifyContent="center">
-        <Box marginRight={3}>
-          <Box display="flex" justifyContent="center" alignItems="center">
+      <Box display={'flex'} alignItems="center" justifyContent="center" >
+        <Box marginRight={3} justifyContent="center" alignItems="center" border='2px solid' borderRadius={7}>
+          <Box display="flex" justifyContent="center" alignItems="center" borderBottom={'1px solid'}>
             <Stack spacing={7}>
-              <Box>{(snackCard ? <FastfoodIcon /> : null)}</Box>
-              <Box>{(musicCard ? <MusicNoteIcon /> : null)}</Box>
+              <Box>{(snackCard ? <FastfoodIcon color="secondary"/> : null)}</Box>
+              <Box>{(musicCard ? <MusicNoteIcon color="primary"/> : null)}</Box>
             </Stack>
             <StudentAvatarChange user={user} onUpdateUser={onUpdateUser}/>
             <Stack spacing={5}>
@@ -70,32 +69,30 @@ function StudentProfilePage({user, setUser, onUpdateUser}) {
                 <Box>{(deskOwner ? <HouseIcon /> : null)}</Box>
                 <Box>{(secondDesk.length > 1 ? <HouseIcon fontSize='small' sx={{ color: pink[500]}}/> : null)}</Box>
               </Box>
-              <Box>{(investor ? <ShowChartIcon /> : null)}</Box>
+              <Box>{(investor ? <MonetizationOnIcon color="success" /> : null)}</Box>
             </Stack>
           </Box>
-          <GoalsWrapper>
-            <Box width='fit-content'>
-            
-              <Box border='2px solid'>
-                <Typography>Goals:</Typography>
-                {user.goal}</Box>
-                <form onSubmit={handleSubmit}>
-                  <TextField
-                    id="filled-multiline-flexible"
-                    label={"Create new goal"}
-                    multiline
-                    maxRows={4}
-                    value={goal}
-                    onChange={handleChange}
-                    variant="filled"
-                  />
-                  <Box marginTop={1}>
-                   <Button type='submit' variant='contained' color='primary' size='small' >Submit</Button>
-                  </Box>
-                  
-                </form>
-            </Box>
-          </GoalsWrapper>
+          
+            <Typography fontSize={12}>Goals:</Typography>
+            <Typography fontSize={12}>{user.goal}</Typography>
+            <form onSubmit={handleSubmit}>
+              <TextField
+                id="filled-multiline-flexible"
+                label={"Set new goal"}
+                multiline
+                maxRows={4}
+                value={goal}
+                onChange={handleChange}
+                variant="filled"
+                size="small"
+              />
+              <GoalsWrapper>
+              <Box marginTop={1}>
+                <Button type='submit' variant='contained' color='primary' size='small' >Submit</Button>
+              </Box>
+              </GoalsWrapper>
+            </form>
+          
         </Box>
         <Box marginLeft={7} width={'fit-content'}>
           <StudentProfileStack user={user}/>

@@ -80,7 +80,7 @@ function JobSalaryTable() {
           <Item>$25</Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>Stduent</Item>
+          <Item>Student</Item>
         </Grid>
         <Grid item xs={6}>
           <Item>$15</Item>

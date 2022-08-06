@@ -1,5 +1,5 @@
 class StudentDesksController < ApplicationController
-
+ 
    #GET
   # '/student_desks'
   def index

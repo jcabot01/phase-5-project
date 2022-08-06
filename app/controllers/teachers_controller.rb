@@ -8,7 +8,7 @@ class TeachersController < ApplicationController
   def create_teacher
     teacher = Teacher.create!(teacher_params)
     if teacher.valid?
-      session[:user_id] = teacher.id
+      session[:teacher_id] = teacher.id
       render json: teacher, status: :created
     else
       render json: { errors: teacher.errors.full_messages }, status: :unprocessable_entity

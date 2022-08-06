@@ -8,7 +8,7 @@ class StudentsController < ApplicationController
   def create
     student = Student.create!(student_params)
     if student.valid?
-      session[:user_id] = student.id
+      session[:student_id] = student.id
       render json: student, status: :created
     else
       render json: { errors: student.errors.full_messages }, status: :unprocessable_entity

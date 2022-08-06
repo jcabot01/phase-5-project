@@ -7,7 +7,7 @@ import GlobalEditTable from '../components/GlobalEditTable';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchStudents } from '../features/studentsSlice';
 
-function GlobalStudentEditPage() {
+function GlobalStudentEditPage({user}) {
   const students = useSelector((state) => state.students.entities)
   const dispatch = useDispatch()
 
@@ -16,6 +16,8 @@ function GlobalStudentEditPage() {
   }, [dispatch]);
 
   console.log(students)
+  const studentByTeacher = students.filter((student) => student.teacher_id === user.id)
+  console.log(studentByTeacher)
   return (
     <Box>
       <Box>
@@ -27,7 +29,7 @@ function GlobalStudentEditPage() {
       <Box sx={{height: 20}}>
       </Box>
       
-      <GlobalEditTable students={students}/>
+      <GlobalEditTable students={studentByTeacher}/>
     </Box>
   )
 }

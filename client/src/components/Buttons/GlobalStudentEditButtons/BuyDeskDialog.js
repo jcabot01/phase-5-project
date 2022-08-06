@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem, FormControl, InputLabel} from '@mui/material'
 import { useDispatch } from 'react-redux';
-import { updateBalance, moveRentedDeskToOwnedColumn } from '../../../features/studentsSlice';
+import { updateBalance, moveRentedDeskToOwnedColumn, removedDeskFromRentedColumn } from '../../../features/studentsSlice';
 
 
 
@@ -56,7 +56,7 @@ function BuyDeskDialog({params}) {
     }
 
    if (ownershipStatus === 'rented' && deskNum === deskID ) {
-    // dispatch(removedDeskFromRentedColumn({id: studentId, }))
+    dispatch(removedDeskFromRentedColumn({studentId: studentId}))
     fetch(`/student_desks/${studentDeskId[0]}`, { //if they already rent, then this converts it to 'owned'
       method: "PATCH",
       headers: {

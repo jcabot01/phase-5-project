@@ -93,7 +93,7 @@ function TeacherSignupForm({setUser}) {
                 type='submit'
                 color="primary"
                 variant="contained" 
-                sx={{ borderRadius: 2, margin: 3}}
+                sx={{ borderRadius: 2, marginTop: 1}}
               >
                 Submit
               </Button>

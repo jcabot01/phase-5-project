@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from '../images/board-game-gd3b62ce94_1920.jpg';
-import { Button, Box, Typography, Paper, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { Button, Box, Typography, Paper, Dialog, DialogActions, DialogContent } from '@mui/material';
 import styled from '@emotion/styled';
 import StudentLoginPage from './StudentLoginPage';
 import TeacherLoginPage from './TeacherLoginPage';

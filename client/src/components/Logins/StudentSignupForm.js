@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import { Typography, TextField, Box, Button, Link, Grid, Select, FormControl, InputLabel, MenuItem } from '@mui/material';
-import styled from '@emotion/styled';
+
 
 
 function StudentSignupForm({setUser}) {
@@ -27,28 +27,7 @@ function StudentSignupForm({setUser}) {
 
   function handleSubmit(e) { //sessions#create => set session-hash to user_id
     e.preventDefault();
-    // console.log(firstName, lastName, avatar, classPeriod, username, password, passwordConfirmation, admin, errors)
     setErrors([]);
-    // fetch("/signup", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     username: username,
-    //     password: password,
-    //     password_confirmation: passwordConfirmation,
-          // admin: false
-    //   }),
-    // }).then((r) => {
-    //   if (r.ok) {
-    //     r.json().then((user) => onLogin(user));
-    //   } else {
-    //     r.json().then((err) => setErrors(err.errors))
-    //   }
-    // });
-    
-
     fetch("/signup/student", {  //formerly "/students"
       method: "POST",
       headers: {
@@ -71,7 +50,6 @@ function StudentSignupForm({setUser}) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user)); //pass user response object up to State via Redux
-        // r.json().then((student) => console.log(student))
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -164,9 +142,10 @@ function StudentSignupForm({setUser}) {
               sx={{width: '28ch', backgroundColor: '#ffffff' }}
             />
           </Grid>
-          <Grid item xs={6} md={6} lg={6}>
+          <Grid item xs={12} md={12} lg={12}>
           <Link href="/student-profile">
               <Button 
+               
                 type='submit'
                 color="primary"
                 variant="contained" 

@@ -115,14 +115,6 @@ const Wrapper = styled.section`
   background-color: #cccccc;
 `;
 
-const BalanceWrapper = styled.section`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin-right: 30px;
-  margin-top: 15px
-`;
-
 const GoalsWrapper = styled.section`
   text-align: center;
   width: 200px;

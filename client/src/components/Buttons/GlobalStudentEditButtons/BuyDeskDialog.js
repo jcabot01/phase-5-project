@@ -24,7 +24,6 @@ function BuyDeskDialog({params}) {
   const [studentId, setStudentId] = useState('');
   const [isOwnedOrRented, setIsOwnedOrRented] = useState("");
   const [studentDeskId, setStudentDeskId] = useState("");
-  const [paramsStudentDeskObj, setParamsStudentDeskObj] = useState('');
   const [deskId, setDeskId] = useState('');
   const dispatch = useDispatch();
   
@@ -95,7 +94,6 @@ function BuyDeskDialog({params}) {
     setStudentId(params.row.id)
     setIsOwnedOrRented(params.row.student_desks.map((desk) => desk.is_owned_or_rented))
     setStudentDeskId(params.row.student_desks.map((desk) => desk.id))
-    setParamsStudentDeskObj(params.row.student_desks.map((desk) => desk.student_id))
     setDeskId(params.row.student_desks.map((desk) => desk.desk_id))
   }
 

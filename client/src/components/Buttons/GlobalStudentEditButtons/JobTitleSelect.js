@@ -24,7 +24,7 @@ function JobTitleSelect({jobs, jobTitle, studentId}) {
       student_id: studentId 
     }
 
-    if (jobTitle == "") {  //brand new student, no job association yet
+    if (jobTitle == "") {  //brand new student, no job association yet, don't mess with == vs. ===.  Runs an authorize method if ===
       fetch('/student_jobs', {
         method: "POST",
         headers: {

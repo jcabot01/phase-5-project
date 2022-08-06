@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import TeacherLoginForm from '../components/Logins/TeacherLoginForm';
 import TeacherSignupForm from '../components/Logins/TeacherSignupForm';
-import Image from '../images/board-game-gd3b62ce94_1920.jpg';
-import { Box, Typography, Button, Paper } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
 import styled from '@emotion/styled';
 
 
@@ -55,26 +54,5 @@ const Wrapper = styled.section`
   opacity: 0.9;
   text-align:center
 `;
-
-const Logo = styled.h1`
-  margin-top: 7px;
-  margin-bottom: 0px;
-  font-family: 'Alegreya', serif;
-  font-size: 3rem;
-  background: #BF0000;
-  background: radial-gradient(circle farthest-corner at right center, #BF0000 25%, #FFFF4D 54%, #00CF0E 76%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-`;
-
-  const LogoWrapper = styled.section`
-    text-align: center;
-    height: 85px;
-    width: 350px;
-    margin: auto;
-    background-color: #cccccc;
-    padding: 5px; 
-    border: 3px
-  `;
 
 export default TeacherLoginPage

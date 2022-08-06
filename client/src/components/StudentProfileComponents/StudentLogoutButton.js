@@ -1,4 +1,4 @@
-import { Box, Button, Link } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import React from 'react'
 
 
@@ -16,9 +16,7 @@ function StudentLogoutButton({setUser}) {
   return (
     <Box component={'div'}  >
       <Button variant="outlined" color='inherit' size='small' onClick={handleClick}>
-        {/* <Link href="/" underline='none' color="inherit"> */}
-           Logout
-        {/* </Link> */}
+       Logout
       </Button>
     </Box>
   )

@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  skip_before_action :authorize, only: [:create]
+  skip_before_action :authorize, only: [:create, :update]
   wrap_parameters format: []
 
   #Authentication//////////////////////////////////////////////////////////////////////////

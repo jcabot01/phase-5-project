@@ -28,7 +28,7 @@ function GlobalEditTable({students}) {
     let value = e.value;
 
     const updatedObject = {[fieldName]: value}
-
+    //////Handle Patches of the "in-cell" edits.  These cells don't have embedded helper-components
     function handlePatch() {
       fetch(`/students/${studentId}`, {
         method: "PATCH",
@@ -62,23 +62,14 @@ function GlobalEditTable({students}) {
     }
   }
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////  
-//API and CRUD
-  // useEffect(() => {
-  //   fetch("/students")
-  //     .then((r) => r.json())
-  //     .then((studentsData) => setStudents(studentsData))
-  // }, []);
-
   
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Datagrid Helper Functions & Variables
-  const currencyFormatter = new Intl.NumberFormat('en-US', {
-    maximumSignificantDigits: 3,
-    style: 'currency',
-    currency: 'USD',
-  });
+const currencyFormatter = new Intl.NumberFormat('en-US', {
+  maximumSignificantDigits: 3,
+  style: 'currency',
+  currency: 'USD',
+});
 
 //jobs to populate select dropdown
 const [jobs, setJobs] = useState([])
@@ -104,6 +95,8 @@ useEffect(() => {
   .then((desk) => setDesks(desk))
 }, [])
  
+
+/////Data Grid//////////////////////////////////////////////////////
   const columns = [
     { 
       field: 'id', 
@@ -192,7 +185,7 @@ useEffect(() => {
       editable: true, 
       width: 80,
       renderCell: (params) => {
-        if (params.row.student_desks.length == 0) {
+        if (params.row.student_desks.length === 0) {
           return (
             <RentedDesk desks={desks} params={params}/>
           )

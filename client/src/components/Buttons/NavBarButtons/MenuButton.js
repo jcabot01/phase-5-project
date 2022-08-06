@@ -14,12 +14,10 @@ function MenuButton() {
   const open = Boolean(anchorEl);
   
   const handleClick = (event) => {
-    console.log("clicked menu")
     setAnchorEl(event.currentTarget);
   };
   
   const handleClose = () => {
-    console.log("closed menu")
     setAnchorEl(null);
   };
 

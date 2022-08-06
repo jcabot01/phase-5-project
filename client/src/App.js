@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import StudentLoginPage from './pages/StudentLoginPage';
-import TeacherLoginPage from './pages/TeacherLoginPage';
 import ErrorPage from './pages/ErrorPage';
 import StudentOrTeacherPage from './pages/StudentOrTeacherPage';
 import RulesOverview from './pages/RulesOverview';
 import NavBar from './components/NavBar';
 import GlobalStudentEditPage from './pages/GlobalStudentEditPage';
 import StudentProfilePage from './pages/StudentProfilePage';
-// import studentsSlice from './features/studentsSlice';
+
 
 
 
@@ -31,14 +29,7 @@ function App() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   fetch("/me/teacher").then((r) => {  //check if session-hash matches user_id
-  //   if (r.ok) {
-  //     r.json().then((user) => setUser(user));
-  //   }
-  //   });
-  // }, []);
-  
+   
   if (!user) return <StudentOrTeacherPage setUser={setUser} />
   // if (!user) return <StudentLoginPage onLogin={setUser} /> //changed for testing
 
@@ -55,13 +46,9 @@ function App() {
       <Router>
         <NavBar user={user} setUser={setUser}/>
         <Routes>
-          {/* <Route path="/" element={<StudentOrTeacherPage/>} /> */}
-          <Route path="/rules-overview" element={<RulesOverview/>}/>
           <Route path="/" element={<RulesOverview/>}/>
-          {/* <Route path="/student-login" element={<StudentLoginPage/>} />
-          <Route path="/teacher-login" element={<TeacherLoginPage/>} /> */}
+          <Route path="/rules-overview" element={<RulesOverview/>}/>
           <Route path="/global-edit" element={<GlobalStudentEditPage />} />
-          {/* <Route path="/student-profile" element={<StudentProfilePage />} /> */}
           <Route path="*" element={<ErrorPage/>} />
         </Routes>
       </Router>

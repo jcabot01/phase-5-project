@@ -20,8 +20,6 @@ function StudentAvatarChange({user, onUpdateUser}) {
     setOpen(false);
   };
 
-  
-
   function handleSubmit(e) {
     e.preventDefault();
     console.log("clicked")

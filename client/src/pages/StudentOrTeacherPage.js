@@ -105,12 +105,6 @@ const Wrapper = styled.section`
   text-align:center
 `;
 
-// const Divider = styled.hr`
-//   border: none;
-//   border-bottom: 1px solid #ccc;
-//   margin: 16px 0;
-// `;
-
 const Logo = styled.h1`
   margin-top: 7px;
   font-family: 'Alegreya', serif;

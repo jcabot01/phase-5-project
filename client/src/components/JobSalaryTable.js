@@ -2,8 +2,8 @@ import React from 'react'
 import styled from '@emotion/styled';
 import { Box, Grid, Paper } from '@mui/material'
 
-function JobSalaryTable() {
 
+function JobSalaryTable() {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#fff',
     textAlign: 'center',

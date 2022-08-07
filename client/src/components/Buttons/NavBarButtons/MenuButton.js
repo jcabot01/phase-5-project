@@ -7,8 +7,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 
 
-
-
 function MenuButton() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -44,7 +42,6 @@ function MenuButton() {
       >
         <MenuItem component={Link} to="/rules-overview" onClick={handleClose} >Rules</MenuItem>
         <MenuItem component={Link} to="/global-edit" onClick={handleClose}>Global Student Edit</MenuItem>
-        
       </Menu>
     </div>
   );

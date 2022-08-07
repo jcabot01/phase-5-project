@@ -100,9 +100,9 @@ function TeacherSignupForm({setUser}) {
             </Link>
           </Grid>
         </Grid>
-            {errors.map((err) => (
-              <Typography key={err} alert={err} >{err}</Typography>
-            ))}
+        {errors.map((err) => (
+          <Typography key={err} alert={err} >{err}</Typography>
+        ))}
       </form>
     </Box>
   </Box>

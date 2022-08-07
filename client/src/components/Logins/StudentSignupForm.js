@@ -16,7 +16,6 @@ function StudentSignupForm({setUser}) {
   const [errors, setErrors] = useState([]);
 
  
-
   useEffect(() => {
     fetch("/teachers", {
       method: "GET"
@@ -155,12 +154,10 @@ function StudentSignupForm({setUser}) {
               </Button>
            </Link>
           </Grid>
-            </Grid>
-            
-            
-            {errors.map((err) => (
-              <Typography key={err} >{err}</Typography>
-            ))}
+        </Grid>
+        {errors.map((err) => (
+          <Typography key={err} >{err}</Typography>
+        ))}
       </form>
     </Box>
   </Box>

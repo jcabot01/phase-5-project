@@ -1,4 +1,4 @@
-import React, {useState} from 'react' //probably use Redux here
+import React, {useState} from 'react'
 import { TextField, Button, Typography, Box, Link, Stack } from '@mui/material';
 
 function StudentLoginForm({setUser}) {

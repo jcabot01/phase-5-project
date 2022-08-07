@@ -10,7 +10,6 @@ function StudentLogoutButton({setUser}) {
         setUser(null)
       }
     });
-    console.log("Logged out")
   }
 
   return (

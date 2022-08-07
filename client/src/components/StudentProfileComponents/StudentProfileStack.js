@@ -7,11 +7,8 @@ import React from 'react'
 import { pink } from '@mui/material/colors';
 
 
-//map over is_owned_or_rented to create additional properties
-//map over snack, music, and investments to produce a history of purchases
 
 function StudentProfileStack({user}) {
-
   const rentedDesk = user.student_desks.filter((desk) => {
     if (desk.is_owned_or_rented === "rented") {
       return desk
@@ -41,8 +38,6 @@ function StudentProfileStack({user}) {
       return privilege
     }
   })
-  
-
   
   return (
     <Grid container spacing={2} marginTop={0.25} maxWidth={500}>

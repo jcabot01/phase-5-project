@@ -28,13 +28,11 @@ function App() {
 
    
   if (!user) return <StudentOrTeacherPage setUser={setUser} />
-  // if (!user) return <StudentLoginPage onLogin={setUser} /> //changed for testing
 
   function onUpdateUser(updatedUserObject) {
     setUser(updatedUserObject)
   }
   
-  console.log(user)
   if (user.admin === false) return <StudentProfilePage user={user} setUser={setUser} onUpdateUser={onUpdateUser}/>
   
   

@@ -39,13 +39,13 @@ const Logo = styled.h1`
 `;
 
 const LogoWrapper = styled.section`
-text-align: center;
-height: 60px;
-width: 260px;
-margin: auto;
-background-color: #cccccc;
-padding: 5px; 
-border: 3px
+  text-align: center;
+  height: 60px;
+  width: 260px;
+  margin: auto;
+  background-color: #cccccc;
+  padding: 5px; 
+  border: 3px
 `;
 
 export default NavBar

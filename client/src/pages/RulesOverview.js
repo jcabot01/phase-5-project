@@ -96,6 +96,7 @@ function RulesOverview() {
 
         <Box sx={{height: 20}}>
         </Box>
+
           <Typography variant='h6' sx={{marginLeft: 1, fontWeight: 'bold'}} >
             Student Profile
           </Typography>
@@ -103,14 +104,16 @@ function RulesOverview() {
             Students will be able to see their assets and balance. They will be able to edit their Avatar (just click on the picture) and their Goal. Goals should be made at the end of the month; reflecting on goals for next month: "This month I'd like to get a better job so I can buy a snack card. I want to make an investment, too."
             When a student purchases a new asset they receive a special icon on their avatar.  
           </Typography>
+
         <Box sx={{height: 20}}>
         </Box>
+
           <Typography textAlign='center' variant='h6' sx={{fontWeight: 'bold'}} >
             Ready, set, GO!!!
           </Typography>
 
-          <Box sx={{height: 40}}>
-          </Box>
+        <Box sx={{height: 40}}>
+        </Box>
       </Box>
   )
 }

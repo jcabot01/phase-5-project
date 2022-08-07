@@ -1,4 +1,4 @@
-import React, {useState} from 'react' //probably use Redux here
+import React, {useState} from 'react'
 import { TextField, Button, Typography, Box, Link, Stack } from '@mui/material';
 
 function TeacherLoginForm({setUser}) {
@@ -56,10 +56,10 @@ function TeacherLoginForm({setUser}) {
               Submit
             </Button>
           </Link>
-          </Stack>
-          {errors.map((err) => (
-            <Typography key={err} >{err}</Typography>
-          ))}
+        </Stack>
+        {errors.map((err) => (
+          <Typography key={err} >{err}</Typography>
+        ))}
       </form>
     </Box>
   </Box>

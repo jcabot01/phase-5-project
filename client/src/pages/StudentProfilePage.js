@@ -12,11 +12,8 @@ import styled from '@emotion/styled'
 
 
 
-
-
 function StudentProfilePage({user, setUser, onUpdateUser}) { 
   const [goal, setGoal] = useState("")
-
   const snackCard = user.privileges.find((privilege) => privilege.event === "Snack Card")
   const musicCard = user.privileges.find((privilege) => privilege.event === "Music Card")
   const investor = user.privileges.find((privilege) => privilege.event === "Invest")
@@ -59,16 +56,26 @@ function StudentProfilePage({user, setUser, onUpdateUser}) {
         <Box marginRight={3} justifyContent="center" alignItems="center" border='2px solid' borderRadius={7}>
           <Box display="flex" justifyContent="center" alignItems="center" borderBottom={'1px solid'}>
             <Stack spacing={7}>
-              <Box>{(snackCard ? <FastfoodIcon color="secondary"/> : null)}</Box>
-              <Box>{(musicCard ? <MusicNoteIcon color="primary"/> : null)}</Box>
+              <Box>
+                {(snackCard ? <FastfoodIcon color="secondary"/> : null)}
+              </Box>
+              <Box>
+                {(musicCard ? <MusicNoteIcon color="primary"/> : null)}
+              </Box>
             </Stack>
             <StudentAvatarChange user={user} onUpdateUser={onUpdateUser}/>
             <Stack spacing={5}>
               <Box>
-                <Box>{(deskOwner ? <HouseIcon /> : null)}</Box>
-                <Box>{(secondDesk.length > 1 ? <HouseIcon fontSize='small' sx={{ color: pink[500]}}/> : null)}</Box>
+                <Box>
+                  {(deskOwner ? <HouseIcon /> : null)}
+                </Box>
+                <Box>
+                  {(secondDesk.length > 1 ? <HouseIcon fontSize='small' sx={{ color: pink[500]}}/> : null)}
+                </Box>
               </Box>
-              <Box>{(investor ? <MonetizationOnIcon color="success" /> : null)}</Box>
+              <Box>
+                {(investor ? <MonetizationOnIcon color="success" /> : null)}
+              </Box>
             </Stack>
           </Box>
       

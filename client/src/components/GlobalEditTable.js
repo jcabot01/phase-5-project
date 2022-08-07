@@ -17,20 +17,19 @@ import { updateWorkHabitScore } from '../features/studentsSlice';
 
 
 
-
 function GlobalEditTable({students}) {
-  const [pageSize, setPageSize] = useState(30);
-  const [average, setAverage] = useState("No Scores")
+  const [pageSize, setPageSize] = useState(30); //datagrid layout
+  const [average, setAverage] = useState("No Scores"); //work_habit_scores average
   const dispatch = useDispatch();
  
-  function handleDataSubmit(e) { //don't delete
+  function handleDataSubmit(e) { //This handles "in-cell" edits.  These types of cells don't have embedded helper-components to persist to DB
     let studentData = e;
     let fieldName = e.field;
     let studentId = e.id;
     let value = e.value;
 
     const updatedObject = {[fieldName]: value}
-    //////Handle Patches of the "in-cell" edits.  These cells don't have embedded helper-components
+    
     function handlePatch() {
       fetch(`/students/${studentId}`, {
         method: "PATCH",
@@ -66,16 +65,15 @@ function GlobalEditTable({students}) {
 
   
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Datagrid Helper Functions & Variables
+//Datagrid Helper Functions and Variables
 const currencyFormatter = new Intl.NumberFormat('en-US', {
   maximumSignificantDigits: 3,
   style: 'currency',
   currency: 'USD',
 });
 
-//jobs to populate select dropdown
-const [jobs, setJobs] = useState([])
-
+//GET jobs to populate select dropdown
+const [jobs, setJobs] = useState([]);
 useEffect(() => {
   fetch("/jobs")
   .then((r) => r.json())
@@ -88,9 +86,9 @@ function handleClick() {
   const average = workHabitScoresArray.reduce((a, b) => a + b, 0) / workHabitScoresArray.length;
   setAverage(average)
 }
-//desk to populate rental dropdown
-const [desks, setDesks] = useState([])
 
+//GET desks to populate rental dropdown
+const [desks, setDesks] = useState([]);
 useEffect(() => {
   fetch('/desks')
   .then((r) => r.json())
@@ -216,7 +214,6 @@ useEffect(() => {
         return (
           <div>
             {result.map((desk) => (
-
               <Typography sx={{margin: "4px", fontSize: "11px", lineHeight: 1}}key={desk}>Desk #{desk}</Typography>
             ))}
            
@@ -243,7 +240,7 @@ useEffect(() => {
       editable: true, 
       width: 120, 
       renderCell: (params) => <CollectRentButton params={params}/> 
-    }, //a button, onClick => student.balance - 10 
+    },
     {
       field: "buy_desk",
       headerName: "Buy Desk",
@@ -309,7 +306,6 @@ useEffect(() => {
         
         <Typography>{average}</Typography>
       </Box>
-
     </div>
   )
 }

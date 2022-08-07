@@ -10,6 +10,8 @@ import JobTitleSelect from './Buttons/GlobalStudentEditButtons/JobTitleSelect';
 import DeleteStudentButton from './Buttons/GlobalStudentEditButtons/DeleteStudentButton';
 import InvestmentDialog from './Buttons/GlobalStudentEditButtons/InvestmentDialog';
 import RentedDesk from './Buttons/GlobalStudentEditButtons/RentedDesk';
+import StyledEngineProvider from "@mui/material/StyledEngineProvider";
+import "./DataGridStyles.css" 
 import { useDispatch } from 'react-redux';
 import { updateWorkHabitScore } from '../features/studentsSlice';
 
@@ -183,7 +185,7 @@ useEffect(() => {
       field: "desk_rented", 
       headerName: 'Desk Rented', 
       editable: true, 
-      width: 80,
+      width: 95,
       renderCell: (params) => {
         if (params.row.student_desks.length === 0) {
           return (
@@ -207,7 +209,7 @@ useEffect(() => {
       headerName: 'Desk(s) Owned', 
       editable: false, 
       type: 'string', 
-      width: 80, 
+      width: 110, 
       renderCell: (params) => {
         let result = []
         params.row.student_desks.map((desk) => desk.is_owned_or_rented === "owned" ? result.push(desk.desk_id) : null)        
@@ -226,7 +228,7 @@ useEffect(() => {
       field: "monthly_rent", 
       headerName: 'Monthly Rent', 
       editable: true, 
-      width: 90, 
+      width: 100, 
       renderCell: (params) => {
         const balance = params.row.balance
         const studentId = params.row.id
@@ -239,7 +241,7 @@ useEffect(() => {
       field: "collect_rent", 
       headerName: 'Collect Rent', 
       editable: true, 
-      width: 124, 
+      width: 120, 
       renderCell: (params) => <CollectRentButton params={params}/> 
     }, //a button, onClick => student.balance - 10 
     {
@@ -252,7 +254,7 @@ useEffect(() => {
     },
     { 
       field: "privilege", 
-      headerName: 'Purchase a Privilege', 
+      headerName: 'Purchase Privileges', 
       editable: true, 
       width: 104, 
       renderCell: (params) => <PrivilegeDialog params={params}/> 
@@ -279,17 +281,23 @@ useEffect(() => {
   
   return (
     <div style={{ height: 700, width: '100%' }}>
-      <DataGrid
-        autoHeight
-        rows={students}
-        columns={columns}
-        getRowId={(row) => row.id}
-        pageSize={pageSize}
-        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-        rowsPerPageOptions={[10, 30, 60]}
-        pagination
-        onCellEditCommit={handleDataSubmit}
-      />
+      <div style={{ display: 'flex', height: '100%', justifyContent:'center' }}>
+        <div style={{ flexGrow: 1 }}>
+        <StyledEngineProvider injectFirst>
+          <DataGrid
+            autoHeight
+            rows={students}
+            columns={columns}
+            getRowId={(row) => row.id}
+            pageSize={pageSize}
+            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+            rowsPerPageOptions={[10, 30, 60]}
+            pagination
+            onCellEditCommit={handleDataSubmit}
+          />
+        </StyledEngineProvider>
+        </div>
+      </div>  
       <Box textAlign={'center'} marginBottom="20px">
         <Button 
         variant="contained"

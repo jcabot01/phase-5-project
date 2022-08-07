@@ -64,7 +64,7 @@ function JobTitleSelect({jobs, jobTitle, studentId}) {
   ))
   return (
     <div>
-    <FormControl sx={{ width: 350 }}>
+    <FormControl sx={{ width: 165 }}>
       <InputLabel id="job-select-label">{jobTitle}</InputLabel>
       <Select
         labelId="job-select-label"

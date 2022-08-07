@@ -1,0 +1,30 @@
+.css-r11z79-MuiDataGrid-root .MuiDataGrid-cell--textRight {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: center;
+}
+
+.css-r11z79-MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  justify-content: space-around;
+  min-width: 0;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+.css-r11z79-MuiDataGrid-root .MuiDataGrid-row:not(.MuiDataGrid-row--dynamicHeight)>.MuiDataGrid-cell {
+  overflow: hidden;
+  white-space: nowrap;
+  justify-content: space-around;
+}

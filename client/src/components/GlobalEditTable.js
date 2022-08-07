@@ -277,8 +277,8 @@ useEffect(() => {
   ];
   
   return (
-    <div style={{ height: 700, width: '100%' }}>
-      <div style={{ display: 'flex', height: '100%', justifyContent:'center' }}>
+    <div style={{width: '100%' }}>
+      <div style={{ display: 'flex', justifyContent:'center' }}>
         <div style={{ flexGrow: 1 }}>
         <StyledEngineProvider injectFirst>
           <DataGrid
@@ -294,6 +294,7 @@ useEffect(() => {
           />
         </StyledEngineProvider>
         </div>
+        
       </div>  
       <Box textAlign={'center'} marginBottom="20px">
         <Button 

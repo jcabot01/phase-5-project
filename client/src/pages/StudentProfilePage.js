@@ -16,7 +16,6 @@ import styled from '@emotion/styled'
 
 function StudentProfilePage({user, setUser, onUpdateUser}) { 
   const [goal, setGoal] = useState("")
-  
 
   const snackCard = user.privileges.find((privilege) => privilege.event === "Snack Card")
   const musicCard = user.privileges.find((privilege) => privilege.event === "Music Card")
@@ -72,27 +71,26 @@ function StudentProfilePage({user, setUser, onUpdateUser}) {
               <Box>{(investor ? <MonetizationOnIcon color="success" /> : null)}</Box>
             </Stack>
           </Box>
-          
-            <Typography fontSize={12}>Goals:</Typography>
-            <Typography fontSize={12}>{user.goal}</Typography>
-            <form onSubmit={handleSubmit}>
-              <TextField
-                id="filled-multiline-flexible"
-                label={"Set new goal"}
-                multiline
-                maxRows={4}
-                value={goal}
-                onChange={handleChange}
-                variant="filled"
-                size="small"
-              />
-              <GoalsWrapper>
-              <Box marginTop={1}>
-                <Button type='submit' variant='contained' color='primary' size='small' >Submit</Button>
-              </Box>
-              </GoalsWrapper>
-            </form>
-          
+      
+          <Typography fontSize={12}>Goals:</Typography>
+          <Typography fontSize={12}>{user.goal}</Typography>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              id="filled-multiline-flexible"
+              label={"Set new goal"}
+              multiline
+              maxRows={4}
+              value={goal}
+              onChange={handleChange}
+              variant="filled"
+              size="small"
+            />
+            <GoalsWrapper>
+            <Box marginTop={1}>
+              <Button type='submit' variant='contained' color='primary' size='small' >Submit</Button>
+            </Box>
+            </GoalsWrapper>
+          </form>
         </Box>
         <Box marginLeft={7} width={'fit-content'}>
           <StudentProfileStack user={user}/>

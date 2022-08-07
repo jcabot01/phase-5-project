@@ -8,7 +8,6 @@ import styled from '@emotion/styled';
 
 function TeacherLoginPage({setUser}) {
   const [showLogin, setShowLogin] = useState(true)
-
   return (
     <Box>
         <Box>

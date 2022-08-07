@@ -23,7 +23,7 @@ function PayRentButton({balance, studentId}) {
       body: JSON.stringify(newBalancePayload)
     })
     .then((res) => res.json())
-    .then((updatedBalance) => console.log(updatedBalance)) //redux dispatch eventually
+    .then((updatedBalance) => console.log(updatedBalance))
   }
   
   return (

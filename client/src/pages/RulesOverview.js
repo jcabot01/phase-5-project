@@ -4,12 +4,8 @@ import { Box, Typography } from '@mui/material'
 
 
 
-
 function RulesOverview() {
-  
-
   return (
-    
       <Box sx={{bgcolor: '#f3f6f4', backgroundSize: 'cover', backgroundPosition: 'center', marginLeft: 15, marginRight: 15}}>
           <Typography variant='h6' textAlign={'center'} sx={{fontWeight: 'bold', textDecoration: 'underline'}}>
             How "Class-o-poly" works
@@ -116,7 +112,6 @@ function RulesOverview() {
           <Box sx={{height: 40}}>
           </Box>
       </Box>
-    
   )
 }
 

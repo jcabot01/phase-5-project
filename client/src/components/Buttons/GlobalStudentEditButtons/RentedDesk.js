@@ -20,7 +20,7 @@ function handlePost(deskId) {
       body: JSON.stringify(deskPayload)
     })
     .then((res) => res.json())
-    .then((newDesk) => console.log(newDesk)) //ready for redux
+    .then((newDesk) => console.log(newDesk))
 }
 
 

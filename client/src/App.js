@@ -9,9 +9,6 @@ import StudentProfilePage from './pages/StudentProfilePage';
 
 
 
-
-
-
 function App() {
   const [user, setUser] = useState(null)
   

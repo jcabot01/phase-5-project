@@ -3,7 +3,7 @@ class StudentJobsController < ApplicationController
   # '/student_jobs'
   def index
     student_jobs = StudentJob.all 
-    render json: student_jobs, status: :ok#, include: ['privileges'] 
+    render json: student_jobs, status: :ok
   end
 
   # #GET

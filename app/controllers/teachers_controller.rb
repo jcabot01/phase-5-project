@@ -15,7 +15,7 @@ class TeachersController < ApplicationController
     end  
   end
   
-  #GET  find user whose id == session[:user_id].  That user is logged in on every page refresh thanks to useEffect in App.js
+  #GET  find user whose id == session[:teacher_id].  That user is logged in on every page refresh thanks to useEffect in App.js
   #show   /me    
   def show
     teacher = Teacher.find_by(id: session[:teacher_id])  #find user whose id == session hash
@@ -30,22 +30,8 @@ class TeachersController < ApplicationController
   # '/teachers'
   def index
     teachers = Teacher.all 
-    render json: teachers, status: :ok#, include: ['job', 'teacher_desks', 'teacher_desks.desk', 'privileges'] 
+    render json: teachers, status: :ok
   end
-
-  # #GET
-  # # '/teachers/:id'
-  # def show  
-  #   teacher = Teacher.find(params[:id])
-  #   render json: teacher, status: :ok
-  # end
-
-  # #POST
-  # # '/teachers
-  # def create 
-  #   teacher = Teacher.create!(teacher_params)
-  #   render json: teacher, status: :accepted
-  # end
 
   #PATCH
   # '/teachers/:id'

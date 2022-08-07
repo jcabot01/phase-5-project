@@ -86,11 +86,9 @@ function StudentOrTeacherPAGE({setUser}) {
               </DialogActions>
             </Dialog>
           </Box>
-         
         </Wrapper>
       </Paper>
     </Box>
-   
   );
 }
 

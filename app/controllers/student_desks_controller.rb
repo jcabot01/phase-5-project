@@ -4,7 +4,7 @@ class StudentDesksController < ApplicationController
   # '/student_desks'
   def index
     student_desks = StudentDesk.all 
-    render json: student_desks, status: :ok#, include: ['privileges'] 
+    render json: student_desks, status: :ok
   end
 
   # #GET

@@ -64,7 +64,7 @@ function BuyDeskDialog({params}) {
       body: JSON.stringify(updateOwnershipObject)
     })
     .then((res) => res.json())
-    .then((updatedStudentDeskObject) => console.log(updatedStudentDeskObject))  //ready for redux   
+    .then((updatedStudentDeskObject) => console.log(updatedStudentDeskObject))  
   } else {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
     fetch('/student_desks', { //if they already own a desk, this creates another new desk instance
@@ -75,7 +75,7 @@ function BuyDeskDialog({params}) {
       body: JSON.stringify(newOwnDeskObject)
     })
     .then((res) => res.json())
-    .then((newStudentDeskObject) => console.log(newStudentDeskObject))   //ready for redux
+    .then((newStudentDeskObject) => console.log(newStudentDeskObject))
    }
  ////////////////////////////////////////////////////////////////////////////////////////////////// 
    fetch(`/students/${studentId}`, { //either way, they have to pay and this decrements their balance
@@ -86,7 +86,7 @@ function BuyDeskDialog({params}) {
     body: JSON.stringify(newBalancePayload)
   })
   .then((res) => res.json())
-  .then((updatedBalance) => console.log(updatedBalance)) //ready for redux
+  .then((updatedBalance) => console.log(updatedBalance))
   }
    
   function handleChange(e) {

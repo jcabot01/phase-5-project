@@ -11,7 +11,6 @@ function ErrorPage() {
         <Box>Error 404: Page Not Found.  URL may be incorrect.</Box>
       </Stack>
     </Box>
-    
   )
 }
 

@@ -28,7 +28,7 @@ function CollectRentButton({params}) {
       body: JSON.stringify(collectRentPayload)
     })
       .then((res) => res.json())
-      .then((updatedBalance) => console.log(updatedBalance)) //ready for redux
+      .then((updatedBalance) => console.log(updatedBalance))
   }
 
   return (

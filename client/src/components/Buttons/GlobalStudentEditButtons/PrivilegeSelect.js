@@ -50,7 +50,7 @@ const studentId = params.row.id
           body: JSON.stringify(newBalancePayload)
         })
         .then((res) => res.json())
-        .then((updatedBalance) => console.log(updatedBalance)) //ready for redux
+        .then((updatedBalance) => console.log(updatedBalance))
     }
     
     switch (privilegeCase) {

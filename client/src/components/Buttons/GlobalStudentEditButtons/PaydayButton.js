@@ -7,7 +7,6 @@ import { updateBalance } from '../../../features/studentsSlice';
 
 
 function PaydayButton({params}) {
-  // const [getPaid, setGetPaid]
   const dispatch = useDispatch();
 
   function handleClick(){
@@ -29,7 +28,7 @@ function PaydayButton({params}) {
       body: JSON.stringify(newBalancePayload)
     })
         .then((res) => res.json())
-        .then((newBalanceObject) => console.log(newBalanceObject)) //ready for redux
+        .then((newBalanceObject) => console.log(newBalanceObject))
   }
 
   return (

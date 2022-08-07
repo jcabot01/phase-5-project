@@ -3,7 +3,7 @@ class PrivilegesController < ApplicationController
   # '/privileges'
   def index
     privileges = Privilege.all 
-    render json: privileges, status: :ok#, include: ['privileges'] 
+    render json: privileges, status: :ok 
   end
 
   #GET

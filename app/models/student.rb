@@ -1,14 +1,13 @@
-class Student < ApplicationRecord #switch out with this... Student < User
+class Student < ApplicationRecord
   has_secure_password
-  # has_one :user
 
-  has_many :student_desks
+  has_many :student_desks, dependent: :destroy
   has_many :desks, through: :student_desks
   
-  has_many :student_jobs
+  has_many :student_jobs, dependent: :destroy
   has_many :jobs, through: :student_jobs
   
-  has_many :privileges
+  has_many :privileges, dependent: :destroy
   
   belongs_to :teacher
 

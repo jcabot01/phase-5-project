@@ -11,21 +11,21 @@ puts "seeding database..."
 
 
 
-t1 = Teacher.create(first_name: "Kristel", last_name: "Lunn", username: "klunn")
+# t1 = Teacher.create(first_name: "Kristel", last_name: "Lunn", username: "klunn")
 
 # these can go if needed
-s1 = Student.create(first_name: "Jeff", last_name: "Smith", balance: 15, class_period: 1, work_habit_score: 4, goal: "Buy a Snack Card next month & invest!", username: "jeffS", teacher_id: t1.id, avatar_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwy0tXDjDYjpMzIeO0A1qeY8_a3Zo6BjM99A&usqp=CAU")
-s2 = Student.create(first_name: "Sara", last_name: "Johnson", balance: 15, class_period: 1, work_habit_score: 3, goal: "Buy a rental property to make money while I sleep.", username: "saraJ", teacher_id: t1.id, avatar_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMFCpyn1iyXLKdIwXF0s7Kn2BSk3R6cb1eeg&usqp=CAU")
-s3 = Student.create(first_name: "LeBron", last_name: "James", balance: 15, class_period: 1, work_habit_score: 4, goal: "Try to get a better job to earn more.", username: "lebronJ", teacher_id: t1.id, avatar_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKjqBUTrXc_t6Q4pOLHTCfmY1_cOngpx6KQw&usqp=CAU")
-s4 = Student.create(first_name: "Test", last_name: "Test", balance: 15, class_period: 1, work_habit_score: 4, goal: "Test", username: "Test", teacher_id: t1.id, avatar_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKjqBUTrXc_t6Q4pOLHTCfmY1_cOngpx6KQw&usqp=CAU")
+# s1 = Student.create(first_name: "Jeff", last_name: "Smith", balance: 15, class_period: 1, work_habit_score: 4, goal: "Buy a Snack Card next month & invest!", username: "jeffS", teacher_id: t1.id, avatar_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwy0tXDjDYjpMzIeO0A1qeY8_a3Zo6BjM99A&usqp=CAU")
+# s2 = Student.create(first_name: "Sara", last_name: "Johnson", balance: 15, class_period: 1, work_habit_score: 3, goal: "Buy a rental property to make money while I sleep.", username: "saraJ", teacher_id: t1.id, avatar_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMFCpyn1iyXLKdIwXF0s7Kn2BSk3R6cb1eeg&usqp=CAU")
+# s3 = Student.create(first_name: "LeBron", last_name: "James", balance: 15, class_period: 1, work_habit_score: 4, goal: "Try to get a better job to earn more.", username: "lebronJ", teacher_id: t1.id, avatar_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKjqBUTrXc_t6Q4pOLHTCfmY1_cOngpx6KQw&usqp=CAU")
+# s4 = Student.create(first_name: "Test", last_name: "Test", balance: 15, class_period: 1, work_habit_score: 4, goal: "Test", username: "Test", teacher_id: t1.id, avatar_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKjqBUTrXc_t6Q4pOLHTCfmY1_cOngpx6KQw&usqp=CAU")
 
-u1 = User.create(username: "jeffS", admin: false, student_id: 1)
+
 # these can go if needed
-p1 = Privilege.create(event: "Music Card", amount: 20, value: 20, student_id: s1.id)
-p2 = Privilege.create(event: "Music Card", amount: 20, value: 20, student_id: s2.id)
-p3 = Privilege.create(event: "Invest", amount: 20, value: 20, student_id: s1.id)
-p4 = Privilege.create(event: "Snack Card", amount: 20, value: 20, student_id: s1.id)
-p5 = Privilege.create(event: "Snack Card", amount: 20, value: 20, student_id: s3.id)
+# p1 = Privilege.create(event: "Music Card", amount: 20, value: 20, student_id: s1.id)
+# p2 = Privilege.create(event: "Music Card", amount: 20, value: 20, student_id: s2.id)
+# p3 = Privilege.create(event: "Invest", amount: 20, value: 20, student_id: s1.id)
+# p4 = Privilege.create(event: "Snack Card", amount: 20, value: 20, student_id: s1.id)
+# p5 = Privilege.create(event: "Snack Card", amount: 20, value: 20, student_id: s3.id)
 
 # don't delete these, they are needed for student_job relationships
 j1 = Job.create(title: "Accountant", salary: 35)
@@ -61,10 +61,10 @@ j30 = Job.create(title: "Student #15", salary: 15)
 j31 = Job.create(title: "Default", salary: 0)
 
 # these can go if needed
-sj1 = StudentJob.create(job_id: j1.id, student_id: s1.id)
-sj2 = StudentJob.create(job_id: j2.id, student_id: s2.id)
-sj3 = StudentJob.create(job_id: j3.id, student_id: s3.id)
-sj4 = StudentJob.create(job_id: j4.id, student_id: s4.id)
+# sj1 = StudentJob.create(job_id: j1.id, student_id: s1.id)
+# sj2 = StudentJob.create(job_id: j2.id, student_id: s2.id)
+# sj3 = StudentJob.create(job_id: j3.id, student_id: s3.id)
+# sj4 = StudentJob.create(job_id: j4.id, student_id: s4.id)
 # sj5 = StudentJob.create(job_id: j5.id, student_id: s5.id)
 # sj6 = StudentJob.create(job_id: j6.id, student_id: s6.id)
 # sj7 = StudentJob.create(job_id: j7.id, student_id: s7.id)
@@ -125,11 +125,11 @@ d29 = Desk.create(desk_number: 29, cost: 50, value: 100)
 d30 = Desk.create(desk_number: 30, cost: 50, value: 100)
 
 # these can go if needed
-sd1 = StudentDesk.create(is_owned_or_rented: "owned", desk_id: d1.id, student_id: s1.id)
-sd2 = StudentDesk.create(is_owned_or_rented: "rented", desk_id: d2.id, student_id: s2.id)
-sd3 = StudentDesk.create(is_owned_or_rented: "rented", desk_id: d3.id, student_id: s3.id)
-sd4 = StudentDesk.create(is_owned_or_rented: "owned", desk_id: d2.id, student_id: s1.id)
-sd5 = StudentDesk.create(is_owned_or_rented: "rented", desk_id: d4.id, student_id: s4.id)
+# sd1 = StudentDesk.create(is_owned_or_rented: "owned", desk_id: d1.id, student_id: s1.id)
+# sd2 = StudentDesk.create(is_owned_or_rented: "rented", desk_id: d2.id, student_id: s2.id)
+# sd3 = StudentDesk.create(is_owned_or_rented: "rented", desk_id: d3.id, student_id: s3.id)
+# sd4 = StudentDesk.create(is_owned_or_rented: "owned", desk_id: d2.id, student_id: s1.id)
+# sd5 = StudentDesk.create(is_owned_or_rented: "rented", desk_id: d4.id, student_id: s4.id)
 
 
 puts "database seeded"

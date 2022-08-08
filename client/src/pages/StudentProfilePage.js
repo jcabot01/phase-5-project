@@ -78,9 +78,11 @@ function StudentProfilePage({user, setUser, onUpdateUser}) {
               </Box>
             </Stack>
           </Box>
-      
-          <Typography fontSize={12}>Goals:</Typography>
-          <Typography fontSize={12}>{user.goal}</Typography>
+          <Box maxWidth={200}>
+            <Typography fontSize={12}>Goals:</Typography>
+            <Typography fontSize={12}>{user.goal}</Typography>
+          </Box>
+          
           <form onSubmit={handleSubmit}>
             <TextField
               id="filled-multiline-flexible"

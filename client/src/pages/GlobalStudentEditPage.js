@@ -28,7 +28,9 @@ function GlobalStudentEditPage({user}) {
       <Box sx={{height: 20}}>
       </Box>
       
-      <GlobalEditTable students={studentByTeacher}/>
+      <Box marginLeft={2} marginRight={2}>
+       <GlobalEditTable students={studentByTeacher}/>
+      </Box>
     </Box>
   )
 }

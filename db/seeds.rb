@@ -3,7 +3,6 @@ Job.destroy_all
 StudentDesk.destroy_all
 StudentJob.destroy_all
 Desk.destroy_all
-User.destroy_all
 Privilege.destroy_all
 
 
@@ -58,7 +57,7 @@ j27 = Job.create(title: "Student #12", salary: 15)
 j28 = Job.create(title: "Student #13", salary: 15)
 j29 = Job.create(title: "Student #14", salary: 15)
 j30 = Job.create(title: "Student #15", salary: 15)
-j31 = Job.create(title: "Default", salary: 0)
+# j31 = Job.create(title: "Default", salary: 0)
 
 # these can go if needed
 # sj1 = StudentJob.create(job_id: j1.id, student_id: s1.id)

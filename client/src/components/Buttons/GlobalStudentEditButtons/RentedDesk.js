@@ -40,7 +40,7 @@ function handlePost(deskId) {
   return (
     <div>
     <FormControl sx={{ width: 350 }}>
-      <InputLabel id="desk-select-label" sx={{fontSize: '10px'}}>Rent desk</InputLabel>
+      <InputLabel id="desk-select-label" sx={{fontSize: '10px'}}>Click to Rent</InputLabel>
       <Select
         labelId="desk-select-label"
         id="desk-selector"

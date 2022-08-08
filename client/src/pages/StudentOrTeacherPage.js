@@ -37,7 +37,7 @@ function StudentOrTeacherPAGE({setUser}) {
   
   return (
     <Box>
-      <Paper style={styles.paperContainer} sx={{backgroundRepeat: 'no-repeat', margin: 5, height: 525 }}>
+      <Paper style={styles.paperContainer} sx={{backgroundRepeat: 'no-repeat', margin: 5 }}>
         <Box sx={{height: 100}}>
         </Box>
         <LogoWrapper component={'div'} style={{ border: '4px solid' }}>

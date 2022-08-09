@@ -51,7 +51,7 @@ npm start --prefix client
 ```
 
 ## Deployment
-- 🚧 under construction🚧
+The app is deployed, however it is strictly being licensed to school clients at the moment.  Here is a link to the YouTube walk-through: https://youtu.be/4IIus_EDyTE 
 
 ## License
 

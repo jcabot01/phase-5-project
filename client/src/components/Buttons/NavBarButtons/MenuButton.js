@@ -42,6 +42,7 @@ function MenuButton() {
       >
         <MenuItem component={Link} to="/rules-overview" onClick={handleClose} >Rules</MenuItem>
         <MenuItem component={Link} to="/global-edit" onClick={handleClose}>Global Student Edit</MenuItem>
+        <MenuItem component={Link} to="/attendance" onClick={handleClose}>Attendance</MenuItem>
       </Menu>
     </div>
   );

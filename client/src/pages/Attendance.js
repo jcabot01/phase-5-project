@@ -1,6 +1,6 @@
 import React, {useState } from 'react'
 import { DataGrid, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
-import { Select, FormControl, InputLabel, MenuItem, Button, Box } from '@mui/material';
+import { Select, FormControl, InputLabel, MenuItem, Box } from '@mui/material';
 import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 import "../components/DataGridStyles.css"
 
@@ -41,7 +41,7 @@ function handleChange(e) {
    
       <div>
         <Box textAlign={'center'}>
-          <FormControl maxWidth={20}>
+          <FormControl width={20}>
             <InputLabel id="demo-simple-select-label">Period</InputLabel>
             <Select
               labelId="demo-simple-select-label"

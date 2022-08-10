@@ -22,7 +22,7 @@ class TeachersController < ApplicationController
     if teacher 
       render json: teacher, status: :ok
     else 
-      render json: { error: "Not authorized" }, status: :unauthorized
+      render json: { error: "Not authorized" }, status: :unauthorized, include: ["students"]
     end
   end
   

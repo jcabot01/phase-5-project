@@ -1,6 +1,7 @@
 import React from 'react'
 import JobSalaryTable from '../components/JobSalaryTable'
 import { Box, Typography } from '@mui/material'
+import CopyrightIcon from '@mui/icons-material/Copyright';
 
 
 
@@ -113,6 +114,9 @@ function RulesOverview() {
           </Typography>
 
         <Box sx={{height: 40}}>
+        </Box>
+        <Box textAlign='center'>
+         <Typography><CopyrightIcon/>Future Forward Education LLC</Typography>
         </Box>
       </Box>
   )

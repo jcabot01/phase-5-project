@@ -55,6 +55,8 @@ function StudentSignupForm({setUser}) {
     });
   };
 
+  const classPeriods = [1, 2, 3, 4, 5, 6, 7, 8]
+
   return (
     <Box component="div">
     <Box textAlign={'center'} >     
@@ -89,13 +91,27 @@ function StudentSignupForm({setUser}) {
             />
           </Grid>
           <Grid item xs={6} md={6} lg={6}>
-            <TextField 
+            {/* <TextField 
               value={classPeriod} onChange={(e) => setClassPeriod(e.target.value)}
               id="Class Period"  
               variant="outlined"
               placeholder="Class Period ex: 1"
               sx={{width: '28ch', backgroundColor: '#ffffff' }}
-            />
+            /> */}
+            <FormControl fullWidth>
+              <InputLabel id="get-class-period">Class Period</InputLabel>
+              <Select
+                labelId='get-class-period'
+                id='class-period-select'
+                value={classPeriod}
+                onChange={((e) => setClassPeriod(e.target.value))}
+              >
+              {classPeriods.map((period) => (
+                <MenuItem key={period} value={period}>{period}</MenuItem>
+              ))}
+              
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={6} md={6} lg={6}>
             <FormControl fullWidth>

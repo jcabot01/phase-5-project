@@ -7,6 +7,7 @@ import HouseIcon from '@mui/icons-material/House';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import CopyrightIcon from '@mui/icons-material/Copyright';
 import { pink } from '@mui/material/colors';
 import styled from '@emotion/styled'
 
@@ -104,6 +105,11 @@ function StudentProfilePage({user, setUser, onUpdateUser}) {
         <Box marginLeft={7} width={'fit-content'}>
           <StudentProfileStack user={user}/>
         </Box>
+      </Box>
+      <Box sx={{height: 60}}>
+      </Box>
+      <Box textAlign='center'>
+         <Typography><CopyrightIcon/>Future Forward Education LLC</Typography>
       </Box>
     </Box>
   )

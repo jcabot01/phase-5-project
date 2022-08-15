@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Image from '../images/board-game-gd3b62ce94_1920.jpg';
 import { Button, Box, Typography, Paper, Dialog, DialogActions, DialogContent } from '@mui/material';
 import styled from '@emotion/styled';
+import CopyrightIcon from '@mui/icons-material/Copyright';
 import StudentLoginPage from './StudentLoginPage';
 import TeacherLoginPage from './TeacherLoginPage';
 
@@ -36,8 +37,8 @@ function StudentOrTeacherPAGE({setUser}) {
       };
   
   return (
-    <Box>
-      <Paper style={styles.paperContainer} sx={{backgroundRepeat: 'no-repeat', margin: 15, justifyContent: "center", alignItems: "center" }}>
+    <Box textAlign='center'>
+      <Paper style={styles.paperContainer} sx={{backgroundRepeat: 'no-repeat', margin: 10, justifyContent: "center", alignItems: "center" }}>
         <Box sx={{height: 100}}>
         </Box>
         <LogoWrapper component={'div'} style={{ border: '4px solid' }}>
@@ -90,6 +91,9 @@ function StudentOrTeacherPAGE({setUser}) {
         <Box sx={{height: 100}}>
         </Box>
       </Paper>
+      <Box>
+        <Typography><CopyrightIcon/>Future Forward Education LLC</Typography>
+      </Box>
     </Box>
   );
 }

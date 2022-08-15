@@ -1,13 +1,15 @@
 import React, {useState} from 'react'
-import { FormControl, OutlinedInput, InputLabel, Select, MenuItem } from '@mui/material'
+import { FormControl, OutlinedInput, InputLabel, Select, MenuItem, Typography } from '@mui/material'
 import { useDispatch } from 'react-redux';
 import { jobSelectChangeSalary } from '../../../features/studentsSlice';
 
 
 
-function JobTitleSelect({jobs, jobTitle, studentId}) {
+function JobTitleSelect({jobs, jobTitle, studentId, studentJobsTable}) {
   const [jobSelect, setJobSelect] = useState("");
   const dispatch = useDispatch()
+  const studentJobId = studentJobsTable.map((studentJob) => studentJob.id)
+
  
   
   function handleSubmit(jobId) {
@@ -37,7 +39,7 @@ function JobTitleSelect({jobs, jobTitle, studentId}) {
 
     } else {
       
-      fetch(`/student_jobs/${studentId}`, { //if they have a job, this updates it
+      fetch(`/student_jobs/${studentJobId}`, { //if they have a job, this updates it
         method: "PATCH",
         headers: {
           "Content-Type": "application/json"
@@ -64,19 +66,22 @@ function JobTitleSelect({jobs, jobTitle, studentId}) {
   ))
   return (
     <div>
+    <form>
     <FormControl sx={{ width: 165 }}>
-      <InputLabel id="job-select-label">{jobTitle}</InputLabel>
+      <InputLabel id="job-select-label">{jobTitle.length > 0 ? jobTitle : "SELECT JOB"}</InputLabel>
       <Select
         labelId="job-select-label"
         id="job-selector"
-        defaultValue=""
         value={jobSelect}
         onChange={handleChange}
         input={<OutlinedInput label="Job" />}
       >
+    <MenuItem>{jobTitle}</MenuItem>
         {menuItems}
       </Select>
     </FormControl>
+    </form>
+    
   </div>
   )
 }

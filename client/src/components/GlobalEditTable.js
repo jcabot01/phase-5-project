@@ -145,12 +145,15 @@ useEffect(() => {
       renderCell: (params) => {
         const jobTitle = (params.row.jobs.map((job) => job.title))
         const studentId = params.row.id
-          return (
-            <div>
-              <JobTitleSelect jobTitle={jobTitle} jobs={jobs} studentId={studentId}/>
-            </div>
-          )
-      }
+        const studentJobsTable = params.row.student_jobs
+        // if (jobTitle == "") return <Typography sx={{color: 'red'}}>Pick a job</Typography>
+        return (
+          <div>
+            <JobTitleSelect jobTitle={jobTitle} jobs={jobs} studentId={studentId} studentJobsTable={studentJobsTable}/>
+          </div>    
+        )
+      }        
+      
     },
     { 
       field: "salary", 
@@ -159,6 +162,12 @@ useEffect(() => {
       type: 'number', 
       renderCell: (params) => {
         let salary = (params.row.jobs.map((job) => job.salary))
+
+        if (params.row.jobs == ""){
+          return (
+            <Typography>$0</Typography>
+          )
+        }
           return (
             <Typography>{currencyFormatter.format(salary[0])}</Typography>
           )

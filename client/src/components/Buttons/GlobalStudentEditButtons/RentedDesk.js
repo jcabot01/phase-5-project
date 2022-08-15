@@ -44,7 +44,7 @@ function handlePost(deskId) {
       <Select
         labelId="desk-select-label"
         id="desk-selector"
-        defaultValue=""
+        defaultValue="Click to Rent"
         value={deskSelect}
         onChange={handleChange}
         input={<OutlinedInput label="Rent Desk" />}

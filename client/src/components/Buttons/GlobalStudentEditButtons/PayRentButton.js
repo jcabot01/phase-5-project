@@ -21,11 +21,14 @@ function PayRentButton({balance, studentId}) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(newBalancePayload)
-    })
-    .then((res) => res.json())
-    .then((updatedBalance) => console.log(updatedBalance))
-  }
-  
+    }).then((res) => {
+        if (res.ok) {
+          res.json().then((updatedBalance) => console.log(updatedBalance))    
+        } else {
+          res.json().then((err) => alert(err.errors))
+        }
+      })
+  }   
   return (
     <Button sx={{fontSize: "10px"}}
       variant="contained"
@@ -35,6 +38,6 @@ function PayRentButton({balance, studentId}) {
         Pay Rent
     </Button>
     )
-  }
+}
 
 export default PayRentButton

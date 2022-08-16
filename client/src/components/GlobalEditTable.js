@@ -11,10 +11,12 @@ import DeleteStudentButton from './Buttons/GlobalStudentEditButtons/DeleteStuden
 import InvestmentDialog from './Buttons/GlobalStudentEditButtons/InvestmentDialog';
 import RentedDesk from './Buttons/GlobalStudentEditButtons/RentedDesk';
 import WorkHabitScore from './Buttons/GlobalStudentEditButtons/WorkHabitScore';
+import Balance from './Buttons/GlobalStudentEditButtons/Balance';
 import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 import "./DataGridStyles.css" 
 import { useDispatch } from 'react-redux';
 import { updateWorkHabitScore, updateAvatar } from '../features/studentsSlice';
+
 
 
 
@@ -42,13 +44,7 @@ function GlobalEditTable({students}) {
       })
         .then((res) => {
         if (res.ok) {
-          res.json().then((editedStudent) => console.log(editedStudent))
-          if (fieldName === "work_habit_score"){
-            dispatch(updateWorkHabitScore({studentId: studentData.id, score: studentData.value}))
-          } else if (fieldName === "avatar_url") {
-            dispatch(updateAvatar({studentId: studentData.id, url: studentData.value}))
-          }
-         
+          res.json().then((editedStudent) => console.log(editedStudent))         
         } else {
           res.json().then((err) => alert(err.errors + ". Please refresh your page to retrive previous value."))
         }
@@ -63,13 +59,14 @@ function GlobalEditTable({students}) {
         break;
       case 'avatar_url':
         handlePatch()
+        dispatch(updateAvatar({studentId: studentId, url: value}))
         break;
       case 'balance':
         handlePatch()
         break;
-      case 'work_habit_score':
-        handlePatch()
-        break;
+      // case 'work_habit_score':
+      //   handlePatch()
+      //   break;
       
       default:
         alert("Can't leave field blank. Please refesh page to retrieve old data")
@@ -147,8 +144,8 @@ useEffect(() => {
       field: "balance", 
       headerName: 'Balance $', 
       editable: true, 
-      width: 80, 
-      type: 'number', 
+      width: 110, 
+      type: 'number',
       valueFormatter: ({ value }) => currencyFormatter.format(value), 
     },
     {
@@ -354,7 +351,7 @@ useEffect(() => {
             onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
             rowsPerPageOptions={[10, 30, 60]}
             pagination
-            // onCellEditCommit={handleDataSubmit}
+            onCellEditCommit={handleDataSubmit}
           />
         </StyledEngineProvider>
         </div>

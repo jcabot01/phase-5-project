@@ -5,10 +5,10 @@ import { updateBalance, updateInvestmentDialog } from '../../../features/student
 
 
 
-function PrivilegeSelect({params}) {
-const [amountSpent, setAmountSpent] = useState('');
-const dispatch = useDispatch();
-const studentId = params.row.id
+function PrivilegeSelect({params, handleClose}) {
+  const [amountSpent, setAmountSpent] = useState('');
+  const dispatch = useDispatch();
+  const studentId = params.row.id
 
 
   function handleChange(e) {
@@ -20,37 +20,42 @@ const studentId = params.row.id
       const newBalance = oldBalance - privilegeObject.amount
       const amount = privilegeObject.amount
 
-      dispatch(updateBalance({id: studentId, balance: newBalance }))
-      
-      function isEvent (eventIsInvest) {
+      function isEvent (eventIsInvest) { //dispatch callback "if" privilege persists to DB && the privilege was an investment
          return eventIsInvest ? dispatch(updateInvestmentDialog({id: studentId, amount: amount, event: "Invest", created_at: "just now..."})) : null
       }
-      isEvent(privilegeObject.event === "Invest")   
-     
-
-        fetch('/privileges', {  //create new privilege in DB
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(privilegeObject)
-        })
-          .then((res) => res.json())
-          .then((newPrivilege) => console.log(newPrivilege)) 
-      /////////////////////////////////////////////////////////////////////////////////  
-        const newBalancePayload = {
-          balance: newBalance
-        }
+       
+      const newBalancePayload = {
+        balance: newBalance
+      }
         
-        fetch(`/students/${studentId}`, { //Decrements the student's balance
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(newBalancePayload)
-        })
-        .then((res) => res.json())
-        .then((updatedBalance) => console.log(updatedBalance))
+      fetch(`/students/${studentId}`, { //Decrements the student's balance
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newBalancePayload)
+      })
+      .then((res) => {
+        if (res.ok) { //if ok, run dispatch/state update && create new Privilege in DB
+          res.json().then((updatedBalance) => console.log(updatedBalance))
+          dispatch(updateBalance({id: studentId, balance: newBalance }))
+          
+          fetch('/privileges', {//create new privilege in DB
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(privilegeObject)
+          })
+            .then((res) => res.json())
+            .then((newPrivilege) => console.log(newPrivilege))
+            isEvent(privilegeObject.event === "Invest") 
+            handleClose()
+        } else {
+          res.json().then((err) => alert(err.errors));
+          handleClose()
+        }
+      })
     }
     
     switch (privilegeCase) {
@@ -86,7 +91,8 @@ const studentId = params.row.id
   }
 
   return (
-    <FormControl sx={{ m: 1, width: 300 }}>
+    <Box>
+      <FormControl sx={{ m: 1, width: 300 }}>
         <InputLabel id="demo-simple-select-label">Select one</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -111,7 +117,8 @@ const studentId = params.row.id
           <MenuItem value={90}>$90</MenuItem>
           <MenuItem value={100}>$100</MenuItem>
         </Select>
-    </FormControl>
+      </FormControl>
+    </Box>
   )
 }
 

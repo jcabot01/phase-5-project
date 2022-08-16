@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions} from '@mui/material'
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, Typography} from '@mui/material'
 import PrivilegeSelect from './PrivilegeSelect';
 
 
@@ -27,11 +27,12 @@ function PrivilegeDialog({params}) {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Purchase a Privilege</DialogTitle>
         <DialogContent>
-          <PrivilegeSelect params={params}/>
+          <PrivilegeSelect params={params} handleClose={handleClose}/>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>
         </DialogActions>
+        <Typography textAlign='center' margin={2} >Your available Balance to spend is ${params.row.balance}</Typography>
       </Dialog>
     </div>
   )

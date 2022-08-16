@@ -80,7 +80,7 @@ function StudentProfilePage({user, setUser, onUpdateUser}) {
             </Stack>
           </Box>
           <Box maxWidth={200}>
-            <Typography fontSize={12}>Goals:</Typography>
+            <Typography fontSize={12}>Monthly Goal:</Typography>
             <Typography fontSize={12}>{user.goal}</Typography>
           </Box>
           

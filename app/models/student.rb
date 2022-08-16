@@ -11,4 +11,5 @@ class Student < ApplicationRecord
   
   belongs_to :teacher
 
+  validates :balance, numericality: {:greater_than => 0}
 end

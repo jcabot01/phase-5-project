@@ -8,6 +8,7 @@ import { updateBalance } from '../../../features/studentsSlice';
 function CollectRentButton({params}) {
   const dispatch = useDispatch();
 
+  
   function handleClick() {
     const studentBalance = params.row.balance
     const studentId = params.row.id

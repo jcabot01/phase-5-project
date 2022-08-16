@@ -103,7 +103,7 @@ function BuyDeskDialog({params}) {
         variant="contained"
         onClick={handleClickOpen}
         size="small"
-        color='info'
+        color='inherit'
       >
         Buy Desk
       </Button>

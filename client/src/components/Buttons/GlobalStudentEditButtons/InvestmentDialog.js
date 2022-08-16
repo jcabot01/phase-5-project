@@ -19,7 +19,7 @@ function InvestmentDialog({params}) {
         variant="outlined"
         onClick={handleClickOpen}
         size="small"
-        color='primary'
+        color='success'
       >
         Investments
       </Button>

@@ -185,7 +185,7 @@ useEffect(() => {
       headerName: 'Work Habit (0/4)', 
       editable: true, 
       type: 'number', 
-      width: 80,
+      width: 120,
       renderCell:(params) => params.row.work_habit_score 
     },
     { 
@@ -248,7 +248,25 @@ useEffect(() => {
       headerName: 'Collect Rent', 
       editable: true, 
       width: 120, 
-      renderCell: (params) => <CollectRentButton params={params}/> 
+      renderCell: (params) => {
+       if (params.row.student_desks.length >= 2) {
+        return (
+          <CollectRentButton params={params}/>
+        )
+       } else {
+        return (
+        //   <Button sx={{fontSize: "10px"}}
+        //   variant="contained"
+        //   size="small"
+        //   color='warning'
+        //   onClick={() => alert("You don't own a rental property yet")}>
+        //     Collect Rent
+        // </Button>
+        <Typography>No Rentals</Typography>
+        )
+       } 
+        
+      }
     },
     {
       field: "buy_desk",
@@ -256,14 +274,34 @@ useEffect(() => {
       editable: true, 
       type: 'singleSelect',
       width: 100,
-      renderCell: (params) => <BuyDeskDialog params={params} /> 
+      renderCell: (params) => {
+        if (params.row.balance > 50) {
+          return (
+            <BuyDeskDialog params={params} /> 
+          )
+         } else {
+          return (
+          <Typography>---</Typography>
+          )
+         }
+        }
     },
     { 
       field: "privilege", 
-      headerName: 'Purchase Privileges', 
+      headerName: 'Privileges', 
       editable: true, 
       width: 104, 
-      renderCell: (params) => <PrivilegeDialog params={params}/> 
+      renderCell: (params) => {
+        if (params.row.balance > 20) {
+          return (
+            <PrivilegeDialog params={params}/> 
+          )
+         } else {
+          return (
+          <Typography>---</Typography>
+          )
+         }
+        } 
     },
     { 
       field: "investment", 

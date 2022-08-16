@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Image from '../images/board-game-gd3b62ce94_1920.jpg';
-import { Button, Box, Typography, Paper, Dialog, DialogActions, DialogContent } from '@mui/material';
+import { Button, Box, Typography, Paper, Dialog, DialogActions, DialogContent, Card, CardMedia } from '@mui/material';
 import styled from '@emotion/styled';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import StudentLoginPage from './StudentLoginPage';
 import TeacherLoginPage from './TeacherLoginPage';
-
+import LogoImage from '../images/FutureForwardEdLogo.png'
 
 
 
@@ -29,18 +29,19 @@ function StudentOrTeacherPAGE({setUser}) {
     setTeacherOpen(false);
   };
 
-  const styles = {
+  const styles1 = {
         paperContainer: { 
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundImage: `url(${Image})`
         }
       };
+
   
   return (
     <Box textAlign='center'>
-      <Paper style={styles.paperContainer} sx={{backgroundRepeat: 'no-repeat', margin: 10, justifyContent: "center", alignItems: "center" }}>
-        <Box sx={{height: 100}}>
+      <Paper style={styles1.paperContainer} sx={{backgroundRepeat: 'no-repeat', marginTop: 5, marginRight:10, marginLeft: 10, marginBottom: 2, justifyContent: "center", alignItems: "center" }}>
+        <Box sx={{height: 80}}>
         </Box>
         <LogoWrapper component={'div'} style={{ border: '4px solid' }}>
           <Logo>Class-o-poly</Logo>
@@ -89,11 +90,16 @@ function StudentOrTeacherPAGE({setUser}) {
             </Dialog>
           </Box>
         </Wrapper>
-        <Box sx={{height: 100}}>
+        <Box sx={{height: 50}}>
         </Box>
       </Paper>
       <Box>
         <Typography><CopyrightIcon/>Future Forward Education LLC</Typography>
+        <Box>
+          <img src={LogoImage} alt="Logo" />
+        </Box>
+        
+       
       </Box>
      
     </Box>

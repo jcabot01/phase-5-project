@@ -66,7 +66,7 @@ function BuyDeskDialog({params}) {
     .then((res) => res.json())
     .then((updatedStudentDeskObject) => console.log(updatedStudentDeskObject))  
   } else {
-////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
     fetch('/student_desks', { //if they already own a desk, this creates another new desk instance
       method: "POST",
       headers: {

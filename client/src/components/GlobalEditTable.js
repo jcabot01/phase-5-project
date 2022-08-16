@@ -289,7 +289,7 @@ useEffect(() => {
       type: 'singleSelect',
       width: 100,
       renderCell: (params) => {
-        if (params.row.balance > 50) {
+        if (params.row.balance >= 50) {
           return (
             <BuyDeskDialog params={params} /> 
           )

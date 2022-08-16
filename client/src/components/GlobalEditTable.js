@@ -10,10 +10,12 @@ import JobTitleSelect from './Buttons/GlobalStudentEditButtons/JobTitleSelect';
 import DeleteStudentButton from './Buttons/GlobalStudentEditButtons/DeleteStudentButton';
 import InvestmentDialog from './Buttons/GlobalStudentEditButtons/InvestmentDialog';
 import RentedDesk from './Buttons/GlobalStudentEditButtons/RentedDesk';
+import WorkHabitScore from './Buttons/GlobalStudentEditButtons/WorkHabitScore';
 import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 import "./DataGridStyles.css" 
 import { useDispatch } from 'react-redux';
-import { updateWorkHabitScore } from '../features/studentsSlice';
+import { updateWorkHabitScore, updateAvatar } from '../features/studentsSlice';
+
 
 
 
@@ -38,8 +40,20 @@ function GlobalEditTable({students}) {
         },
         body: JSON.stringify(updatedObject)
       })
-        .then((res) => res.json())
-        .then((editedStudent) => console.log(editedStudent))
+        .then((res) => {
+        if (res.ok) {
+          res.json().then((editedStudent) => console.log(editedStudent))
+          if (fieldName === "work_habit_score"){
+            dispatch(updateWorkHabitScore({studentId: studentData.id, score: studentData.value}))
+          } else if (fieldName === "avatar_url") {
+            dispatch(updateAvatar({studentId: studentData.id, url: studentData.value}))
+          }
+         
+        } else {
+          res.json().then((err) => alert(err.errors + ". Please refresh your page to retrive previous value."))
+        }
+        })  
+        
     };
     
 
@@ -54,11 +68,11 @@ function GlobalEditTable({students}) {
         handlePatch()
         break;
       case 'work_habit_score':
-        dispatch(updateWorkHabitScore({studentId: studentData.id, score: studentData.value}))
         handlePatch()
         break;
       
       default:
+        alert("Can't leave field blank. Please refesh page to retrieve old data")
         console.log("sorry, property doesn't exist")
     }
   }
@@ -153,7 +167,6 @@ useEffect(() => {
           </div>    
         )
       }        
-      
     },
     { 
       field: "salary", 
@@ -186,7 +199,11 @@ useEffect(() => {
       editable: true, 
       type: 'number', 
       width: 120,
-      renderCell:(params) => params.row.work_habit_score 
+      renderCell:(params) => {
+        return (
+          <WorkHabitScore params={params}/>
+        )
+      }
     },
     { 
       field: "desk_rented", 
@@ -337,7 +354,7 @@ useEffect(() => {
             onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
             rowsPerPageOptions={[10, 30, 60]}
             pagination
-            onCellEditCommit={handleDataSubmit}
+            // onCellEditCommit={handleDataSubmit}
           />
         </StyledEngineProvider>
         </div>

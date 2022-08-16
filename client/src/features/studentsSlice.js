@@ -56,6 +56,15 @@ const studentsSlice = createSlice({
         };
     });
     },
+    updateAvatar(state, action) {
+      state.entities.map((student) => {
+        if (student.id === action.payload.studentId) {
+            return student.avatar_url = action.payload.url;
+        } else {
+            return state;
+        };
+    });
+    },
     deleteUser(state, action) {
       const index = state.entities.findIndex((student) => student.id === action.payload.id)
       state.entities.splice(index, 1);
@@ -118,7 +127,8 @@ export const {deleteUser,
               moveRentedDeskToOwnedColumn,
               updateStudentGoal,
               removedDeskFromRentedColumn,
-              addRentedDeskToRentedColumn
+              addRentedDeskToRentedColumn,
+              updateAvatar
               } = studentsSlice.actions;
 
 export default studentsSlice.reducer;

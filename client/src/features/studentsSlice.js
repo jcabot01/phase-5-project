@@ -78,6 +78,15 @@ const studentsSlice = createSlice({
         }
       })
     },
+    addRentedDeskToRentedColumn(state, action) {
+      state.entities.map((student) => {
+        if (student.id === action.payload.studentId) {
+          return student.student_desks.splice(0,0,{desk_id: action.payload.deskId, is_owned_or_rented: action.payload.is_owned_or_rented, student_id: action.payload.studentId})
+        } else {
+          return state;
+        }
+      })
+    },
     updateInvestmentDialog(state, action) {
       state.entities.map((student) => {
         if (student.id === action.payload.id) {
@@ -108,7 +117,8 @@ export const {deleteUser,
               updateWorkHabitScore,
               moveRentedDeskToOwnedColumn,
               updateStudentGoal,
-              removedDeskFromRentedColumn
+              removedDeskFromRentedColumn,
+              addRentedDeskToRentedColumn
               } = studentsSlice.actions;
 
 export default studentsSlice.reducer;

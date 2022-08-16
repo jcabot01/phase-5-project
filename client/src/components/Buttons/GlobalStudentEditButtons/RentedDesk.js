@@ -1,11 +1,22 @@
 import React, {useState} from 'react'
 import { FormControl, OutlinedInput, InputLabel, Select, MenuItem } from '@mui/material'
+import { useDispatch } from 'react-redux';
+import { addRentedDeskToRentedColumn } from '../../../features/studentsSlice';
+
 
 function RentedDesk({desks, params}) {
 const [deskSelect, setDeskSelect] = useState("")
 const studentId = params.row.id
+const dispatch = useDispatch();
+const isDesk = params.row.student_desks.length
+
+
+// console.log(isDesk.length > 0 ? deskSelect : "Click to Rent")
+
 
 function handlePost(deskId) {
+  console.log(deskSelect, "deskSelect state")
+  dispatch(addRentedDeskToRentedColumn({studentId: studentId, deskId: deskId, is_owned_or_rented: "rented"}))
   const deskPayload = {
     desk_id: deskId,
     student_id: studentId,
@@ -25,6 +36,7 @@ function handlePost(deskId) {
 
 
   function handleChange(e) {
+    console.log(e.target.value, "e.target.value")
     setDeskSelect(e.target.value)
     handlePost(e.target.value)
   };
@@ -37,22 +49,27 @@ function handlePost(deskId) {
       Desk #{desk.id}
     </MenuItem>
   ))
+  // isDesk.length > 0 ? deskSelect : "Click to Rent"
   return (
     <div>
-    <FormControl sx={{ width: 350 }}>
-      <InputLabel id="desk-select-label" sx={{fontSize: '10px'}}>Click to Rent</InputLabel>
-      <Select
-        labelId="desk-select-label"
-        id="desk-selector"
-        defaultValue="Click to Rent"
-        value={deskSelect}
-        onChange={handleChange}
-        input={<OutlinedInput label="Rent Desk" />}
-      >
-        {menuItems}
-      </Select>
-    </FormControl>
-  </div>
+      <form>
+        {/* <FormControl sx={{ width: 350 }}> */}
+        <FormControl id="form-Control" sx={{ width: 165 }}>
+          <InputLabel  id="desk-select-label">Click to Rent</InputLabel>
+          <Select
+            
+            labelId="desk-select-label"
+            id="desk-selector"
+            value={deskSelect}
+            onChange={handleChange}
+            input={<OutlinedInput label="Rent Desk" />}
+          >
+            {menuItems}
+          </Select>
+        </FormControl>
+      </form>
+      
+    </div>
   )
 }
 

@@ -68,7 +68,7 @@ function JobTitleSelect({jobs, jobTitle, studentId, studentJobsTable}) {
     <div>
     <form>
     <FormControl sx={{ width: 165 }}>
-      <InputLabel id="job-select-label">{jobTitle.length > 0 ? jobTitle : "SELECT JOB"}</InputLabel>
+      <InputLabel id="job-select-label">{jobTitle.length > 0 ? jobTitle : ("SELECT JOB")}</InputLabel>
       <Select
         labelId="job-select-label"
         id="job-selector"

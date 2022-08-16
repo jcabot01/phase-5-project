@@ -192,7 +192,7 @@ useEffect(() => {
       field: "desk_rented", 
       headerName: 'Desk Rented', 
       editable: true, 
-      width: 95,
+      width: 140,
       renderCell: (params) => {
         if (params.row.student_desks.length === 0) {
           return (

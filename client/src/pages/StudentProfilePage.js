@@ -87,7 +87,7 @@ function StudentProfilePage({user, setUser, onUpdateUser}) {
           <form onSubmit={handleSubmit}>
             <TextField
               id="filled-multiline-flexible"
-              label={"Set new goal"}
+              label={"Set one new goal"}
               multiline
               maxRows={4}
               value={goal}

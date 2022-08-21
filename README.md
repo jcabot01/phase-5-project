@@ -53,6 +53,9 @@ npm start --prefix client
 ## Deployment
 The app is deployed, however it is strictly being licensed to school clients at the moment.  Here is a link to the YouTube walk-through: https://youtu.be/4IIus_EDyTE 
 
+## Planning and Design
+Here is the Canva link to the design deck I did prior to coding:  <a href="https://www.canva.com/design/DAFGcb3vBrc/0dVhapFy6qU7wjIyf1zEwA/view?utm_content=DAFGcb3vBrc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">Design Deck</a>
+
 ## License
 
 MIT

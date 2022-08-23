@@ -109,7 +109,7 @@ function StudentProfileStack({user}) {
           </Stack>
         </Grid>
     </Grid>
-  )
+  );
 }
 
 export default StudentProfileStack

@@ -21,7 +21,7 @@ import { updateAvatar } from '../features/studentsSlice';
 
 function GlobalEditTable({students}) {
   const [pageSize, setPageSize] = useState(30); //datagrid layout
-  const [average, setAverage] = useState("No Scores"); //work_habit_scores average
+  const [workHabitScoresAverage, setWorkHabitScoresAverage] = useState("No Scores");
   const dispatch = useDispatch();
  
   function handleDataSubmit(e) { //This handles "in-cell" edits.  These types of cells don't have embedded helper-components to persist to DB
@@ -42,15 +42,13 @@ function GlobalEditTable({students}) {
       })
         .then((res) => {
         if (res.ok) {
-          res.json().then((editedStudent) => console.log(editedStudent))         
+          res.json().then((editedStudent) => editedStudent)         
         } else {
           res.json().then((err) => alert(err.errors + ". Please refresh your page to retrive previous value."))
         }
-        })  
-        
+        })    
     };
     
-
     switch (studentData.field) {
       case 'class_period':
         handlePatch()
@@ -61,51 +59,46 @@ function GlobalEditTable({students}) {
         break;
       case 'balance':
         handlePatch()
-        break;
-      // case 'work_habit_score':
-      //   handlePatch()
-      //   break;
-      
+        break;      
       default:
         alert("Can't leave field blank. Please refesh page to retrieve old data")
-        console.log("sorry, property doesn't exist")
     }
   }
 
   
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Datagrid Helper Functions and Variables
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-  maximumSignificantDigits: 3,
-  style: 'currency',
-  currency: 'USD',
-});
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //Datagrid Helper Functions and Variables
+  const currencyFormatter = new Intl.NumberFormat('en-US', {
+    maximumSignificantDigits: 3,
+    style: 'currency',
+    currency: 'USD',
+  });
 
-//GET jobs to populate select dropdown
-const [jobs, setJobs] = useState([]);
-useEffect(() => {
-  fetch("/jobs")
-  .then((r) => r.json())
-  .then((job) => setJobs(job))
-}, [])
+  //GET jobs to populate select dropdown
+  const [jobs, setJobs] = useState([]);
+  useEffect(() => {
+    fetch("/jobs")
+    .then((r) => r.json())
+    .then((job) => setJobs(job))
+  }, [])
 
-//average the work_habit_scores
-function handleClick() {
-  const workHabitScoresArray = students.map((student) => student.work_habit_score)
-  const average = workHabitScoresArray.reduce((a, b) => a + b, 0) / workHabitScoresArray.length;
-  setAverage(average)
-}
+  //average the work_habit_scores
+  function handleWorkHabitScoresAverage() {
+    const workHabitScoresArray = students.map((student) => student.work_habit_score)
+    const average = workHabitScoresArray.reduce((a, b) => a + b, 0) / workHabitScoresArray.length;
+    setWorkHabitScoresAverage(average)
+  }
 
-//GET desks to populate rental dropdown
-const [desks, setDesks] = useState([]);
-useEffect(() => {
-  fetch('/desks')
-  .then((r) => r.json())
-  .then((desk) => setDesks(desk))
-}, [])
- 
+  //GET desks to populate rental dropdown
+  const [desks, setDesks] = useState([]);
+  useEffect(() => {
+    fetch('/desks')
+    .then((r) => r.json())
+    .then((desk) => setDesks(desk))
+  }, [])
+  
 
-/////Data Grid//////////////////////////////////////////////////////
+  /////Data Grid//////////////////////////////////////////////////////
   const columns = [
     { 
       field: 'id', 
@@ -155,7 +148,6 @@ useEffect(() => {
         const jobTitle = (params.row.jobs.map((job) => job.title))
         const studentId = params.row.id
         const studentJobsTable = params.row.student_jobs
-        // if (jobTitle == "") return <Typography sx={{color: 'red'}}>Pick a job</Typography>
         return (
           <div>
             <JobTitleSelect jobTitle={jobTitle} jobs={jobs} studentId={studentId} studentJobsTable={studentJobsTable}/>
@@ -346,22 +338,20 @@ useEffect(() => {
             onCellEditCommit={handleDataSubmit}
           />
         </StyledEngineProvider>
-        </div>
-        
+        </div> 
       </div>  
       <Box textAlign={'center'} marginBottom="20px">
         <Button 
-        variant="contained"
-        size="small"
-        color='primary'
-        onClick={() => handleClick()}>
-          Click to Average
+          variant="contained"
+          size="small"
+          color='primary'
+          onClick={() => handleWorkHabitScoresAverage()}>
+            Click to Average
         </Button>
-        
-        <Typography>{average}</Typography>
+        <Typography>{workHabitScoresAverage}</Typography>
       </Box>
     </div>
-  )
+  );
 }
 
 export default GlobalEditTable

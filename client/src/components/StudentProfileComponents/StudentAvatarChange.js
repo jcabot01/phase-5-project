@@ -36,34 +36,34 @@ function StudentAvatarChange({user, onUpdateUser}) {
 
   return (
     <div>
-    <Avatar onClick={handleClickOpen} src={user.avatar_url} sx={{ width: 90, height: 90 }}/>
-    <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>Update Avatar</DialogTitle>
-      <DialogContent>
-        <DialogContentText>
-          Change your avatar by entering a URL.  This image will be visible on your Teacher's dashboard, so choose wisely.
-        </DialogContentText>
-        <form onSubmit={handleSubmit} id="avatar">
-          <TextField
-            autoFocus
-            margin="dense"
-            id="avatar"
-            label="Avatar URL"
-            type="text"
-            fullWidth
-            value={avatarUrl}
-            onChange={(e) => setAvatarUrl(e.target.value)}
-            variant="standard"
-          />
-        </form>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button type='submit' form="avatar" onClick={handleClose}>Submit</Button>
-      </DialogActions>
-    </Dialog>
-  </div>
-  )
+      <Avatar onClick={handleClickOpen} src={user.avatar_url} sx={{ width: 90, height: 90 }}/>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Update Avatar</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Change your avatar by entering a URL.  This image will be visible on your Teacher's dashboard, so choose wisely.
+          </DialogContentText>
+          <form onSubmit={handleSubmit} id="avatar">
+            <TextField
+              autoFocus
+              margin="dense"
+              id="avatar"
+              label="Avatar URL"
+              type="text"
+              fullWidth
+              value={avatarUrl}
+              onChange={(e) => setAvatarUrl(e.target.value)}
+              variant="standard"
+            />
+          </form>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button type='submit' form="avatar" onClick={handleClose}>Submit</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
 }
 
 export default StudentAvatarChange

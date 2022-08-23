@@ -15,10 +15,10 @@ function StudentLogoutButton({setUser}) {
   return (
     <Box component={'div'}  >
       <Button variant="outlined" color='inherit' size='small' onClick={handleClick}>
-       Logout
+        Logout
       </Button>
     </Box>
-  )
+  );
 }
 
 export default StudentLogoutButton

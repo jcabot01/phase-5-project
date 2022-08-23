@@ -9,12 +9,13 @@ import "../components/DataGridStyles.css"
 function Attendance({user}) {
   const [period, setPeriod] = useState(1)
 
-const students = user.students
-const filteredStudents = students.filter((student) => student.class_period === period)
+  const students = user.students
+  const filteredStudents = students.filter((student) => student.class_period === period)
 
-function handleChange(e) {
-  setPeriod(e.target.value)
-}
+  function handleChange(e) {
+    setPeriod(e.target.value)
+  }
+  
   function CustomToolbar() {
     return (
       <GridToolbarContainer>
@@ -37,8 +38,8 @@ function handleChange(e) {
     width: 100 
     },   
   ]
+
   return (
-   
       <div>
         <Box textAlign={'center'}>
           <FormControl width={20}>
@@ -73,11 +74,9 @@ function handleChange(e) {
                 }}
               />
           </StyledEngineProvider>
-          
         </Box>
-        
       </div>
-    );
+  );
 }
 
 export default Attendance

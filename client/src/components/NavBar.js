@@ -1,8 +1,8 @@
-import styled from '@emotion/styled'
-import { Box, Typography } from '@mui/material'
-import React from 'react'
-import LogoutButton from './Buttons/NavBarButtons/LogoutButton'
-import MenuButton from './Buttons/NavBarButtons/MenuButton'
+import styled from '@emotion/styled';
+import { Box, Typography } from '@mui/material';
+import React from 'react';
+import LogoutButton from './Buttons/NavBarButtons/LogoutButton';
+import MenuButton from './Buttons/NavBarButtons/MenuButton';
 
 
 
@@ -24,7 +24,7 @@ function NavBar({user, setUser}) {
         <LogoutButton setUser={setUser} />
       </Box>
     </Box>
-  )
+  );
 }
 
 const Logo = styled.h1`

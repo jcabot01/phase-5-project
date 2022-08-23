@@ -22,7 +22,7 @@ function StudentNavBar({user, setUser}) {
         <StudentLogoutButton setUser={setUser} />
       </Box>
     </Box>
-  )
+  );
 }
 
 const Logo = styled.h1`

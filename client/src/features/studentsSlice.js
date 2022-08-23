@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
-// Action Creators
+
 
 // async actions
 export const fetchStudents = createAsyncThunk("students/fetchStudents", () => {
@@ -11,7 +11,6 @@ export const fetchStudents = createAsyncThunk("students/fetchStudents", () => {
 });
 
 // Reducer
-
 const studentsSlice = createSlice({
   name: "students",
   initialState: {

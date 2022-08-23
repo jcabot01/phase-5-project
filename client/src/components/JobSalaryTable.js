@@ -16,6 +16,7 @@ function JobSalaryTable() {
     borderRadius: 0,
     border: '2px solid'
   }));
+  
   return (
     <Box maxWidth={220}>
       <Grid container rowSpacing={0} columnSpacing={0}>

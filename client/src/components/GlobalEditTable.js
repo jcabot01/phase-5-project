@@ -11,11 +11,10 @@ import DeleteStudentButton from './Buttons/GlobalStudentEditButtons/DeleteStuden
 import InvestmentDialog from './Buttons/GlobalStudentEditButtons/InvestmentDialog';
 import RentedDesk from './Buttons/GlobalStudentEditButtons/RentedDesk';
 import WorkHabitScore from './Buttons/GlobalStudentEditButtons/WorkHabitScore';
-import Balance from './Buttons/GlobalStudentEditButtons/Balance';
 import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 import "./DataGridStyles.css" 
 import { useDispatch } from 'react-redux';
-import { updateWorkHabitScore, updateAvatar } from '../features/studentsSlice';
+import { updateAvatar } from '../features/studentsSlice';
 
 
 

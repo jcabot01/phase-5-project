@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
   #create   /login/student
   def create_student 
     student = Student.find_by(username: params[:username])
-    if student&.authenticate(params[:password])  #if username && password pass .authenticate macro...
-      session[:student_id] = student.id  #set session hash to user's id
+    if student&.authenticate(params[:password])  
+      session[:student_id] = student.id
       render json: student, status: :created
     else
       render json: { errors: ["Invalid username or password"] }, status: :unauthorized
@@ -16,8 +16,8 @@ class SessionsController < ApplicationController
   #create   /login/teacher
   def create_teacher
     teacher = Teacher.find_by(username: params[:username])
-    if teacher&.authenticate(params[:password])  #if username && password pass .authenticate macro...
-      session[:teacher_id] = teacher.id  #set session hash to user's id
+    if teacher&.authenticate(params[:password]) 
+      session[:teacher_id] = teacher.id
       render json: teacher, status: :created
     else
       render json: { errors: ["Invalid username or password"] }, status: :unauthorized

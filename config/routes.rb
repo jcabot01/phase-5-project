@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :students   #full CRUD
   resources :jobs, only: [:index]
   resources :privileges, only: [:create]
-  resources :student_desks
+  resources :student_desks, only: [:create, :update]
   resources :teachers
   resources :student_jobs
   get '/desks', to: 'desks#index' #get all desks data

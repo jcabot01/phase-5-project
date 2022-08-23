@@ -1,18 +1,18 @@
 class StudentDesksController < ApplicationController
  
-   #GET
-  # '/student_desks'
-  def index
-    student_desks = StudentDesk.all 
-    render json: student_desks, status: :ok
-  end
+  #  #GET
+  # # '/student_desks'
+  # def index
+  #   student_desks = StudentDesk.all 
+  #   render json: student_desks, status: :ok
+  # end
 
-  # #GET
-  # # '/student_desks/:id'
-  def show  
-    student_desk = find_student_desk
-    render json: student_desk, status: :ok
-  end
+  # # #GET
+  # # # '/student_desks/:id'
+  # def show  
+  #   student_desk = find_student_desk
+  #   render json: student_desk, status: :ok
+  # end
 
   #  #POST
   # # '/student_desks

@@ -261,19 +261,14 @@ useEffect(() => {
       editable: true, 
       width: 120, 
       renderCell: (params) => {
-       if (params.row.student_desks.length >= 2) {
-        return (
-          <CollectRentButton params={params}/>
-        )
-       } else {
-        return (
-        //   <Button sx={{fontSize: "10px"}}
-        //   variant="contained"
-        //   size="small"
-        //   color='warning'
-        //   onClick={() => alert("You don't own a rental property yet")}>
-        //     Collect Rent
-        // </Button>
+        let ownedDesks = params.row.student_desks.filter((desk) => desk.is_owned_or_rented == "owned")
+        console.log(ownedDesks)
+        if (ownedDesks.length >= 2) {
+          return (
+            <CollectRentButton params={params}/>
+          )
+        } else {
+          return (
         <Typography>No Rentals</Typography>
         )
        } 

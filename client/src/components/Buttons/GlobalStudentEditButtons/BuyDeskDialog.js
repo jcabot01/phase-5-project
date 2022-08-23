@@ -28,18 +28,16 @@ function BuyDeskDialog({params}) {
   const dispatch = useDispatch();
   
   function handleBuyDeskSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     const ownershipStatus = isOwnedOrRented[0]
     const deskID = deskId[0]
     const studentBalance = params.row.balance //need existing to subtract cost of purchase
     const newBalanceAfterPurchase = studentBalance - 50
 
-    //dispatch to adjust balance - 50
-    dispatch(updateBalance({id: studentId, balance: newBalanceAfterPurchase}))
-
-    //dispatch to place desk #{id} into DesksOwned column
-    dispatch(moveRentedDeskToOwnedColumn({studentId: studentId, deskId: deskNum, isOwnedOrRented: "owned", id: deskNum}))
+    dispatch(updateBalance({id: studentId, balance: newBalanceAfterPurchase})) //dispatch to adjust balance - 50
+    dispatch(moveRentedDeskToOwnedColumn({studentId: studentId, deskId: deskNum, isOwnedOrRented: "owned", id: deskNum}))//dispatch to place desk #{id} into DesksOwned column
+    
     const newBalancePayload = {
       balance: newBalanceAfterPurchase
     }
@@ -64,7 +62,7 @@ function BuyDeskDialog({params}) {
       body: JSON.stringify(updateOwnershipObject)
     })
     .then((res) => res.json())
-    .then((updatedStudentDeskObject) => console.log(updatedStudentDeskObject))  
+    .then((updatedStudentDeskObject) => updatedStudentDeskObject)  
   } else {
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     fetch('/student_desks', { //if they already own a desk, this creates another new desk instance
@@ -75,7 +73,7 @@ function BuyDeskDialog({params}) {
       body: JSON.stringify(newOwnDeskObject)
     })
     .then((res) => res.json())
-    .then((newStudentDeskObject) => console.log(newStudentDeskObject))
+    .then((newStudentDeskObject) => newStudentDeskObject)
    }
  ////////////////////////////////////////////////////////////////////////////////////////////////// 
    fetch(`/students/${studentId}`, { //either way, they have to pay and this decrements their balance
@@ -86,7 +84,7 @@ function BuyDeskDialog({params}) {
     body: JSON.stringify(newBalancePayload)
   })
   .then((res) => res.json())
-  .then((updatedBalance) => console.log(updatedBalance))
+  .then((updatedBalance) => updatedBalance)
   }
    
   function handleChange(e) {
@@ -160,7 +158,7 @@ function BuyDeskDialog({params}) {
         </DialogActions>
       </Dialog>
     </div>
-  )
+  );
 }
 
 export default BuyDeskDialog

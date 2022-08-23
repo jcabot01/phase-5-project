@@ -2,6 +2,8 @@ import React from 'react';
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions} from '@mui/material';
 import InvestmentList from './InvestmentList';
 
+
+
 function InvestmentDialog({params}) {
   const [open, setOpen] = React.useState(false);
 

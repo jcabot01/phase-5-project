@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { FormControl, OutlinedInput, InputLabel, Select, MenuItem, Typography } from '@mui/material'
+import { FormControl, OutlinedInput, InputLabel, Select, MenuItem } from '@mui/material'
 import { useDispatch } from 'react-redux';
 import { jobSelectChangeSalary } from '../../../features/studentsSlice';
 
@@ -11,7 +11,6 @@ function JobTitleSelect({jobs, jobTitle, studentId, studentJobsTable}) {
   const studentJobId = studentJobsTable.map((studentJob) => studentJob.id)
 
  
-  
   function handleSubmit(jobId) {
     const jobMatch = jobs.find((job) => job.id === jobId)
 
@@ -35,7 +34,7 @@ function JobTitleSelect({jobs, jobTitle, studentId, studentJobsTable}) {
         body: JSON.stringify(newJobObject)
       })
       .then((res) => res.json())
-      .then((newJob) => console.log(newJob))
+      .then((newJob) => newJob)
 
     } else {
       
@@ -47,7 +46,7 @@ function JobTitleSelect({jobs, jobTitle, studentId, studentJobsTable}) {
         body: JSON.stringify(updatedJobPayload)
       })
       .then((res) => res.json())
-      .then((updatedJob) => console.log(updatedJob))  //redux dispatch eventually
+      .then((updatedJob) => updatedJob)  //redux dispatch eventually
       }
   }
 
@@ -64,26 +63,26 @@ function JobTitleSelect({jobs, jobTitle, studentId, studentJobsTable}) {
       {job.title}
     </MenuItem>
   ))
+  
   return (
     <div>
-    <form>
-    <FormControl sx={{ width: 165 }}>
-      <InputLabel id="job-select-label">{jobTitle.length > 0 ? jobTitle : ("SELECT JOB")}</InputLabel>
-      <Select
-        labelId="job-select-label"
-        id="job-selector"
-        value={jobSelect}
-        onChange={handleChange}
-        input={<OutlinedInput label="Job" />}
-      >
-    <MenuItem>{jobTitle}</MenuItem>
-        {menuItems}
-      </Select>
-    </FormControl>
-    </form>
-    
+      <form>
+      <FormControl sx={{ width: 165 }}>
+        <InputLabel id="job-select-label">{jobTitle.length > 0 ? jobTitle : ("SELECT JOB")}</InputLabel>
+        <Select
+          labelId="job-select-label"
+          id="job-selector"
+          value={jobSelect}
+          onChange={handleChange}
+          input={<OutlinedInput label="Job" />}
+        >
+      <MenuItem>{jobTitle}</MenuItem>
+          {menuItems}
+        </Select>
+      </FormControl>
+      </form>
   </div>
-  )
+  );
 }
 
 export default JobTitleSelect

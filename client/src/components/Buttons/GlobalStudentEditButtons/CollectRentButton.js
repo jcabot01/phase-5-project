@@ -7,7 +7,6 @@ import { updateBalance } from '../../../features/studentsSlice';
 
 function CollectRentButton({params}) {
   const dispatch = useDispatch();
-
   
   function handleClick() {
     const studentBalance = params.row.balance
@@ -29,18 +28,18 @@ function CollectRentButton({params}) {
       body: JSON.stringify(collectRentPayload)
     })
       .then((res) => res.json())
-      .then((updatedBalance) => console.log(updatedBalance))
+      .then((updatedBalance) => updatedBalance)
   }
 
   return (
     <Button sx={{fontSize: "10px"}}
-    variant="contained"
-    size="small"
-    color='warning'
-    onClick={() => handleClick()}>
-      Collect Rent
-  </Button>
-  )
+      variant="contained"
+      size="small"
+      color='warning'
+      onClick={() => handleClick()}>
+        Collect Rent
+    </Button>
+  );
 }
 
 export default CollectRentButton

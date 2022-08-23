@@ -5,7 +5,6 @@ import { updateBalance } from '../../../features/studentsSlice';
 
 
 
-
 function PaydayButton({params}) {
   const dispatch = useDispatch();
 
@@ -20,6 +19,7 @@ function PaydayButton({params}) {
     const newBalancePayload = {
       balance: newBalance
     }
+
     fetch(`/students/${studentId}`, {
       method: "PATCH",
       headers: {
@@ -28,7 +28,7 @@ function PaydayButton({params}) {
       body: JSON.stringify(newBalancePayload)
     })
         .then((res) => res.json())
-        .then((newBalanceObject) => console.log(newBalanceObject))
+        .then((newBalanceObject) => newBalanceObject)
   }
 
   return (
@@ -39,7 +39,7 @@ function PaydayButton({params}) {
       onClick={() => handleClick()}>
         Payday!
     </Button>
-  )
+  );
 }
 
 export default PaydayButton

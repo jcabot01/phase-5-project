@@ -26,43 +26,43 @@ function StudentLoginForm({setUser}) {
 
   return (
     <Box component="div">
-    <Box textAlign={'center'} >     
-      <Typography variant='h4' sx={{ color: "black", }}>Log In</Typography>
-      <form onSubmit={handleSubmit}>
-        <Stack spacing={2} direction={'column'} alignItems="center">
-          <TextField 
-            value={username} onChange={(e) => setUsername(e.target.value)}
-            id="StudentUsername"  
-            variant="outlined"
-            placeholder="Username"
-            sx={{width: '28ch', backgroundColor: '#ffffff', marginTop: 2 }}
-            
-          />
-          <TextField 
-            value={password} onChange={(e) => setPassword(e.target.value)}
-            id="StudentPassword"
-            type={'password'}  
-            variant="outlined"
-            placeholder="Password"
-            sx={{width: '28ch', backgroundColor: '#ffffff' }}
-          />
-          <Link href="/student-profile">
-            <Button 
-              type='submit'
-              color="primary"
-              variant="contained" 
-              sx={{ borderRadius: 2, margin: 3, marginTop: 0}}
-            >
-              Submit
-            </Button>
-          </Link>
-          </Stack>
-          {errors.map((err) => (
-            <Typography key={err} >{err}</Typography>
-          ))}
-      </form>
+      <Box textAlign={'center'} >     
+        <Typography variant='h4' sx={{ color: "black", }}>Log In</Typography>
+        <form onSubmit={handleSubmit}>
+          <Stack spacing={2} direction={'column'} alignItems="center">
+            <TextField 
+              value={username} onChange={(e) => setUsername(e.target.value)}
+              id="StudentUsername"  
+              variant="outlined"
+              placeholder="Username"
+              sx={{width: '28ch', backgroundColor: '#ffffff', marginTop: 2 }}
+              
+            />
+            <TextField 
+              value={password} onChange={(e) => setPassword(e.target.value)}
+              id="StudentPassword"
+              type={'password'}  
+              variant="outlined"
+              placeholder="Password"
+              sx={{width: '28ch', backgroundColor: '#ffffff' }}
+            />
+            <Link href="/student-profile">
+              <Button 
+                type='submit'
+                color="primary"
+                variant="contained" 
+                sx={{ borderRadius: 2, margin: 3, marginTop: 0}}
+              >
+                Submit
+              </Button>
+            </Link>
+            </Stack>
+            {errors.map((err) => (
+              <Typography key={err} >{err}</Typography>
+            ))}
+        </form>
+      </Box>
     </Box>
-  </Box>
   )
 }
 

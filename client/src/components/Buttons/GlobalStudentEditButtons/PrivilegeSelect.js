@@ -10,7 +10,6 @@ function PrivilegeSelect({params, handleClose}) {
   const dispatch = useDispatch();
   const studentId = params.row.id
 
-
   function handleChange(e) {
     setAmountSpent(e.target.value)
     const privilegeCase = e.target.value
@@ -37,7 +36,7 @@ function PrivilegeSelect({params, handleClose}) {
       })
       .then((res) => {
         if (res.ok) { //if ok, run dispatch/state update && create new Privilege in DB
-          res.json().then((updatedBalance) => console.log(updatedBalance))
+          res.json().then((updatedBalance) => updatedBalance)
           dispatch(updateBalance({id: studentId, balance: newBalance }))
           
           fetch('/privileges', {//create new privilege in DB
@@ -48,12 +47,12 @@ function PrivilegeSelect({params, handleClose}) {
             body: JSON.stringify(privilegeObject)
           })
             .then((res) => res.json())
-            .then((newPrivilege) => console.log(newPrivilege))
+            .then((newPrivilege) => newPrivilege)
             isEvent(privilegeObject.event === "Invest") 
             handleClose()
         } else {
-          res.json().then((err) => alert(err.errors));
-          handleClose()
+            res.json().then((err) => alert(err.errors));
+            handleClose()
         }
       })
     }
@@ -119,7 +118,7 @@ function PrivilegeSelect({params, handleClose}) {
         </Select>
       </FormControl>
     </Box>
-  )
+  );
 }
 
 export default PrivilegeSelect

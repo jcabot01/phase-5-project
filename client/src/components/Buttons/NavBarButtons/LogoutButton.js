@@ -20,7 +20,7 @@ function LogoutButton({setUser}) {
         Logout
       </Button>
     </Box>
-  )
+  );
 }
 
 export default LogoutButton

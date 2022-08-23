@@ -1,6 +1,8 @@
 import { React, useState } from 'react';
 import { Typography, TextField, Box, Button, Link, Grid } from '@mui/material';
 
+
+
 function TeacherSignupForm({setUser}) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -36,77 +38,77 @@ function TeacherSignupForm({setUser}) {
 
  return (
     <Box component="div">
-    <Box textAlign={'center'} >     
-    <Typography variant='h4' sx={{ color: "black", marginBottom: 0, marginTop: -1}}>Signup</Typography>
-      <form onSubmit={handleSubmit}>
-        <Grid container rowSpacing={1} >
-          <Grid item xs={6} md={6} lg={6}>
-            <TextField 
-              value={firstName} onChange={(e) => setFirstName(e.target.value)}
-              id="First Name"  
-              variant="outlined"
-              placeholder="First Name"
-              sx={{width: '28ch', backgroundColor: '#ffffff' }}
-            />
+      <Box textAlign={'center'} >     
+      <Typography variant='h4' sx={{ color: "black", marginBottom: 0, marginTop: -1}}>Signup</Typography>
+        <form onSubmit={handleSubmit}>
+          <Grid container rowSpacing={1} >
+            <Grid item xs={6} md={6} lg={6}>
+              <TextField 
+                value={firstName} onChange={(e) => setFirstName(e.target.value)}
+                id="First Name"  
+                variant="outlined"
+                placeholder="First Name"
+                sx={{width: '28ch', backgroundColor: '#ffffff' }}
+              />
+            </Grid>
+            <Grid item xs={6} md={6} lg={6}>
+              <TextField 
+                value={lastName} onChange={(e) => setLastName(e.target.value)}
+                id="Last Name"  
+                variant="outlined"
+                placeholder="Last Name"
+                sx={{width: '28ch', backgroundColor: '#ffffff' }}
+              />
+            </Grid>
+            <Grid item xs={6} md={6} lg={6}>
+              <TextField 
+                value={username} onChange={(e) => setUsername(e.target.value)}
+                id="Username"  
+                variant="outlined"
+                placeholder="Username"
+                sx={{width: '28ch', backgroundColor: '#ffffff' }}
+              />
+            </Grid>
+            <Grid item xs={6}md={6} lg={6}>
+              <TextField 
+                value={password} onChange={(e) => setPassword(e.target.value)}
+                id="Password"
+                type={'password'}  
+                variant="outlined"
+                placeholder="Password"
+                sx={{width: '28ch', backgroundColor: '#ffffff' }}
+              />
+            </Grid>
+            <Grid item xs={6} md={6} lg={6}>
+              <TextField 
+                value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}
+                id="Password Confirmation"
+                type={'password'}  
+                variant="outlined"
+                placeholder="re-type password"
+                sx={{width: '28ch', backgroundColor: '#ffffff' }}
+              />
+            </Grid>
+            <Grid item xs={6} md={6} lg={6}>
+              <Link href="/">
+                <Button 
+                  type='submit'
+                  color="primary"
+                  variant="contained" 
+                  sx={{ borderRadius: 2, marginTop: 1}}
+                >
+                  Submit
+                </Button>
+              </Link>
+            </Grid>
           </Grid>
-          <Grid item xs={6} md={6} lg={6}>
-            <TextField 
-              value={lastName} onChange={(e) => setLastName(e.target.value)}
-              id="Last Name"  
-              variant="outlined"
-              placeholder="Last Name"
-              sx={{width: '28ch', backgroundColor: '#ffffff' }}
-            />
-          </Grid>
-          <Grid item xs={6} md={6} lg={6}>
-            <TextField 
-              value={username} onChange={(e) => setUsername(e.target.value)}
-              id="Username"  
-              variant="outlined"
-              placeholder="Username"
-              sx={{width: '28ch', backgroundColor: '#ffffff' }}
-            />
-          </Grid>
-          <Grid item xs={6}md={6} lg={6}>
-            <TextField 
-              value={password} onChange={(e) => setPassword(e.target.value)}
-              id="Password"
-              type={'password'}  
-              variant="outlined"
-              placeholder="Password"
-              sx={{width: '28ch', backgroundColor: '#ffffff' }}
-            />
-          </Grid>
-          <Grid item xs={6} md={6} lg={6}>
-            <TextField 
-              value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}
-              id="Password Confirmation"
-              type={'password'}  
-              variant="outlined"
-              placeholder="re-type password"
-              sx={{width: '28ch', backgroundColor: '#ffffff' }}
-            />
-          </Grid>
-          <Grid item xs={6} md={6} lg={6}>
-            <Link href="/">
-              <Button 
-                type='submit'
-                color="primary"
-                variant="contained" 
-                sx={{ borderRadius: 2, marginTop: 1}}
-              >
-                Submit
-              </Button>
-            </Link>
-          </Grid>
-        </Grid>
-        {errors.map((err) => (
-          <Typography key={err} alert={err} >{err}</Typography>
-        ))}
-      </form>
+          {errors.map((err) => (
+            <Typography key={err} alert={err} >{err}</Typography>
+          ))}
+        </form>
+      </Box>
     </Box>
-  </Box>
-  )
+  );
 }
 
 export default TeacherSignupForm

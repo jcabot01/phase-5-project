@@ -1,6 +1,7 @@
-import React from 'react'
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions, Typography} from '@mui/material'
+import React from 'react';
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, Typography} from '@mui/material';
 import PrivilegeSelect from './PrivilegeSelect';
+
 
 
 function PrivilegeDialog({params}) {
@@ -35,7 +36,7 @@ function PrivilegeDialog({params}) {
         <Typography textAlign='center' margin={2} >Your available Balance to spend is ${params.row.balance}</Typography>
       </Dialog>
     </div>
-  )
+  );
 }
 
 export default PrivilegeDialog

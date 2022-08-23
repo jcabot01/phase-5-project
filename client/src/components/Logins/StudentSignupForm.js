@@ -59,124 +59,117 @@ function StudentSignupForm({setUser}) {
 
   return (
     <Box component="div">
-    <Box textAlign={'center'} >     
-    <Typography variant='h4' sx={{ color: "black", marginBottom: 0, marginTop: -1}}>Signup</Typography>
-      <form onSubmit={handleSubmit}>
-        <Grid container rowSpacing={1} >
-        <Grid item xs={6} md={6} lg={6}>
-            <TextField 
-              value={firstName} onChange={(e) => setFirstName(e.target.value)}
-              id="First Name"  
-              variant="outlined"
-              placeholder="First Name"
-              sx={{width: '28ch', backgroundColor: '#ffffff' }}
-            />
-          </Grid>
+      <Box textAlign={'center'} >     
+      <Typography variant='h4' sx={{ color: "black", marginBottom: 0, marginTop: -1}}>Signup</Typography>
+        <form onSubmit={handleSubmit}>
+          <Grid container rowSpacing={1} >
           <Grid item xs={6} md={6} lg={6}>
-            <TextField 
-              value={lastName} onChange={(e) => setLastName(e.target.value)}
-              id="Last Name"  
-              variant="outlined"
-              placeholder="Last Name"
-              sx={{width: '28ch', backgroundColor: '#ffffff' }}
-            />
-          </Grid>
-          <Grid item xs={6} md={6} lg={6}>
-            <TextField 
-              value={avatar} onChange={(e) => setAvatar(e.target.value)}
-              id="Avatar URL"  
-              variant="outlined"
-              placeholder="Avatar URL"
-              sx={{width: '28ch', backgroundColor: '#ffffff' }}
-            />
-          </Grid>
-          <Grid item xs={6} md={6} lg={6}>
-            {/* <TextField 
-              value={classPeriod} onChange={(e) => setClassPeriod(e.target.value)}
-              id="Class Period"  
-              variant="outlined"
-              placeholder="Class Period ex: 1"
-              sx={{width: '28ch', backgroundColor: '#ffffff' }}
-            /> */}
-            <FormControl fullWidth>
-              <InputLabel id="get-class-period">Class Period</InputLabel>
-              <Select
-                labelId='get-class-period'
-                id='class-period-select'
-                value={classPeriod}
-                onChange={((e) => setClassPeriod(e.target.value))}
+              <TextField 
+                value={firstName} onChange={(e) => setFirstName(e.target.value)}
+                id="First Name"  
+                variant="outlined"
+                placeholder="First Name"
+                sx={{width: '28ch', backgroundColor: '#ffffff' }}
+              />
+            </Grid>
+            <Grid item xs={6} md={6} lg={6}>
+              <TextField 
+                value={lastName} onChange={(e) => setLastName(e.target.value)}
+                id="Last Name"  
+                variant="outlined"
+                placeholder="Last Name"
+                sx={{width: '28ch', backgroundColor: '#ffffff' }}
+              />
+            </Grid>
+            <Grid item xs={6} md={6} lg={6}>
+              <TextField 
+                value={avatar} onChange={(e) => setAvatar(e.target.value)}
+                id="Avatar URL"  
+                variant="outlined"
+                placeholder="Avatar URL"
+                sx={{width: '28ch', backgroundColor: '#ffffff' }}
+              />
+            </Grid>
+            <Grid item xs={6} md={6} lg={6}>
+              <FormControl fullWidth>
+                <InputLabel id="get-class-period">Class Period</InputLabel>
+                <Select
+                  labelId='get-class-period'
+                  id='class-period-select'
+                  value={classPeriod}
+                  onChange={((e) => setClassPeriod(e.target.value))}
+                >
+                {classPeriods.map((period) => (
+                  <MenuItem key={period} value={period}>{period}</MenuItem>
+                ))}
+                
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={6} md={6} lg={6}>
+              <FormControl fullWidth>
+                <InputLabel id="get-teacher">Teacher</InputLabel>
+                <Select
+                labelId='get-teacher'
+                id='student-form-teacher-select'
+                value={teacherId} 
+                onChange={(e) => setTeacherId(e.target.value)}  
               >
-              {classPeriods.map((period) => (
-                <MenuItem key={period} value={period}>{period}</MenuItem>
+              {allTeachers.map((teacher) => (
+                <MenuItem key={teacher.id} value={teacher.id}>{teacher.last_name}</MenuItem>
               ))}
-              
               </Select>
-            </FormControl>
+              </FormControl>
+            </Grid>
+            <Grid item xs={6} md={6} lg={6}>
+              <TextField 
+                value={username} onChange={(e) => setUsername(e.target.value)}
+                id="Username"  
+                variant="outlined"
+                placeholder="Username"
+                sx={{width: '28ch', backgroundColor: '#ffffff' }}
+              />
+            </Grid>
+            <Grid item xs={6}md={6} lg={6}>
+              <TextField 
+                value={password} onChange={(e) => setPassword(e.target.value)}
+                id="Password"
+                type={'password'}  
+                variant="outlined"
+                placeholder="Password"
+                sx={{width: '28ch', backgroundColor: '#ffffff' }}
+              />
+            </Grid>
+            <Grid item xs={6} md={6} lg={6}>
+              <TextField 
+                value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}
+                id="Password Confirmation"
+                type={'password'}  
+                variant="outlined"
+                placeholder="Password confirmation"
+                sx={{width: '28ch', backgroundColor: '#ffffff' }}
+              />
+            </Grid>
+            <Grid item xs={12} md={12} lg={12}>
+            <Link href="/student-profile">
+                <Button 
+                
+                  type='submit'
+                  color="primary"
+                  variant="contained" 
+                  sx={{ borderRadius: 2, margin: 3}}
+                >
+                  Submit
+                </Button>
+            </Link>
+            </Grid>
           </Grid>
-          <Grid item xs={6} md={6} lg={6}>
-            <FormControl fullWidth>
-              <InputLabel id="get-teacher">Teacher</InputLabel>
-              <Select
-              labelId='get-teacher'
-              id='student-form-teacher-select'
-              value={teacherId} 
-              onChange={(e) => setTeacherId(e.target.value)}  
-            >
-            {allTeachers.map((teacher) => (
-              <MenuItem key={teacher.id} value={teacher.id}>{teacher.last_name}</MenuItem>
-            ))}
-            </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={6} md={6} lg={6}>
-            <TextField 
-              value={username} onChange={(e) => setUsername(e.target.value)}
-              id="Username"  
-              variant="outlined"
-              placeholder="Username"
-              sx={{width: '28ch', backgroundColor: '#ffffff' }}
-            />
-          </Grid>
-          <Grid item xs={6}md={6} lg={6}>
-            <TextField 
-              value={password} onChange={(e) => setPassword(e.target.value)}
-              id="Password"
-              type={'password'}  
-              variant="outlined"
-              placeholder="Password"
-              sx={{width: '28ch', backgroundColor: '#ffffff' }}
-            />
-          </Grid>
-          <Grid item xs={6} md={6} lg={6}>
-            <TextField 
-              value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}
-              id="Password Confirmation"
-              type={'password'}  
-              variant="outlined"
-              placeholder="Password confirmation"
-              sx={{width: '28ch', backgroundColor: '#ffffff' }}
-            />
-          </Grid>
-          <Grid item xs={12} md={12} lg={12}>
-          <Link href="/student-profile">
-              <Button 
-               
-                type='submit'
-                color="primary"
-                variant="contained" 
-                sx={{ borderRadius: 2, margin: 3}}
-              >
-                Submit
-              </Button>
-           </Link>
-          </Grid>
-        </Grid>
-        {errors.map((err) => (
-          <Typography key={err} >{err}</Typography>
-        ))}
-      </form>
+          {errors.map((err) => (
+            <Typography key={err} >{err}</Typography>
+          ))}
+        </form>
+      </Box>
     </Box>
-  </Box>
   )
 }
 

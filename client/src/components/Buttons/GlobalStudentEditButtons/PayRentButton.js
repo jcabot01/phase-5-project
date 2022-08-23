@@ -23,12 +23,13 @@ function PayRentButton({balance, studentId}) {
       body: JSON.stringify(newBalancePayload)
     }).then((res) => {
         if (res.ok) {
-          res.json().then((updatedBalance) => console.log(updatedBalance))    
+          res.json().then((updatedBalance) => updatedBalance)    
         } else {
           res.json().then((err) => alert(err.errors))
         }
       })
-  }   
+  } 
+
   return (
     <Button sx={{fontSize: "10px"}}
       variant="contained"
@@ -37,7 +38,7 @@ function PayRentButton({balance, studentId}) {
       onClick={() => handlePatch()}>
         Pay Rent
     </Button>
-    )
+  );
 }
 
 export default PayRentButton

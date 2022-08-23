@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import ErrorPage from './pages/ErrorPage';
 import StudentOrTeacherPage from './pages/StudentOrTeacherPage';
 import RulesOverview from './pages/RulesOverview';
@@ -35,7 +35,6 @@ function App() {
   }
   
   if (user.admin === false) return <StudentProfilePage user={user} setUser={setUser} onUpdateUser={onUpdateUser}/>
-  
   
   return (
     <div>

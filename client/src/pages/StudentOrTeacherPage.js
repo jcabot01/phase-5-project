@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from '../images/board-game-gd3b62ce94_1920.jpg';
-import { Button, Box, Typography, Paper, Dialog, DialogActions, DialogContent, Card, CardMedia } from '@mui/material';
+import { Button, Box, Typography, Paper, Dialog, DialogActions, DialogContent } from '@mui/material';
 import styled from '@emotion/styled';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import StudentLoginPage from './StudentLoginPage';
@@ -9,7 +9,7 @@ import LogoImage from '../images/FutureForwardEdLogo.png'
 
 
 
-function StudentOrTeacherPAGE({setUser}) {
+function StudentOrTeacherPage({setUser}) {
   const [studentOpen, setStudentOpen] = useState(false);
   const [teacherOpen, setTeacherOpen] = useState(false);
 
@@ -36,7 +36,6 @@ function StudentOrTeacherPAGE({setUser}) {
             backgroundImage: `url(${Image})`
         }
       };
-
   
   return (
     <Box textAlign='center'>
@@ -97,11 +96,8 @@ function StudentOrTeacherPAGE({setUser}) {
         <Typography><CopyrightIcon/>Future Forward Education LLC</Typography>
         <Box>
           <img src={LogoImage} alt="Logo" />
-        </Box>
-        
-       
+        </Box>       
       </Box>
-     
     </Box>
   );
 }
@@ -140,4 +136,4 @@ const Logo = styled.h1`
   `;
 
 
-export default StudentOrTeacherPAGE
+export default StudentOrTeacherPage

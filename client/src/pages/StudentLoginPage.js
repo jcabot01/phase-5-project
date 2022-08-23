@@ -10,34 +10,32 @@ function StudentLoginPage({setUser}) {
   const [showLogin, setShowLogin] = useState(true)
   return (
     <Box>
-      <Box>
-        <Wrapper>
-        <Typography>Student Portal</Typography>
-          {showLogin ? (
-            <>
-              <StudentLoginForm setUser={setUser}/>
-              <Box>
-                Don't have an account? &nbsp;
-                <Button color="primary" onClick={() => setShowLogin(false)}>
-                  Signup
-                </Button>
-              </Box>
-            </>
-          ) : (
-            <>
-              <StudentSignupForm setUser={setUser} />
-              <Box>
-                Already have an account? &nbsp;
-                <Button color="primary" onClick={() => setShowLogin(true)}>
-                  Login
-                </Button>
-              </Box>
-            </>
-          )}
-        </Wrapper>
-      </Box>
+      <Wrapper>
+      <Typography>Student Portal</Typography>
+        {showLogin ? (
+          <>
+            <StudentLoginForm setUser={setUser}/>
+            <Box>
+              Don't have an account? &nbsp;
+              <Button color="primary" onClick={() => setShowLogin(false)}>
+                Signup
+              </Button>
+            </Box>
+          </>
+        ) : (
+          <>
+            <StudentSignupForm setUser={setUser} />
+            <Box>
+              Already have an account? &nbsp;
+              <Button color="primary" onClick={() => setShowLogin(true)}>
+                Login
+              </Button>
+            </Box>
+          </>
+        )}
+      </Wrapper>
     </Box>
-  )
+  );
 }
 
 const Wrapper = styled.section`

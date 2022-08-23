@@ -21,28 +21,28 @@ function StudentProfilePage({user, setUser, onUpdateUser}) {
   const deskOwner = user.student_desks.find((desk) => desk.is_owned_or_rented === "owned")
   const secondDesk = user.student_desks.filter((desk) => desk.is_owned_or_rented === "owned")
   
- function handleChange(e) {
-  setGoal(e.target.value)
- }
+  function handleChange(e) {
+    setGoal(e.target.value)
+  }
  
- const updatedGoal = {
-  goal: goal
-}
+  const updatedGoal = {
+    goal: goal
+  }
 
- function handleSubmit(e) {
-  e.preventDefault();
+  function handleSubmit(e) {
+    e.preventDefault();
  
-  fetch(`/students/${user.id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(updatedGoal)
-  })
-  .then((res) => res.json())
-  .then((student) => onUpdateUser(student))
-  setGoal("")
- }
+    fetch(`/students/${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedGoal)
+    })
+    .then((res) => res.json())
+    .then((student) => onUpdateUser(student))
+    setGoal("")
+  }
 
   return (
     <Box>
@@ -112,7 +112,7 @@ function StudentProfilePage({user, setUser, onUpdateUser}) {
          <Typography><CopyrightIcon/>Future Forward Education LLC</Typography>
       </Box>
     </Box>
-  )
+  );
 }
 
 export default StudentProfilePage

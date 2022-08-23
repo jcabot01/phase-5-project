@@ -10,34 +10,32 @@ function TeacherLoginPage({setUser}) {
   const [showLogin, setShowLogin] = useState(true)
   return (
     <Box>
-        <Box>
-          <Wrapper>
-            <Typography>Teacher Portal</Typography>
-            {showLogin ? (
-              <>
-                <TeacherLoginForm setUser={setUser}/>
-                <Box>
-                  Don't have an account? &nbsp;
-                  <Button color="primary" onClick={() => setShowLogin(false)}>
-                    Signup
-                  </Button>
-                </Box>
-              </>
-            ) : (
-              <>
-                <TeacherSignupForm setUser={setUser}/>
-                <Box>
-                  Already have an account? &nbsp;
-                  <Button color="primary" onClick={() => setShowLogin(true)}>
-                    Login
-                  </Button>
-                </Box>
-              </>
-            )}
-          </Wrapper>
-        </Box>
+      <Wrapper>
+        <Typography>Teacher Portal</Typography>
+        {showLogin ? (
+          <>
+            <TeacherLoginForm setUser={setUser}/>
+            <Box>
+              Don't have an account? &nbsp;
+              <Button color="primary" onClick={() => setShowLogin(false)}>
+                Signup
+              </Button>
+            </Box>
+          </>
+        ) : (
+          <>
+            <TeacherSignupForm setUser={setUser}/>
+            <Box>
+              Already have an account? &nbsp;
+              <Button color="primary" onClick={() => setShowLogin(true)}>
+                Login
+              </Button>
+            </Box>
+          </>
+        )}
+      </Wrapper>
     </Box>
-  )
+  );
 }
 
 const Wrapper = styled.section`

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :students   #full CRUD
   resources :jobs, only: [:index]
-  resources :privileges
+  resources :privileges, only: [:create]
   resources :student_desks
   resources :teachers
   resources :student_jobs

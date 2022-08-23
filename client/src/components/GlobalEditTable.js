@@ -19,7 +19,6 @@ import { updateAvatar } from '../features/studentsSlice';
 
 
 
-
 function GlobalEditTable({students}) {
   const [pageSize, setPageSize] = useState(30); //datagrid layout
   const [average, setAverage] = useState("No Scores"); //work_habit_scores average

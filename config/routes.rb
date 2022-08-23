@@ -3,14 +3,10 @@ Rails.application.routes.draw do
   resources :jobs, only: [:index]
   resources :privileges, only: [:create]
   resources :student_desks, only: [:create, :update]
-  resources :teachers
-  resources :student_jobs
-  get '/desks', to: 'desks#index' #get all desks data
-  get '/desks/:id', to: 'desks#show' #get all desks data
-
-
-
-
+  resources :teachers, only: [:index]
+  resources :student_jobs, only: [:create, :update]
+  resources :desks, only: [:index, :show]
+  
   #Authentication/Authorization
   post '/login/student', to: 'sessions#create_student'  #login existing student params[username and password], set session hash
   post '/login/teacher', to: 'sessions#create_teacher'  #login existing student params[username and password], set session hash

@@ -1,18 +1,4 @@
 class StudentJobsController < ApplicationController
-    #GET
-  # '/student_jobs'
-  def index
-    student_jobs = StudentJob.all 
-    render json: student_jobs, status: :ok
-  end
-
-  # #GET
-  # # '/student_jobs/:id'
-  def show  
-    student_job = find_student_job
-    render json: student_job, status: :ok
-  end
-
   #  #POST
   # # '/student_jobs
   def create 

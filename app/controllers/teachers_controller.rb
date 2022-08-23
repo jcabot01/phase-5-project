@@ -18,7 +18,7 @@ class TeachersController < ApplicationController
   #GET  find user whose id == session[:teacher_id].  That user is logged in on every page refresh thanks to useEffect in App.js
   #show   /me    
   def show
-    teacher = Teacher.find_by(id: session[:teacher_id])  #find user whose id == session hash
+    teacher = Teacher.find_by(id: session[:teacher_id])
     if teacher 
       render json: teacher, status: :ok
     else 
@@ -33,27 +33,27 @@ class TeachersController < ApplicationController
     render json: teachers, status: :ok
   end
 
-  #PATCH
-  # '/teachers/:id'
-  def update
-    teacher = find_teacher
-    teacher.update!(teacher_params)
-    render json: teacher, status: :accepted
-  end
+  # #PATCH
+  # # '/teachers/:id'
+  # def update
+  #   teacher = find_teacher
+  #   teacher.update!(teacher_params)
+  #   render json: teacher, status: :accepted
+  # end
 
-  #DELETE
-  # '/teachers/:id'
-  def destroy
-    teacher = find_teacher
-    teacher.destroy
-    head :no_content
-  end
+  # #DELETE
+  # # '/teachers/:id'
+  # def destroy
+  #   teacher = find_teacher
+  #   teacher.destroy
+  #   head :no_content
+  # end
 
   private
 
-  def find_teacher
-    Teacher.find(params[:id])
-  end
+  # def find_teacher
+  #   Teacher.find(params[:id])
+  # end
 
   def teacher_params
     params.permit(:first_name, :last_name, :username, :password, :password_confirmation, :admin)

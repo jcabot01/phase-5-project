@@ -15,9 +15,9 @@ function GlobalStudentEditPage({user}) {
     dispatch(fetchStudents());
   }, [dispatch]);
 
-  console.log(students)
+  
   const studentByTeacher = students.filter((student) => student.teacher_id === user.id)
-  console.log(studentByTeacher)
+ 
   return (
     <Box>
       <Box>

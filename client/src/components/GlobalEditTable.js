@@ -262,7 +262,6 @@ useEffect(() => {
       width: 120, 
       renderCell: (params) => {
         let ownedDesks = params.row.student_desks.filter((desk) => desk.is_owned_or_rented == "owned")
-        console.log(ownedDesks)
         if (ownedDesks.length >= 2) {
           return (
             <CollectRentButton params={params}/>

@@ -9,34 +9,42 @@ import { pink } from '@mui/material/colors';
 
 
 function StudentProfileStack({user}) {
-  const rentedDesk = user.student_desks.filter((desk) => {
-    if (desk.is_owned_or_rented === "rented") {
-      return desk
-    }
+  // const rentedDesk = user.student_desks.filter((desk) => {
+  //   if (desk.is_owned_or_rented === "rented") {
+  //     return desk
+  //   }
+  // })
+
+  const rentedDesk = user.student_desks[0].is_owned_or_rented
+ 
+
+  // const ownedDesksArray = user.student_desks.map((desk) => {
+  //   if (desk.is_owned_or_rented === "owned") {
+  //     return desk
+  //   }
+  // })
+
+  const ownedDesksArray = user.student_desks.filter((desk) => {
+    return desk.is_owned_or_rented === "owned"
   })
 
-  const ownedDesksArray = user.student_desks.map((desk) => {
-    if (desk.is_owned_or_rented === "owned") {
-      return desk
-    }
-  })
+  
+  // const musicCards = user.privileges.filter((privilege) => {
+  //   if (privilege.event === "Music Card") {
+  //     return privilege
+  //   }
+  // })
 
   const musicCards = user.privileges.filter((privilege) => {
-    if (privilege.event === "Music Card") {
-      return privilege
-    }
+    return privilege.event === "Music Card"
   })
 
   const snackCards = user.privileges.filter((privilege) => {
-    if (privilege.event === "Snack Card") {
-      return privilege
-    }
+    return privilege.event === "Snack Card"
   })
 
   const investments = user.privileges.filter((privilege) => {
-    if (privilege.event === "Invest") {
-      return privilege
-    }
+    return privilege.event === "Invest"
   })
   
   return (
@@ -51,7 +59,7 @@ function StudentProfileStack({user}) {
           <Stack>
             <Box width='fit-content' display='flex'>
               <Typography fontWeight={'bold'} >Desk Rented:</Typography> &nbsp;
-              {rentedDesk.length > 0 ? <Typography sx={{fontSize: 14, color: 'grey', paddingTop: '2px'}}>#{rentedDesk.desk_id},</Typography> : <Typography sx={{fontSize: 14, color: 'grey'}}>Not renting currently</Typography>}   
+              {rentedDesk.is_owned_or_rented === 'rented' ? <Typography sx={{fontSize: 14, color: 'grey', paddingTop: '2px'}}>#{rentedDesk.desk_id},</Typography> : <Typography sx={{fontSize: 14, color: 'grey'}}>Not renting currently</Typography>}   
             </Box>
             <Box width='fit-content' display='flex'>
               <Typography fontWeight={'bold'} >Desk(s) Owned: </Typography> &nbsp;

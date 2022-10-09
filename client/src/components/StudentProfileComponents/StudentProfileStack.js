@@ -20,7 +20,7 @@ function StudentProfileStack({user}) {
 
 
   const rentedDesk = user.student_desks
-  console.log(rentedDesk)
+ 
 
 
  
@@ -66,7 +66,7 @@ function StudentProfileStack({user}) {
           <Stack>
             <Box width='fit-content' display='flex'>
               <Typography fontWeight={'bold'} >Desk Rented:</Typography> &nbsp;
-              {rentedDesk === [] || rentedDesk.is_owned_or_rented === !'rented' ? <Typography sx={{fontSize: 14, color: 'grey', paddingTop: '2px'}}>#{rentedDesk.desk_id},</Typography> : <Typography sx={{fontSize: 14, color: 'grey'}}>Not renting currently</Typography>}   
+              {rentedDesk === [] || rentedDesk[0].is_owned_or_rented === 'owned' ? <Typography sx={{fontSize: 14, color: 'grey'}}>Not renting currently</Typography> : <Typography sx={{fontSize: 14, color: 'grey', paddingTop: '2px'}}>#{rentedDesk[0].desk_id},</Typography> }   
             </Box>
             <Box width='fit-content' display='flex'>
               <Typography fontWeight={'bold'} >Desk(s) Owned: </Typography> &nbsp;

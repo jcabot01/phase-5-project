@@ -9,38 +9,11 @@ import { pink } from '@mui/material/colors';
 
 
 function StudentProfileStack({user}) {
-  // const rentedDesk = user.student_desks.filter((desk) => {
-  //   if (desk.is_owned_or_rented === "rented") {
-  //     return desk
-  //   }
-  // })
-
- 
- 
-
-
   const rentedDesk = user.student_desks
- 
-
-
- 
-
-  // const ownedDesksArray = user.student_desks.map((desk) => {
-  //   if (desk.is_owned_or_rented === "owned") {
-  //     return desk
-  //   }
-  // })
 
   const ownedDesksArray = user.student_desks.filter((desk) => {
     return desk.is_owned_or_rented === "owned"
   })
-
-  
-  // const musicCards = user.privileges.filter((privilege) => {
-  //   if (privilege.event === "Music Card") {
-  //     return privilege
-  //   }
-  // })
 
   const musicCards = user.privileges.filter((privilege) => {
     return privilege.event === "Music Card"
@@ -66,7 +39,7 @@ function StudentProfileStack({user}) {
           <Stack>
             <Box width='fit-content' display='flex'>
               <Typography fontWeight={'bold'} >Desk Rented:</Typography> &nbsp;
-              {rentedDesk === [] || rentedDesk[0].is_owned_or_rented === 'owned' ? <Typography sx={{fontSize: 14, color: 'grey'}}>Not renting currently</Typography> : <Typography sx={{fontSize: 14, color: 'grey', paddingTop: '2px'}}>#{rentedDesk[0].desk_id},</Typography> }   
+              {rentedDesk.length === 0 || rentedDesk[0].is_owned_or_rented === 'owned' ? <Typography sx={{fontSize: 14, color: 'grey'}}>Not renting currently</Typography> : <Typography sx={{fontSize: 14, color: 'grey', paddingTop: '2px'}}>#{rentedDesk[0].desk_id},</Typography> }   
             </Box>
             <Box width='fit-content' display='flex'>
               <Typography fontWeight={'bold'} >Desk(s) Owned: </Typography> &nbsp;

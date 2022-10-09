@@ -15,7 +15,14 @@ function StudentProfileStack({user}) {
   //   }
   // })
 
-  const rentedDesk = user.student_desks[0].is_owned_or_rented
+ 
+ 
+
+
+  const rentedDesk = user.student_desks
+  console.log(rentedDesk)
+
+
  
 
   // const ownedDesksArray = user.student_desks.map((desk) => {
@@ -59,7 +66,7 @@ function StudentProfileStack({user}) {
           <Stack>
             <Box width='fit-content' display='flex'>
               <Typography fontWeight={'bold'} >Desk Rented:</Typography> &nbsp;
-              {rentedDesk.is_owned_or_rented === 'rented' || null ? <Typography sx={{fontSize: 14, color: 'grey', paddingTop: '2px'}}>#{rentedDesk.desk_id},</Typography> : <Typography sx={{fontSize: 14, color: 'grey'}}>Not renting currently</Typography>}   
+              {rentedDesk === [] || rentedDesk.is_owned_or_rented === !'rented' ? <Typography sx={{fontSize: 14, color: 'grey', paddingTop: '2px'}}>#{rentedDesk.desk_id},</Typography> : <Typography sx={{fontSize: 14, color: 'grey'}}>Not renting currently</Typography>}   
             </Box>
             <Box width='fit-content' display='flex'>
               <Typography fontWeight={'bold'} >Desk(s) Owned: </Typography> &nbsp;
